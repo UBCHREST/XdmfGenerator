@@ -1,189 +1,47 @@
-/************************************************************
+static char help[] = "Command line executable to generate xdmf file hdf5 visualization. \n";
 
-  This example shows how to iterate over group members using
-  H5Literate.
+#include <petsc.h>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <memory>
+#include "xdmfBuilder.hpp"
 
-  This file is intended for use with HDF5 Library version 1.8
+int main(int argc, char **args) {
+    // initialize petsc and mpi
+    PetscErrorCode err = PetscInitialize(&argc, &args, NULL, help);
+    CHKERRQ(err);
 
- ************************************************************/
-#include <hdf5.h>
-#include <stdio.h>
-#include "object.hpp"
-
-#define FILE       "/Users/mcgurn/scratch/results/simpleTestCase/theFlowField.hdf5"
-
-/*
- * Define operator data structure type for H5Literate callback.
- * During recursive iteration, these structures will form a
- * linked list that can be searched for duplicate groups,
- * preventing infinite recursion.
- */
-struct opdata {
-    unsigned        recurs;         /* Recursion level.  0=root */
-    struct opdata   *prev;          /* Pointer to previous opdata */
-    haddr_t         addr;           /* Group address */
-};
-
-/*
- * Operator function to be called by H5Literate.
- */
-herr_t op_func (hid_t loc_id, const char *name, const H5L_info_t *info,
-                void *operator_data);
-
-/*
- * Function to check for duplicate groups in a path.
- */
-int group_check (struct opdata *od, haddr_t target_addr);
-
-int
-main (void)
-{
-    hid_t           file;           /* Handle */
-    herr_t          status;
-    H5O_info_t      infobuf;
-    struct opdata   od;
-
-    /*
-     * Open file and initialize the operator data structure.
-     */
-    file = H5Fopen (FILE, H5F_ACC_RDONLY, H5P_DEFAULT);
-    status = H5Oget_info (file, &infobuf);
-
-//    auto group = H5Oopen_by_addr(file, infobuf.addr);
-//
-//    H5O_info_t      infobuf2;
-//    auto err = H5Oget_info_by_name(file, "fields", &infobuf2, H5P_DEFAULT);
-
-
-    auto root = std::make_shared<petscXdmfGenerator::Object>(file, infobuf);
-    std::cout << *root << std::endl;
-    auto fields = root->Get("geometry");
-    auto vertices = fields->Get("vertices");
-
-    std::cout << *vertices << std::endl;
-
-    od.recurs = 0;
-    od.prev = NULL;
-    od.addr = infobuf.addr;
-
-    /*
-     * Print the root group and formatting, begin iteration.
-     */
-    printf ("/ {\n");
-    status = H5Literate (file, H5_INDEX_NAME, H5_ITER_NATIVE, NULL, op_func,
-                         (void *) &od);
-    printf ("}\n");
-
-    /*
-     * Close and release resources.
-     */
-    status = H5Fclose (file);
-
-    return 0;
-}
-
-
-/************************************************************
-
-  Operator function.  This function prints the name and type
-  of the object passed to it.  If the object is a group, it
-  is first checked against other groups in its path using
-  the group_check function, then if it is not a duplicate,
-  H5Literate is called for that group.  This guarantees that
-  the program will not enter infinite recursion due to a
-  circular path in the file.
-
- ************************************************************/
-herr_t op_func (hid_t loc_id, const char *name, const H5L_info_t *info,
-                void *operator_data)
-{
-    herr_t          status, return_val = 0;
-    H5O_info_t      infobuf;
-    struct opdata   *od = (struct opdata *) operator_data;
-    /* Type conversion */
-    unsigned        spaces = 2*(od->recurs+1);
-    /* Number of whitespaces to prepend
-       to output */
-
-    /*
-     * Get type of the object and display its name and type.
-     * The name of the object is passed to this function by
-     * the Library.
-     */
-    status = H5Oget_info_by_name (loc_id, name, &infobuf, H5P_DEFAULT);
-    printf ("%*s", spaces, "");     /* Format output */
-    switch (infobuf.type) {
-        case H5O_TYPE_GROUP:
-            printf ("Group: %s {\n", name);
-
-            /*
-             * Check group address against linked list of operator
-             * data structures.  We will always run the check, as the
-             * reference count cannot be relied upon if there are
-             * symbolic links, and H5Oget_info_by_name always follows
-             * symbolic links.  Alternatively we could use H5Lget_info
-             * and never recurse on groups discovered by symbolic
-             * links, however it could still fail if an object's
-             * reference count was manually manipulated with
-             * H5Odecr_refcount.
-             */
-            if ( group_check (od, infobuf.addr) ) {
-                printf ("%*s  Warning: Loop detected!\n", spaces, "");
-            }
-            else {
-
-                /*
-                 * Initialize new operator data structure and
-                 * begin recursive iteration on the discovered
-                 * group.  The new opdata structure is given a
-                 * pointer to the current one.
-                 */
-                struct opdata nextod;
-                nextod.recurs = od->recurs + 1;
-                nextod.prev = od;
-                nextod.addr = infobuf.addr;
-                return_val = H5Literate_by_name (loc_id, name, H5_INDEX_NAME,
-                                                 H5_ITER_NATIVE, NULL, op_func, (void *) &nextod,
-                                                 H5P_DEFAULT);
-            }
-            printf ("%*s}\n", spaces, "");
-            break;
-        case H5O_TYPE_DATASET:
-            printf ("Dataset: %s\n", name);
-            {
-                auto dataset = H5Oopen_by_addr(loc_id, infobuf.addr);
-                auto dataspace = H5Dget_space(dataset);    /* dataspace handle */
-                const int ndims = H5Sget_simple_extent_ndims(dataspace);
-                printf("ndims: %d\n", ndims);
-
-            }
-            break;
-        case H5O_TYPE_NAMED_DATATYPE:
-            printf ("Datatype: %s\n", name);
-            break;
-        default:
-            printf ( "Unknown: %s\n", name);
+    // check to see if we should print options
+    char filename[PETSC_MAX_PATH_LEN] = "";
+    PetscBool fileSpecified = PETSC_FALSE;
+    PetscOptionsGetString(NULL, NULL, "--input", filename, PETSC_MAX_PATH_LEN, &fileSpecified);
+    CHKERRQ(err);
+    if (!fileSpecified) {
+        throw std::invalid_argument("the hdf5 file must be specified using the --input flag");
     }
 
-    return return_val;
-}
+    std::filesystem::path filePath(filename);
+    if (!std::filesystem::exists(filePath)) {
+        throw std::invalid_argument("unable to locate input file: " + filePath.string());
+    }
 
+    // prepare
+    auto root = std::make_shared<petscXdmfGenerator::HdfObject>(filePath);
+    auto builder = petscXdmfGenerator::XdmfBuilder::FromPetscHdf(root);
+    auto xml = builder->Build();
 
-/************************************************************
+    // build the path to the output file
+    std::filesystem::path outputFile = filePath.parent_path();
+    outputFile /= (filePath.stem().string() + ".xmf");
 
-  This function recursively searches the linked list of
-  opdata structures for one whose address matches
-  target_addr.  Returns 1 if a match is found, and 0
-  otherwise.
+    // write to the file
+    std::ofstream xmlFile;
+    xmlFile.open(outputFile);
+    xml->PrettyPrint(xmlFile);
+    xmlFile.close();
 
- ************************************************************/
-int group_check (struct opdata *od, haddr_t target_addr)
-{
-    if (od->addr == target_addr)
-        return 1;       /* Addresses match */
-    else if (!od->recurs)
-        return 0;       /* Root group reached with no matches */
-    else
-        return group_check (od->prev, target_addr);
-    /* Recursively examine the next node */
+    std::cout << "XDMF file written to " << outputFile << std::endl;
+
+    return PetscFinalize();
 }

@@ -1,0 +1,71 @@
+name: Build and Testing
+
+on:
+  push:
+    # Publish `main` as Docker `latest` image.
+    branches:
+      - main
+
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+
+  # Run tests for any PRs.
+  pull_request:
+    branches:
+      - main
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Building tests
+      run: docker build . --file DockerTestFile --tag petsc-xdmf-generator-test-image
+
+    - name: Get the version from the build file
+      run: echo "VERSION=$(docker run --rm petsc-xdmf-generator-test-image awk -F= '/CMAKE_PROJECT_VERSION:/ {print $NF}' CMakeCache.txt )" >> $GITHUB_ENV
+
+    - name: Check for version
+      run: |
+        echo "Checking version: v$VERSION"
+        if git rev-parse "v$VERSION" >/dev/null 2>&1; then
+          echo "::error file=CMakeLists.txt::The version already exists!"
+          exit 1
+        else
+          echo "version does not exist"
+        fi
+
+    - name: Run tests
+      run: docker run --rm petscXdmfGenerator-test-image
+
+  tag-version:
+    # Ensure test job passes before pushing image.
+    needs: test
+
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Build the docker image
+        run: docker build . --file DockerTestFile --tag petsc-xdmf-generator-test-image
+
+      - name: Get the version from the build file
+        run: echo "VERSION=$(docker run --rm petsc-xdmf-generator-test-image awk -F= '/CMAKE_PROJECT_VERSION:/ {print $NF}' CMakeCache.txt )" >> $GITHUB_ENV
+
+      - name: set version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{env.VERSION}}
