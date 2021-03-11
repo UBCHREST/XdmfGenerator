@@ -43,7 +43,7 @@ jobs:
         fi
 
     - name: Run tests
-      run: docker run --rm petscXdmfGenerator-test-image
+      run: docker run --rm petsc-xdmf-generator-test-image
 
   tag-version:
     # Ensure test job passes before pushing image.
