@@ -3,13 +3,14 @@
 #include <map>
 #include <set>
 #include <string>
+#include <algorithm>
 
 static const auto DataItem = "DataItem";
 static const auto Grid = "Grid";
 
 using namespace petscXdmfGenerator;
 static std::map<unsigned long long, std::map<unsigned long long, std::string>> cellMap = {
-    {1, {{1, "Polyvertex"}, {2, "Polyline"}}}, {2, {{3, "Triangle"}, {4, "Quadrilateral"}}}, {3, {{4, "Tetrahedron"}, {6, "Wedge"}, {8, "Hexahedron"}}}};
+    {1, {{0, "Polyvertex"}, {1, "Polyvertex"}, {2, "Polyline"}}}, {2, {{0, "Polyvertex"}, {3, "Triangle"}, {4, "Quadrilateral"}}}, {3, {{0, "Polyvertex"}, {4, "Tetrahedron"}, {6, "Wedge"}, {8, "Hexahedron"}}}};
 
 static std::map<FieldType, std::string> typeMap = {{SCALAR, "Scalar"}, {VECTOR, "Vector"}, {TENSOR, "Tensor6"}, {MATRIX, "Matrix"}};
 
@@ -43,14 +44,14 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     for(auto& xdmfGrid : specification->grids){
         // store a central reference for time invariant data
         if(xdmfGrid.gridTimeInvariant) {
-            if (!xdmfGrid.topology.path.empty() && xdmfGrid.topology.number > 0) {
+            if (xdmfGrid.topology.number > 0) {
                 WriteCells(domainElement, xdmfGrid.topology);
             }
-            if (!xdmfGrid.hybridTopology.path.empty() && xdmfGrid.hybridTopology.number > 0) {
+            if (xdmfGrid.hybridTopology.number > 0) {
                 WriteCells(domainElement, xdmfGrid.hybridTopology);
             }
             // and the vertices
-            if (!xdmfGrid.geometry.path.empty() && xdmfGrid.geometry.number > 0) {
+            if (xdmfGrid.geometry.number > 0) {
                 WriteVertices(domainElement, xdmfGrid.geometry);
             }
         }
@@ -89,21 +90,20 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
 
 void petscXdmfGenerator::XdmfBuilder::WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, unsigned long long timeStep) {
     // check for an existing reference
-    const std::string id = topologyDescription.path + "/" + topologyDescription.cellName;
-    if(HasReference(id) && timeStep == TimeInvariant){
-        AddReference(element, id);
+    if(HasReference(topologyDescription.path) && timeStep == TimeInvariant){
+        UseReference(element, topologyDescription.path);
     }else{
         auto& dataItem = element[DataItem];
-        dataItem("Name") = topologyDescription.cellName;
+        dataItem("Name") = Hdf5PathToName(topologyDescription.path);
         dataItem("ItemType") = "Uniform";
         dataItem("Format") = "HDF";
         dataItem("Precision") = "8";
         dataItem("NumberType") = "Float";
         dataItem("Dimensions") = std::to_string(topologyDescription.number) + " " + std::to_string(topologyDescription.numberCorners);
-        dataItem() = "&HeavyData;:" + topologyDescription.path + "/" + topologyDescription.cellName;
+        dataItem() = "&HeavyData;:" + topologyDescription.path;
 
         if(timeStep == TimeInvariant ){
-            AddReference(id, dataItem.Path(), topologyDescription.cellName);
+            AddReference(topologyDescription.path, dataItem.Path());
         }
     }
 }
@@ -111,18 +111,17 @@ void petscXdmfGenerator::XdmfBuilder::WriteCells(petscXdmfGenerator::XmlElement&
 void petscXdmfGenerator::XdmfBuilder::WriteVertices(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::GeometryDescription& geometryDescription, unsigned long long timeStep) {
 
     // check for an existing reference
-    const std::string id = geometryDescription.path + "/" + "vertices";
-    if(HasReference(id) && timeStep == TimeInvariant){
-        AddReference(element, id);
+    if(HasReference( geometryDescription.path) && timeStep == TimeInvariant){
+        UseReference(element,  geometryDescription.path);
     }else{
         auto& dataItem = element[DataItem];
         dataItem("Name") = "vertices";
         dataItem("Format") = "HDF";
         dataItem("Dimensions") = std::to_string(geometryDescription.number) + " " + std::to_string(geometryDescription.dimension);
-        dataItem() = "&HeavyData;:" + geometryDescription.path + "/vertices";
+        dataItem() = "&HeavyData;:" + geometryDescription.path;
 
         if(timeStep == TimeInvariant ){
-            AddReference(id, dataItem.Path(), "vertices");
+            AddReference( geometryDescription.path, dataItem.Path());
         }
     }
 
@@ -161,8 +160,13 @@ petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateSpaceGr
     {
         auto& topology = gridItem["Topology"];
         topology("TopologyType") = cellMap[topologyDescription.dimension][topologyDescription.numberCorners];
-        topology("NumberOfElements") = std::to_string(topologyDescription.number);
-        WriteCells(topology, topologyDescription, timeStep);
+        if(topologyDescription.numberCorners == 0){
+            topology("NodesPerElement") = std::to_string(topologyDescription.number);
+
+        }else{
+            topology("NumberOfElements") = std::to_string(topologyDescription.number);
+            WriteCells(topology, topologyDescription, timeStep);
+        }
     }
 
     auto& geometry = gridItem["Geometry"];
@@ -277,8 +281,17 @@ void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement&
     }
 }
 
-void XdmfBuilder::AddReference(XmlElement& element, std::string id) {
+void XdmfBuilder::UseReference(XmlElement& element, std::string id) {
     auto& reference = element[DataItem];
     reference("Reference") = "XML";
     reference() = xmlReferences.at(id);
+}
+std::string XdmfBuilder::Hdf5PathToName(std::string hdf5Path) {
+    // right now everything we are using has a unique name, this can be relaxed in the future.
+    auto pos = hdf5Path.rfind("/");
+    if (pos != std::string::npos) {
+        hdf5Path = hdf5Path.substr(pos + 1);
+    }
+
+    return hdf5Path;
 }

@@ -26,27 +26,28 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
         GridDescription mainGrid;
 
         // store the geometry
-        mainGrid.geometry.path = geometryObject->Path();
-        mainGrid.geometry.number = geometryObject->Get("vertices")->Shape()[0];
-        mainGrid.geometry.dimension = geometryObject->Get("vertices")->Shape()[1];
+        auto verticesObject = geometryObject->Get("vertices");
+        mainGrid.geometry.path = verticesObject->Path();
+        mainGrid.geometry.number = verticesObject->Shape()[0];
+        mainGrid.geometry.dimension = verticesObject->Shape()[1];
 
         // check for and get the topology
         std::shared_ptr<petscXdmfGenerator::HdfObject> topologyObject = FindPetscHdfChild(rootObject, "topology");
         if (topologyObject) {
-            mainGrid.topology.cellName = "cells";
-            mainGrid.topology.path = topologyObject->Path();
-            mainGrid.topology.number = topologyObject->Get("cells")->Shape()[0];
-            mainGrid.topology.numberCorners = topologyObject->Get("cells")->Shape()[1];
-            mainGrid.topology.dimension = topologyObject->Get("cells")->Attribute<unsigned long long>("cell_dim");
+            auto cellObject = topologyObject->Get("cells");
+            mainGrid.topology.path = cellObject->Path();
+            mainGrid.topology.number = cellObject->Shape()[0];
+            mainGrid.topology.numberCorners = cellObject->Shape()[1];
+            mainGrid.topology.dimension = cellObject->Attribute<unsigned long long>("cell_dim");
         }
 
         // hybrid topology
         std::shared_ptr<petscXdmfGenerator::HdfObject> hybridTopologyObject = FindPetscHdfChild(rootObject, "hybrid_topology");
         if (hybridTopologyObject) {
-            mainGrid.hybridTopology.cellName = "hcells";
-            mainGrid.hybridTopology.path = hybridTopologyObject->Path();
-            mainGrid.hybridTopology.number = hybridTopologyObject->Get("cells")->Shape()[0];
-            mainGrid.hybridTopology.numberCorners = hybridTopologyObject->Get("cells")->Shape()[1];
+            auto cellObject = topologyObject->Get("hcells");
+            mainGrid.hybridTopology.path = cellObject->Path();
+            mainGrid.hybridTopology.number = cellObject->Shape()[0];
+            mainGrid.hybridTopology.numberCorners = cellObject->Shape()[1];
         }
 
         // get the time
@@ -65,6 +66,32 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
     }
 
     // check for particles
+    if(rootObject->Contains("particles") || rootObject->Contains("particle_fields")){
+        GridDescription particleGrid;
+        particleGrid.name = "particle_domain";
+
+        if(rootObject->Contains("particles")){
+            std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(rootObject, "geometry");
+            // store the geometry
+            particleGrid.geometry.path = geometryObject->Path();
+            particleGrid.geometry.number = geometryObject->Get("vertices")->Shape()[0];
+            particleGrid.geometry.dimension = geometryObject->Get("vertices")->Shape()[1];
+        }
+
+        // hard code simple topology
+        particleGrid.topology.path = "";
+        particleGrid.topology.number = particleGrid.geometry.number;
+        particleGrid.topology.numberCorners =0;
+        particleGrid.topology.dimension = particleGrid.geometry.dimension;
+
+        // get the time
+        particleGrid.time = rootObject->Contains("time") ? rootObject->Get("time")->RawData<double>(): std::vector<double>();
+
+        // add to the list of grids
+        specification->grids.push_back(particleGrid);
+
+    }
+
 
     return specification;
 }

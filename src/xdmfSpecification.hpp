@@ -14,7 +14,6 @@ class XdmfSpecification {
    private:
     struct TopologyDescription {
         std::string path = "";
-        std::string cellName;
         unsigned long long number = 0;
         unsigned long long numberCorners = 0;
         unsigned long long dimension = 0;
@@ -48,7 +47,7 @@ class XdmfSpecification {
         std::vector<double> time;
 
         // determine if the gridTimeInvariant
-        bool gridTimeInvariant = false;
+        bool gridTimeInvariant = true;
     };
 
     // Store the path to the file

@@ -46,15 +46,18 @@ class XdmfBuilder {
         return joinedString;
     }
 
-    inline void AddReference(std::string id, std::string xmlPath, std::string name){
-        xmlReferences[id] = xmlPath + "[@Name=\"" + name+ "\"]";
+    std::string Hdf5PathToName(std::string hdf5Path);
+
+    inline void AddReference(const std::string& hdf5Path, const std::string& xmlPath){
+        xmlReferences[hdf5Path] = xmlPath + "[@Name=\"" + Hdf5PathToName(hdf5Path)+ "\"]";
     }
 
-    inline bool HasReference(std::string id){
-        return xmlReferences.count(id) != 0;
+    inline bool HasReference(const std::string& hdf5Path){
+        return xmlReferences.count(hdf5Path) != 0;
     }
 
-    void AddReference(XmlElement& element, std::string id);
+
+    void UseReference(XmlElement& element, std::string id);
 
    public:
     explicit XdmfBuilder(std::shared_ptr<XdmfSpecification> specification);
