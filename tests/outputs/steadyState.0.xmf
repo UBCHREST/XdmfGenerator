@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
-<!ENTITY HeavyData "steadystate.0.hdf5">
+<!ENTITY HeavyData "steadyState.0.hdf5">
 ]>
 <Xdmf>
   <Domain Name="domain">
