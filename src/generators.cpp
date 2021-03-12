@@ -6,8 +6,9 @@ namespace petscXdmfGenerator {
 void Generate(std::filesystem::path inputFilePath, std::filesystem::path outputFilePath) {
     // prepare the builder
     auto hdfObject = std::make_shared<petscXdmfGenerator::HdfObject>(inputFilePath);
-    auto builder = petscXdmfGenerator::XdmfBuilder::FromPetscHdf(hdfObject);
-    auto xml = builder->Build();
+    auto specification = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
+    auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+    auto xml = builder.Build();
 
     // build the path to the output file
     if (outputFilePath.empty()) {

@@ -18,75 +18,9 @@ static std::map<FieldLocation, std::string> locationMap = {{NODE, "Node"}, {CELL
 static std::map<unsigned long long, std::map<FieldType, std::vector<std::string>>> typeExt = {{2, {{VECTOR, {"x", "y"}}, {TENSOR, {"xx", "yy", "xy"}}}},
                                                                                                 {3, {{VECTOR, {"x", "y", "z"}}, {TENSOR, {"xx", "yy", "zz", "xy", "yz", "xz"}}}}};
 
-std::shared_ptr<petscXdmfGenerator::XdmfBuilder> petscXdmfGenerator::XdmfBuilder::FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject> rootObject) {
-    auto builder = std::make_shared<XdmfBuilder>();
-
-    // store the file name
-    builder->hdf5File = rootObject->Name();
-
-    // determine the geometry object and path
-    std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = FindHdfChild(rootObject, "geometry");
-    if (geometryObject) {
-        builder->geometry.path = geometryObject->Path();
-        builder->geometry.number = geometryObject->Get("vertices")->Shape()[0];
-        builder->geometry.dimension = geometryObject->Get("vertices")->Shape()[1];
-    }
-
-    // topology
-    std::shared_ptr<petscXdmfGenerator::HdfObject> topologyObject = FindHdfChild(rootObject, "topology");
-    if (topologyObject) {
-        builder->topology.path = topologyObject->Path();
-        builder->topology.number = topologyObject->Get("cells")->Shape()[0];
-        builder->topology.numberCorners = topologyObject->Get("cells")->Shape()[1];
-        builder->topology.dimension = topologyObject->Get("cells")->Attribute<unsigned long long>("cell_dim");
-    }
-
-    // hybrid topology
-    std::shared_ptr<petscXdmfGenerator::HdfObject> hybridTopologyObject = FindHdfChild(rootObject, "hybrid_topology");
-    if (hybridTopologyObject) {
-        builder->hybridTopology.path = hybridTopologyObject->Path();
-        builder->hybridTopology.number = hybridTopologyObject->Get("cells")->Shape()[0];
-        builder->hybridTopology.numberCorners = hybridTopologyObject->Get("cells")->Shape()[1];
-    }
-
-    // get the time
-    builder->time = rootObject->Contains("time") ? rootObject->Get("time")->RawData<double>(): std::vector<double>();
-
-    // get the vertex fields and map into a vertex map
-    if (rootObject->Contains("vertex_fields")) {
-        GenerateFieldsFromPetsc(builder->fields, rootObject->Get("vertex_fields")->Items(), NODE);
-    }
-    if (rootObject->Contains("cell_fields")) {
-        GenerateFieldsFromPetsc(builder->fields, rootObject->Get("cell_fields")->Items(), CELL);
-    }
-
-    // Get the time history
-    return builder;
+XdmfBuilder::XdmfBuilder(std::shared_ptr<XdmfSpecification> specification) : specification(specification) {
 }
 
-void XdmfBuilder::GenerateFieldsFromPetsc(std::vector<XdmfBuilder::FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields,FieldLocation location){
-    const static std::map<std::string, FieldType> petscTypeLookUp = {{"scalar",SCALAR}, {"vector",VECTOR}, {"tensor",TENSOR}, {"matrix",MATRIX}};
-    for (auto& hdfField : hdfFields) {
-        FieldDescription description{
-            .name = hdfField->Name(),
-            .path = hdfField->Path(),
-            .shape = hdfField->Shape(),
-            .fieldLocation = location,
-            .fieldType = petscTypeLookUp.at(hdfField->AttributeString("vector_field_type"))};
-        fields.push_back(description);
-    }
-}
-
-
-std::shared_ptr<petscXdmfGenerator::HdfObject> petscXdmfGenerator::XdmfBuilder::FindHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, std::string name) {
-    if (root->Contains("viz") && root->Get("viz")->Contains(name)) {
-        return root->Get("viz")->Get(name);
-    } else if (root->Contains(name)) {
-        return root->Get(name);
-    }
-
-    return nullptr;
-}
 
 std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder::Build() {
     // build the preamble
@@ -94,7 +28,7 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
         "<?xml version=\"1.0\" ?>\n"
         "<!DOCTYPE Xdmf SYSTEM \"Xdmf.dtd\" [\n"
         "<!ENTITY HeavyData \"" +
-        hdf5File +
+        specification->hdf5File +
         "\">\n"
         "]>";
 
@@ -106,40 +40,40 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     domainElement("Name") = "domain";
 
     // add cells for topology
-    if (!topology.path.empty() && topology.number > 0) {
-        WriteCells(domainElement, topology.path, topology.number, topology.numberCorners);
+    if (!specification->topology.path.empty() && specification->topology.number > 0) {
+        WriteCells(domainElement, specification->topology.path, specification->topology.number, specification->topology.numberCorners);
     }
-    if (!hybridTopology.path.empty() && hybridTopology.number > 0) {
-        WriteCells(domainElement, hybridTopology.path, hybridTopology.number, hybridTopology.numberCorners, "hcells");
+    if (!specification->hybridTopology.path.empty() && specification->hybridTopology.number > 0) {
+        WriteCells(domainElement, specification->hybridTopology.path, specification->hybridTopology.number, specification->hybridTopology.numberCorners, "hcells");
     }
     // and the vertices
-    if (!geometry.path.empty() && geometry.number > 0) {
-        WriteVertices(domainElement, geometry.path, geometry.number, geometry.dimension);
+    if (!specification->geometry.path.empty() && specification->geometry.number > 0) {
+        WriteVertices(domainElement, specification->geometry.path, specification->geometry.number, specification->geometry.dimension);
     }
 
     // check if we should use time
-    if(time.empty()){
-        time.push_back(-1); // make sure we do at least one time
+    if(specification->time.empty()){
+        specification->time.push_back(-1); // make sure we do at least one time
     }
-    auto useTime = !(time.size() < 2 && time[0] == -1);
+    auto useTime = !(specification->time.size() < 2 && specification->time[0] == -1);
 
     // specify if we add each grid to the domain or a timeGridBase
-    auto& gridBase = useTime ? GenerateTimeGrid(domainElement, time) : domainElement;
+    auto& gridBase = useTime ? GenerateTimeGrid(domainElement, specification->time) : domainElement;
 
     // march over and add each grid for each time
-    for (auto timeIndex = 0; timeIndex < time.size(); timeIndex++) {
+    for (auto timeIndex = 0; timeIndex < specification->time.size(); timeIndex++) {
         // add in the hybrid header
-        auto& timeIndexBase = hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase) : gridBase;
-        if (hybridTopology.number > 0) {
-            GenerateSpaceGrid(timeIndexBase, hybridTopology.number, hybridTopology.numberCorners, hybridTopology.dimension, geometry.dimension, "hcells");
+        auto& timeIndexBase = specification->hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase) : gridBase;
+        if (specification->hybridTopology.number > 0) {
+            GenerateSpaceGrid(timeIndexBase, specification->hybridTopology.number, specification->hybridTopology.numberCorners, specification->hybridTopology.dimension, specification->geometry.dimension, "hcells");
         }
 
         // write the space header
-        auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, topology.number, topology.numberCorners, topology.dimension, geometry.dimension);
+        auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, specification->topology.number, specification->topology.numberCorners, specification->topology.dimension, specification->geometry.dimension);
 
         // add in each field
-        for (auto& field : fields) {
-            WriteField(spaceGrid, field, timeIndex, time.size(), topology.dimension, geometry.dimension);
+        for (auto& field : specification->fields) {
+            WriteField(spaceGrid, field, timeIndex, specification->time.size(), specification->topology.dimension, specification->geometry.dimension);
         }
     }
 
@@ -220,7 +154,7 @@ petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateSpaceGr
     return gridItem;
 }
 
-void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfBuilder::FieldDescription& fieldDescription, unsigned long long timeStep,
+void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep,
                                                  unsigned long long numSteps, unsigned long long cellDimension, unsigned long long spaceDimension) {
     std::set<FieldType> componentTypes = {TENSOR, MATRIX};
     if (cellDimension != spaceDimension){

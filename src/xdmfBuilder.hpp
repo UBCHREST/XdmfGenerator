@@ -7,46 +7,17 @@
 #include <vector>
 #include "hdfObject.hpp"
 #include "xmlElement.hpp"
+#include "xdmfSpecification.hpp"
 
 namespace petscXdmfGenerator {
-enum FieldLocation {NODE, CELL};
-enum FieldType {SCALAR, VECTOR, TENSOR, MATRIX};
-
 class XdmfBuilder {
    private:
-    struct Description {
-        std::string path = "";
-        unsigned long long number = 0;
-        unsigned long long numberCorners = 0;
-        unsigned long long dimension = 0;
-    };
+    const std::shared_ptr<XdmfSpecification> specification;
 
-
-    struct FieldDescription {
-        std::string name = "";
-        std::string path = "";
-        std::vector<unsigned long long> shape;
-        FieldLocation fieldLocation;
-        FieldType fieldType;
-    };
-
-    // store each type of geometry/topology data
-    Description topology;
-    Description hybridTopology;
-    Description geometry;
-
-    std::string hdf5File;
-    std::vector<double> time;
-
-    // store the field data
-    std::vector<FieldDescription> fields;
-
-    // internal helper functions
-    static std::shared_ptr<petscXdmfGenerator::HdfObject> FindHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, std::string name);
-
+    // internal helper  write functions
     static void WriteCells(XmlElement& element, std::string path, unsigned long long numberCells, unsigned long long numberCorners, std::string cellName = "cells");
     static void WriteVertices(XmlElement& element, std::string path, unsigned long long number, unsigned long long dimensions);
-    static void WriteField(XmlElement& element, FieldDescription& fieldDescription, unsigned long long timeStep, unsigned long long numSteps, unsigned long long cellDimension,
+    static void WriteField(XmlElement& element, XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep, unsigned long long numSteps, unsigned long long cellDimension,
                            unsigned long long spaceDimension);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
     static XmlElement& GenerateHybridSpaceGrid(XmlElement& element);
@@ -73,10 +44,7 @@ class XdmfBuilder {
     }
 
    public:
-    // provide generator functions
-    static std::shared_ptr<XdmfBuilder> FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject>);
-    static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields,FieldLocation location);
-
+    explicit XdmfBuilder(std::shared_ptr<XdmfSpecification> specification);
     std::unique_ptr<XmlElement> Build();
 };
 }  // namespace petscXdmfGenerator
