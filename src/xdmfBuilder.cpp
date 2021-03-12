@@ -7,13 +7,16 @@
 static const auto DataItem = "DataItem";
 static const auto Grid = "Grid";
 
+using namespace petscXdmfGenerator;
 static std::map<unsigned long long, std::map<unsigned long long, std::string>> cellMap = {
     {1, {{1, "Polyvertex"}, {2, "Polyline"}}}, {2, {{3, "Triangle"}, {4, "Quadrilateral"}}}, {3, {{4, "Tetrahedron"}, {6, "Wedge"}, {8, "Hexahedron"}}}};
 
-static std::map<std::string, std::string> typeMap = {{"scalar", "Scalar"}, {"vector", "Vector"}, {"tensor", "Tensor6"}, {"matrix", "Matrix"}};
+static std::map<FieldType, std::string> typeMap = {{SCALAR, "Scalar"}, {VECTOR, "Vector"}, {TENSOR, "Tensor6"}, {MATRIX, "Matrix"}};
 
-static std::map<unsigned long long, std::map<std::string, std::vector<std::string>>> typeExt = {{2, {{"vector", {"x", "y"}}, {"tensor", {"xx", "yy", "xy"}}}},
-                                                                                                {3, {{"vector", {"x", "y", "z"}}, {"tensor", {"xx", "yy", "zz", "xy", "yz", "xz"}}}}};
+static std::map<FieldLocation, std::string> locationMap = {{NODE, "Node"}, {CELL, "Cell"}};
+
+static std::map<unsigned long long, std::map<FieldType, std::vector<std::string>>> typeExt = {{2, {{VECTOR, {"x", "y"}}, {TENSOR, {"xx", "yy", "xy"}}}},
+                                                                                                {3, {{VECTOR, {"x", "y", "z"}}, {TENSOR, {"xx", "yy", "zz", "xy", "yz", "xz"}}}}};
 
 std::shared_ptr<petscXdmfGenerator::XdmfBuilder> petscXdmfGenerator::XdmfBuilder::FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject> rootObject) {
     auto builder = std::make_shared<XdmfBuilder>();
@@ -51,21 +54,29 @@ std::shared_ptr<petscXdmfGenerator::XdmfBuilder> petscXdmfGenerator::XdmfBuilder
 
     // get the vertex fields and map into a vertex map
     if (rootObject->Contains("vertex_fields")) {
-        for (auto& vertexField : rootObject->Get("vertex_fields")->Items()) {
-            FieldDescription description{.name = vertexField->Name(), .path = vertexField->Path(), .shape = vertexField->Shape(), .vectorFieldType = vertexField->AttributeString("vector_field_type")};
-            builder->vertexFields.push_back(description);
-        }
+        GenerateFieldsFromPetsc(builder->fields, rootObject->Get("vertex_fields")->Items(), NODE);
     }
     if (rootObject->Contains("cell_fields")) {
-        for (auto& cellField : rootObject->Get("cell_fields")->Items()) {
-            FieldDescription description{.name = cellField->Name(), .path = cellField->Path(), .shape = cellField->Shape(), .vectorFieldType = cellField->AttributeString("vector_field_type")};
-            builder->cellFields.push_back(description);
-        }
+        GenerateFieldsFromPetsc(builder->fields, rootObject->Get("cell_fields")->Items(), CELL);
     }
 
     // Get the time history
     return builder;
 }
+
+void XdmfBuilder::GenerateFieldsFromPetsc(std::vector<XdmfBuilder::FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields,FieldLocation location){
+    const static std::map<std::string, FieldType> petscTypeLookUp = {{"scalar",SCALAR}, {"vector",VECTOR}, {"tensor",TENSOR}, {"matrix",MATRIX}};
+    for (auto& hdfField : hdfFields) {
+        FieldDescription description{
+            .name = hdfField->Name(),
+            .path = hdfField->Path(),
+            .shape = hdfField->Shape(),
+            .fieldLocation = location,
+            .fieldType = petscTypeLookUp.at(hdfField->AttributeString("vector_field_type"))};
+        fields.push_back(description);
+    }
+}
+
 
 std::shared_ptr<petscXdmfGenerator::HdfObject> petscXdmfGenerator::XdmfBuilder::FindHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, std::string name) {
     if (root->Contains("viz") && root->Get("viz")->Contains(name)) {
@@ -127,12 +138,8 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
         auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, topology.number, topology.numberCorners, topology.dimension, geometry.dimension);
 
         // add in each field
-        for (auto& field : vertexFields) {
-            WriteField(spaceGrid, field, timeIndex, time.size(), topology.dimension, geometry.dimension, "Node");
-        }
-
-        for (auto& field : cellFields) {
-            WriteField(spaceGrid, field, timeIndex, time.size(), topology.dimension, geometry.dimension, "Cell");
+        for (auto& field : fields) {
+            WriteField(spaceGrid, field, timeIndex, time.size(), topology.dimension, geometry.dimension);
         }
     }
 
@@ -214,15 +221,15 @@ petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateSpaceGr
 }
 
 void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfBuilder::FieldDescription& fieldDescription, unsigned long long timeStep,
-                                                 unsigned long long numSteps, unsigned long long cellDimension, unsigned long long spaceDimension, std::string domain) {
-    std::set<std::string> componentTypes = {"tensor", "matrix"};
-    //    if (spaceDimension == 2 || cellDimension != spaceDimension){
-    //        componentTypes.insert("vector");
-    //    }
+                                                 unsigned long long numSteps, unsigned long long cellDimension, unsigned long long spaceDimension) {
+    std::set<FieldType> componentTypes = {TENSOR, MATRIX};
+    if (cellDimension != spaceDimension){
+        componentTypes.insert(VECTOR);
+    }
     // check if this is written as a component or single
-    if (componentTypes.find(fieldDescription.vectorFieldType) != componentTypes.end()) {
+    if (componentTypes.find(fieldDescription.fieldType) != componentTypes.end()) {
         unsigned long long dof;
-        unsigned long long bs;
+        unsigned long long nComp;
         std::string cdims;
         std::string dims;
         std::string stride;
@@ -230,28 +237,28 @@ void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement&
 
         if (fieldDescription.shape.size() > 2) {
             dof = fieldDescription.shape[1];
-            bs = fieldDescription.shape[2];
+            nComp = fieldDescription.shape[2];
             cdims = Join(1, dof, 1);
-            dims = Join(numSteps, dof, bs);
+            dims = Join(numSteps, dof, nComp);
             stride = Join(1, 1, 1);
             size = Join(1, dof, 1);
         } else {
             dof = fieldDescription.shape[0];
-            bs = fieldDescription.shape[1];
+            nComp = fieldDescription.shape[1];
             cdims = Join(1, dof);
-            dims = Join(dof, bs);
+            dims = Join(dof, nComp);
             stride = Join(1, 1);
             size = Join(dof, 1);
         }
 
-        for (auto c = 0; c < bs; c++) {
-            auto ext = typeExt[spaceDimension][fieldDescription.vectorFieldType][c];
+        for (auto c = 0; c < nComp; c++) {
+            auto ext = typeExt[spaceDimension][fieldDescription.fieldType][c];
             auto start = fieldDescription.shape.size() > 2 ? Join(timeStep, 0, c) : Join(0, c);
 
             auto& attribute = element["Attribute"];
             attribute("Name") = fieldDescription.name + "_" + ext;
             attribute("Type") = "Scalar";
-            attribute("Center") = domain;
+            attribute("Center") = locationMap[fieldDescription.fieldLocation];
 
             auto& dataItem = attribute[DataItem];
             dataItem("ItemType") = "HyperSlab";
@@ -275,42 +282,42 @@ void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement&
         }
     } else {
         unsigned long long dof;
-        unsigned long long bs;
+        unsigned long long nComp;
         if (fieldDescription.shape.size() > 2) {
             dof = fieldDescription.shape[1];
-            bs = fieldDescription.shape[2];
+            nComp = fieldDescription.shape[2];
         } else if (fieldDescription.shape.size() > 1) {
             if (numSteps > 1) {
                 dof = fieldDescription.shape[1];
-                bs = 1;
+                nComp = 1;
             } else {
                 dof = fieldDescription.shape[0];
-                bs = fieldDescription.shape[1];
+                nComp = fieldDescription.shape[1];
             }
         } else {
             dof = fieldDescription.shape[0];
-            bs = 1;
+            nComp = 1;
         }
         auto& attribute = element["Attribute"];
         attribute("Name") = fieldDescription.name;
-        attribute("Type") = typeMap[fieldDescription.vectorFieldType];
-        attribute("Center") = domain;
+        attribute("Type") = typeMap[fieldDescription.fieldType];
+        attribute("Center") = locationMap[fieldDescription.fieldLocation];
 
         auto& dataItem = attribute[DataItem];
         dataItem("ItemType") = "HyperSlab";
-        dataItem("Dimensions") = Join(1, dof, bs);
+        dataItem("Dimensions") = Join(1, dof, nComp);
         dataItem("Type") = "HyperSlab";
 
         {
             auto& dataItemItem = dataItem[DataItem];
             dataItemItem("Dimensions") = Join(3, 3);
             dataItemItem("Format") = "XML";
-            dataItemItem() = Join(timeStep, 0, 0) + " " + Join(1, 1, 1) + " " + Join(1, dof, bs);
+            dataItemItem() = Join(timeStep, 0, 0) + " " + Join(1, 1, 1) + " " + Join(1, dof, nComp);
         }
         {
             auto& dataItemItem = dataItem[DataItem];
             dataItemItem("DataType") = "Float";
-            dataItemItem("Dimensions") = Join(numSteps, dof, bs);
+            dataItemItem("Dimensions") = Join(numSteps, dof, nComp);
             dataItemItem("Format") = "HDF";
             dataItemItem("Precision") = "8";
             dataItemItem() = "&HeavyData;:" + fieldDescription.path;
