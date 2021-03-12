@@ -24,8 +24,8 @@ class XdmfBuilder {
     XmlElement& WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep );
     void WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
-    static XmlElement& GenerateHybridSpaceGrid(XmlElement& element);
-    XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription , const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep);
+    static XmlElement& GenerateHybridSpaceGrid(XmlElement& element, const std::string& domainName);
+    XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription , const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep, const std::string& domainName);
 
     template <typename T>
     inline static std::string toString(T value) {

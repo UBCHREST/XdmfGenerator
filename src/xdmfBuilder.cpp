@@ -42,7 +42,7 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     // add in each grid
     for (auto& xdmfGrid : specification->grids) {
         // store a central reference for time invariant data
-        if (xdmfGrid.gridTimeInvariant) {
+        if (!xdmfGrid.geometry.HasTimeDimension()) {
             if (xdmfGrid.topology.number > 0) {
                 WriteCells(domainElement, xdmfGrid.topology);
             }
@@ -66,16 +66,16 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
 
         // march over and add each grid for each time
         for (auto timeIndex = 0; timeIndex < xdmfGrid.time.size(); timeIndex++) {
-            auto gridTimeIndex = xdmfGrid.gridTimeInvariant ? TimeInvariant : timeIndex;
+            auto gridTimeIndex = xdmfGrid.geometry.HasTimeDimension() ? timeIndex : TimeInvariant;
 
             // add in the hybrid header
-            auto& timeIndexBase = xdmfGrid.hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase) : gridBase;
+            auto& timeIndexBase = xdmfGrid.hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase, xdmfGrid.name) : gridBase;
             if (xdmfGrid.hybridTopology.number > 0) {
-                GenerateSpaceGrid(timeIndexBase, xdmfGrid.hybridTopology, xdmfGrid.geometry, gridTimeIndex);
+                GenerateSpaceGrid(timeIndexBase, xdmfGrid.hybridTopology, xdmfGrid.geometry, gridTimeIndex, xdmfGrid.name);
             }
 
             // write the space header
-            auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, xdmfGrid.topology, xdmfGrid.geometry, gridTimeIndex);
+            auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, xdmfGrid.topology, xdmfGrid.geometry, gridTimeIndex, xdmfGrid.name);
 
             // add in each field
             for (auto& field : xdmfGrid.fields) {
@@ -137,17 +137,17 @@ petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateTimeGri
     return gridItem;
 }
 
-petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateHybridSpaceGrid(petscXdmfGenerator::XmlElement& element) {
+petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateHybridSpaceGrid(petscXdmfGenerator::XmlElement& element, const std::string& domainName) {
     auto& hybridGridItem = element[Grid];
-    hybridGridItem("Name") = "Domain";
+    hybridGridItem("Name") = domainName;
     hybridGridItem("GridType") = "Collection";
     return hybridGridItem;
 }
 
 petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateSpaceGrid(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription,
-                                                                                   const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep) {
+                                                                                   const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep, const std::string& domainName) {
     auto& gridItem = element[Grid];
-    gridItem("Name") = "domain";
+    gridItem("Name") = domainName;
     gridItem("GridType") = "Uniform";
 
     {

@@ -51,9 +51,6 @@ class XdmfSpecification {
 
         // This is empty for steady state problems
         std::vector<double> time;
-
-        // determine if the gridTimeInvariant
-        bool gridTimeInvariant = true;
     };
 
     // Store the path to the file

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
-<!ENTITY HeavyData "swarm.static.mesh.0.hdf5">
+<!ENTITY HeavyData "flowWithParticles.0.hdf5">
 ]>
 <Xdmf>
   <Domain Name="domain">
@@ -689,12 +689,6 @@
         </Attribute>
       </Grid>
     </Grid>
-    <DataItem Dimensions="100 0" Format="HDF" ItemType="Uniform" Name="" NumberType="Float" Precision="8">
-      &HeavyData;:
-    </DataItem>
-    <DataItem DataType="Float" Dimensions="100 2" Format="HDF" Name="_particles_coordinates" Precision="8">
-      &HeavyData;:/particles/coordinates
-    </DataItem>
     <Grid CollectionType="Temporal" GridType="Collection" Name="TimeSeries">
       <Time TimeType="List">
         <DataItem Dimensions="16" Format="XML" NumberType="Float">
@@ -705,11 +699,6 @@
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               0 0 0 1 1 1 1 100 2
@@ -718,17 +707,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               1 0 0 1 1 1 1 100 2
@@ -737,17 +731,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               2 0 0 1 1 1 1 100 2
@@ -756,17 +755,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               3 0 0 1 1 1 1 100 2
@@ -775,17 +779,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               4 0 0 1 1 1 1 100 2
@@ -794,17 +803,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              4 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               5 0 0 1 1 1 1 100 2
@@ -813,17 +827,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              5 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               6 0 0 1 1 1 1 100 2
@@ -832,17 +851,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              6 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               7 0 0 1 1 1 1 100 2
@@ -851,17 +875,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              7 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               8 0 0 1 1 1 1 100 2
@@ -870,17 +899,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              8 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               9 0 0 1 1 1 1 100 2
@@ -889,17 +923,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              9 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               10 0 0 1 1 1 1 100 2
@@ -908,17 +947,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              10 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               11 0 0 1 1 1 1 100 2
@@ -927,17 +971,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              11 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               12 0 0 1 1 1 1 100 2
@@ -946,17 +995,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              12 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               13 0 0 1 1 1 1 100 2
@@ -965,17 +1019,22 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              13 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               14 0 0 1 1 1 1 100 2
@@ -984,23 +1043,38 @@
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              14 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
+            </DataItem>
+          </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="particle_domain">
         <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
-          </DataItem>
-        </Geometry>
-        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
           <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
               15 0 0 1 1 1 1 100 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
               &HeavyData;:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="mass" Type="Scalar">
+          <DataItem Dimensions="1 100 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              15 0 0 1 1 1 1 100 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="16 100 1" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/mass
             </DataItem>
           </DataItem>
         </Attribute>

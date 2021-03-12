@@ -1,5 +1,6 @@
 #include "xdmfSpecification.hpp"
 #include <stdexcept>
+#include <algorithm>
 
 using namespace petscXdmfGenerator;
 
@@ -86,6 +87,11 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
         GridDescription particleGrid;
         particleGrid.name = "particle_domain";
 
+        // add in any other fields
+        if (rootObject->Contains("particle_fields")) {
+            GenerateFieldsFromPetsc(particleGrid.fields, rootObject->Get("particle_fields")->Items(), NODE);
+        }
+
         if(rootObject->Contains("particles")){
             std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = rootObject->Get("particles")->Get("coordinates");
             // store the geometry
@@ -94,6 +100,16 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
             particleGrid.geometry.shape = geometryObject->Shape(),
             particleGrid.geometry.fieldLocation = NODE,
             particleGrid.geometry.fieldType = VECTOR;
+        }else{
+            // grad the geometry from the particle_fields
+            auto gridField = std::find_if(particleGrid.fields.begin(), particleGrid.fields.end(), [] (const auto& f) { return f.name =="DMSwarmPIC_coor"; });
+            if(gridField != particleGrid.fields.end()){
+                particleGrid.geometry =*gridField;
+                particleGrid.fields.erase(gridField);
+            }else{
+                throw std::runtime_error("Cannot determine geometry for particles");
+            }
+
         }
 
         // hard code simple topology
@@ -105,10 +121,6 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
         // get the time
         particleGrid.time = rootObject->Contains("time") ? rootObject->Get("time")->RawData<double>(): std::vector<double>();
 
-        // add in any other fields
-        if (rootObject->Contains("particle_fields")) {
-            GenerateFieldsFromPetsc(particleGrid.fields, rootObject->Get("particle_fields")->Items(), NODE);
-        }
 
         // add to the list of grids
         specification->grids.push_back(particleGrid);
