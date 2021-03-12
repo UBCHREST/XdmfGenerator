@@ -1,6 +1,6 @@
 #include "xmlElement.hpp"
 
-petscXdmfGenerator::XmlElement::XmlElement(std::string name, std::string preamble) : name(name), preamble(preamble) {}
+petscXdmfGenerator::XmlElement::XmlElement(std::string name, std::string preamble, std::string currentPath) : name(name), preamble(preamble), path(currentPath + "/" + name) {}
 
 namespace petscXdmfGenerator {
 std::ostream& operator<<(std::ostream& os, const petscXdmfGenerator::XmlElement& object) {
@@ -21,7 +21,7 @@ std::ostream& operator<<(std::ostream& os, const petscXdmfGenerator::XmlElement&
 }  // namespace petscXdmfGenerator
 
 petscXdmfGenerator::XmlElement& petscXdmfGenerator::XmlElement::operator[](const std::string&& name) {
-    elements.push_back(std::make_unique<XmlElement>(name));
+    elements.push_back(std::make_unique<XmlElement>(name, "", path));
     return *elements[elements.size() - 1];
 }
 

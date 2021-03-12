@@ -13,16 +13,19 @@ namespace petscXdmfGenerator {
 class XdmfBuilder {
    private:
     const std::shared_ptr<XdmfSpecification> specification;
+    std::map<std::string, std::string> xmlReferences;
+
+    // store constant values
+    inline const static unsigned long long TimeInvariant = -1;
 
     // internal helper  write functions
-    static void WriteCells(XmlElement& element, std::string path, unsigned long long numberCells, unsigned long long numberCorners, std::string cellName = "cells");
-    static void WriteVertices(XmlElement& element, std::string path, unsigned long long number, unsigned long long dimensions);
+    void WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, unsigned long long timeStep = TimeInvariant);
+    void WriteVertices(XmlElement& element, const XdmfSpecification::GeometryDescription& geometryDescription, unsigned long long timeStep = TimeInvariant);
     static void WriteField(XmlElement& element, XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep, unsigned long long numSteps, unsigned long long cellDimension,
                            unsigned long long spaceDimension);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
     static XmlElement& GenerateHybridSpaceGrid(XmlElement& element);
-    static XmlElement& GenerateSpaceGrid(XmlElement& element, unsigned long long numberCells, unsigned long long numberCorners, unsigned long long cellDimension, unsigned long long spaceDimension,
-                                         std::string cellName = "cells");
+    XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription , const XdmfSpecification::GeometryDescription& geometryDescription, unsigned long long timeStep);
 
     template <typename T>
     inline static std::string Join(const std::vector<T>& vector, const std::string&& delim = " ") {
@@ -42,6 +45,16 @@ class XdmfBuilder {
         }
         return joinedString;
     }
+
+    inline void AddReference(std::string id, std::string xmlPath, std::string name){
+        xmlReferences[id] = xmlPath + "[@Name=\"" + name+ "\"]";
+    }
+
+    inline bool HasReference(std::string id){
+        return xmlReferences.count(id) != 0;
+    }
+
+    void AddReference(XmlElement& element, std::string id);
 
    public:
     explicit XdmfBuilder(std::shared_ptr<XdmfSpecification> specification);

@@ -33,6 +33,7 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
         // check for and get the topology
         std::shared_ptr<petscXdmfGenerator::HdfObject> topologyObject = FindPetscHdfChild(rootObject, "topology");
         if (topologyObject) {
+            mainGrid.topology.cellName = "cells";
             mainGrid.topology.path = topologyObject->Path();
             mainGrid.topology.number = topologyObject->Get("cells")->Shape()[0];
             mainGrid.topology.numberCorners = topologyObject->Get("cells")->Shape()[1];
@@ -42,6 +43,7 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
         // hybrid topology
         std::shared_ptr<petscXdmfGenerator::HdfObject> hybridTopologyObject = FindPetscHdfChild(rootObject, "hybrid_topology");
         if (hybridTopologyObject) {
+            mainGrid.hybridTopology.cellName = "hcells";
             mainGrid.hybridTopology.path = hybridTopologyObject->Path();
             mainGrid.hybridTopology.number = hybridTopologyObject->Get("cells")->Shape()[0];
             mainGrid.hybridTopology.numberCorners = hybridTopologyObject->Get("cells")->Shape()[1];

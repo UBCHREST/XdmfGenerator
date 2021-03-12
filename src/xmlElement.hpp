@@ -14,6 +14,7 @@ class XmlElement {
     std::string preamble;
     std::string name;
     std::string value;
+    std::string path;
     std::map<std::string, std::string> attributes;
     std::vector<std::unique_ptr<XmlElement>> elements;
 
@@ -21,7 +22,7 @@ class XmlElement {
     XmlElement(const XmlElement&) = delete;
     void operator=(const XmlElement&) = delete;
 
-    explicit XmlElement(std::string name, std::string preamble = "");
+    explicit XmlElement(std::string name, std::string preamble = "", std::string currentPath = "");
 
     /**
      * creates a new child element with the name
@@ -50,6 +51,15 @@ class XmlElement {
      * @return
      */
     std::string& operator()();
+
+    /**
+     * Get the path to this element
+     * @return
+     */
+    const std::string& Path() const{
+        return path;
+    }
+
 
     /**
      * prints the xml object to the stream
