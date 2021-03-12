@@ -47,7 +47,7 @@ std::shared_ptr<petscXdmfGenerator::XdmfBuilder> petscXdmfGenerator::XdmfBuilder
     }
 
     // get the time
-    builder->time = rootObject->Get("time")->RawData<double>();
+    builder->time = rootObject->Contains("time") ? rootObject->Get("time")->RawData<double>(): std::vector<double>();
 
     // get the vertex fields and map into a vertex map
     if (rootObject->Contains("vertex_fields")) {
@@ -107,6 +107,9 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     }
 
     // check if we should use time
+    if(time.empty()){
+        time.push_back(-1); // make sure we do at least one time
+    }
     auto useTime = !(time.size() < 2 && time[0] == -1);
 
     // specify if we add each grid to the domain or a timeGridBase
