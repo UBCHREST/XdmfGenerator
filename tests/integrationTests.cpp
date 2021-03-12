@@ -36,4 +36,4 @@ TEST_P(PETScHdf5ToXdmfTestFixture, ShouldGenerateExpectedXml) {
     ASSERT_EQ(resultStream.str(), expectedOutput.str());
 }
 
-INSTANTIATE_TEST_SUITE_P(Tests, PETScHdf5ToXdmfTestFixture, ::testing::Values("flowField.0", "steadyState.0"));
+INSTANTIATE_TEST_SUITE_P(Tests, PETScHdf5ToXdmfTestFixture, ::testing::Values("flowField.0", "steadyState.0", "swarm.static.mesh.0"));

@@ -1,16 +1,24 @@
 #include "xdmfSpecification.hpp"
+#include <stdexcept>
+
 using namespace petscXdmfGenerator;
 
-const static std::map<std::string, FieldType> petscTypeLookUp = {{"scalar",SCALAR}, {"vector",VECTOR}, {"tensor",TENSOR}, {"matrix",MATRIX}};
+
+const static std::map<std::string, FieldType> petscTypeLookUpFromFieldType = {{"scalar",SCALAR}, {"vector",VECTOR}, {"tensor",TENSOR}, {"matrix",MATRIX}};
+const static std::map<int, FieldType> petscTypeLookUpFromNC = {{1 ,SCALAR}, {2,VECTOR}};
+
 void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields,
                                                                     petscXdmfGenerator::FieldLocation location) {
     for (auto& hdfField : hdfFields) {
-        FieldDescription description{
-            .name = hdfField->Name(),
-            .path = hdfField->Path(),
-            .shape = hdfField->Shape(),
-            .fieldLocation = location,
-            .fieldType = petscTypeLookUp.at(hdfField->AttributeString("vector_field_type"))};
+        FieldDescription description { .name = hdfField->Name(), .path = hdfField->Path(), .shape = hdfField->Shape(), .fieldLocation = location };
+
+        if(hdfField->HasAttribute("vector_field_type")) {
+            description.fieldType = petscTypeLookUpFromFieldType.at(hdfField->AttributeString("vector_field_type"));
+        }else if(hdfField->HasAttribute("Nc")){
+            description.fieldType = petscTypeLookUpFromNC.at(hdfField->Attribute<int>("Nc"));
+        }else{
+            throw std::runtime_error("Cannot determine field type for " + description.name);
+        }
 
         // the 1 dimension is left off for scalars, add it back to the shape
         if(description.fieldType == SCALAR){
@@ -74,31 +82,37 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
     }
 
     // check for particles
-//    if(rootObject->Contains("particles") || rootObject->Contains("particle_fields")){
-//        GridDescription particleGrid;
-//        particleGrid.name = "particle_domain";
-//
-//        if(rootObject->Contains("particles")){
-//            std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(rootObject, "geometry");
-//            // store the geometry
-//            particleGrid.geometry.path = geometryObject->Path();
-//            particleGrid.geometry.number = geometryObject->Get("vertices")->Shape()[0];
-//            particleGrid.geometry.dimension = geometryObject->Get("vertices")->Shape()[1];
-//        }
-//
-//        // hard code simple topology
-//        particleGrid.topology.path = "";
-//        particleGrid.topology.number = particleGrid.geometry.number;
-//        particleGrid.topology.numberCorners =0;
-//        particleGrid.topology.dimension = particleGrid.geometry.dimension;
-//
-//        // get the time
-//        particleGrid.time = rootObject->Contains("time") ? rootObject->Get("time")->RawData<double>(): std::vector<double>();
-//
-//        // add to the list of grids
-//        specification->grids.push_back(particleGrid);
-//
-//    }
+    if(rootObject->Contains("particles") || rootObject->Contains("particle_fields")){
+        GridDescription particleGrid;
+        particleGrid.name = "particle_domain";
+
+        if(rootObject->Contains("particles")){
+            std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = rootObject->Get("particles")->Get("coordinates");
+            // store the geometry
+            particleGrid.geometry.name = geometryObject->Name(),
+            particleGrid.geometry.path = geometryObject->Path(),
+            particleGrid.geometry.shape = geometryObject->Shape(),
+            particleGrid.geometry.fieldLocation = NODE,
+            particleGrid.geometry.fieldType = VECTOR;
+        }
+
+        // hard code simple topology
+        particleGrid.topology.path = "";
+        particleGrid.topology.number = particleGrid.geometry.GetDof();
+        particleGrid.topology.numberCorners =0;
+        particleGrid.topology.dimension = particleGrid.geometry.GetDimension();
+
+        // get the time
+        particleGrid.time = rootObject->Contains("time") ? rootObject->Get("time")->RawData<double>(): std::vector<double>();
+
+        // add in any other fields
+        if (rootObject->Contains("particle_fields")) {
+            GenerateFieldsFromPetsc(particleGrid.fields, rootObject->Get("particle_fields")->Items(), NODE);
+        }
+
+        // add to the list of grids
+        specification->grids.push_back(particleGrid);
+    }
 
 
     return specification;
