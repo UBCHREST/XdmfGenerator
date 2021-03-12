@@ -19,18 +19,24 @@ class XdmfSpecification {
         unsigned long long dimension = 0;
     };
 
-    struct GeometryDescription {
-        std::string path = "";
-        unsigned long long number = 0;
-        unsigned long long dimension = 0;
-    };
-
     struct FieldDescription {
         std::string name = "";
         std::string path = "";
         std::vector<unsigned long long> shape;
         FieldLocation fieldLocation;
         FieldType fieldType;
+
+       public:
+        bool HasTimeDimension() const{
+            return shape.size() >2;
+        }
+
+        unsigned long long GetDof() const{
+            return shape.size() > 2 ? shape[1]: shape[0];
+        }
+        unsigned long long GetDimension() const{
+            return shape.size() > 2 ? shape[2]: shape[1];
+        }
     };
 
     struct GridDescription{
@@ -38,7 +44,7 @@ class XdmfSpecification {
         // store each type of geometry/topology data
         TopologyDescription topology;
         TopologyDescription hybridTopology;
-        GeometryDescription geometry;
+        FieldDescription geometry;
 
         // store the field data
         std::vector<FieldDescription> fields;

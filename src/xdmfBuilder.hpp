@@ -20,17 +20,24 @@ class XdmfBuilder {
 
     // internal helper  write functions
     void WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, unsigned long long timeStep = TimeInvariant);
-    void WriteVertices(XmlElement& element, const XdmfSpecification::GeometryDescription& geometryDescription, unsigned long long timeStep = TimeInvariant);
-    static void WriteField(XmlElement& element, XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep, unsigned long long numSteps, unsigned long long cellDimension,
-                           unsigned long long spaceDimension);
+    void WriteVertices(XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep = TimeInvariant);
+    XmlElement& WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep );
+    void WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
     static XmlElement& GenerateHybridSpaceGrid(XmlElement& element);
-    XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription , const XdmfSpecification::GeometryDescription& geometryDescription, unsigned long long timeStep);
+    XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription , const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep);
 
     template <typename T>
-    inline static std::string Join(const std::vector<T>& vector, const std::string&& delim = " ") {
+    inline static std::string toString(T value) {
+        std::stringstream asString;
+        asString << value;
+        return asString.str();
+    }
+
+    template <typename T>
+    inline static std::string JoinVector(const std::vector<T>& vector, const std::string&& delim = " ") {
         std::string joined =
-            std::accumulate(begin(vector), end(vector), std::string{}, [&delim](std::string r, T p) { return r.empty() ? std::to_string(p) : std::move(r) + delim + std::to_string(p); });
+            std::accumulate(begin(vector), end(vector), std::string{}, [&delim](std::string r, T p) { return r.empty() ? toString(p) : std::move(r) + delim + toString(p); });
         return joined;
     }
 

@@ -4,81 +4,51 @@
 ]>
 <Xdmf>
   <Domain Name="domain">
-    <DataItem Dimensions="512 3" Format="HDF" ItemType="Uniform" Name="cells" NumberType="Float" Precision="8">
+    <DataItem Dimensions="512 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
       &HeavyData;:/viz/topology/cells
     </DataItem>
-    <DataItem Dimensions="289 2" Format="HDF" Name="vertices">
+    <DataItem DataType="Float" Dimensions="289 2" Format="HDF" Name="_geometry_vertices" Precision="8">
       &HeavyData;:/geometry/vertices
     </DataItem>
     <Grid GridType="Uniform" Name="domain">
       <Topology NumberOfElements="512" TopologyType="Triangle">
         <DataItem Reference="XML">
-          /Xdmf/Domain/DataItem[@Name="cells"]
+          /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
         </DataItem>
       </Topology>
       <Geometry GeometryType="XY">
         <DataItem Reference="XML">
-          /Xdmf/Domain/DataItem[@Name="vertices"]
+          /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
         </DataItem>
       </Geometry>
       <Attribute Center="Node" Name="Exact Solution_pressure" Type="Scalar">
-        <DataItem Dimensions="1 289 1" ItemType="HyperSlab" Type="HyperSlab">
-          <DataItem Dimensions="3 3" Format="XML">
-            0 0 0 1 1 1 1 289 1
-          </DataItem>
-          <DataItem DataType="Float" Dimensions="1 289 1" Format="HDF" Precision="8">
-            &HeavyData;:/vertex_fields/Exact Solution_pressure
-          </DataItem>
+        <DataItem DataType="Float" Dimensions="289 1" Format="HDF" Name="_vertex_fields_Exact Solution_pressure" Precision="8">
+          &HeavyData;:/vertex_fields/Exact Solution_pressure
         </DataItem>
       </Attribute>
       <Attribute Center="Node" Name="Exact Solution_velocity" Type="Vector">
-        <DataItem Dimensions="1 289 2" ItemType="HyperSlab" Type="HyperSlab">
-          <DataItem Dimensions="3 3" Format="XML">
-            0 0 0 1 1 1 1 289 2
-          </DataItem>
-          <DataItem DataType="Float" Dimensions="1 289 2" Format="HDF" Precision="8">
-            &HeavyData;:/vertex_fields/Exact Solution_velocity
-          </DataItem>
+        <DataItem DataType="Float" Dimensions="289 2" Format="HDF" Name="_vertex_fields_Exact Solution_velocity" Precision="8">
+          &HeavyData;:/vertex_fields/Exact Solution_velocity
         </DataItem>
       </Attribute>
       <Attribute Center="Node" Name="Solution Error_pressure" Type="Scalar">
-        <DataItem Dimensions="1 289 1" ItemType="HyperSlab" Type="HyperSlab">
-          <DataItem Dimensions="3 3" Format="XML">
-            0 0 0 1 1 1 1 289 1
-          </DataItem>
-          <DataItem DataType="Float" Dimensions="1 289 1" Format="HDF" Precision="8">
-            &HeavyData;:/vertex_fields/Solution Error_pressure
-          </DataItem>
+        <DataItem DataType="Float" Dimensions="289 1" Format="HDF" Name="_vertex_fields_Solution Error_pressure" Precision="8">
+          &HeavyData;:/vertex_fields/Solution Error_pressure
         </DataItem>
       </Attribute>
       <Attribute Center="Node" Name="Solution Error_velocity" Type="Vector">
-        <DataItem Dimensions="1 289 2" ItemType="HyperSlab" Type="HyperSlab">
-          <DataItem Dimensions="3 3" Format="XML">
-            0 0 0 1 1 1 1 289 2
-          </DataItem>
-          <DataItem DataType="Float" Dimensions="1 289 2" Format="HDF" Precision="8">
-            &HeavyData;:/vertex_fields/Solution Error_velocity
-          </DataItem>
+        <DataItem DataType="Float" Dimensions="289 2" Format="HDF" Name="_vertex_fields_Solution Error_velocity" Precision="8">
+          &HeavyData;:/vertex_fields/Solution Error_velocity
         </DataItem>
       </Attribute>
       <Attribute Center="Node" Name="Solution_pressure" Type="Scalar">
-        <DataItem Dimensions="1 289 1" ItemType="HyperSlab" Type="HyperSlab">
-          <DataItem Dimensions="3 3" Format="XML">
-            0 0 0 1 1 1 1 289 1
-          </DataItem>
-          <DataItem DataType="Float" Dimensions="1 289 1" Format="HDF" Precision="8">
-            &HeavyData;:/vertex_fields/Solution_pressure
-          </DataItem>
+        <DataItem DataType="Float" Dimensions="289 1" Format="HDF" Name="_vertex_fields_Solution_pressure" Precision="8">
+          &HeavyData;:/vertex_fields/Solution_pressure
         </DataItem>
       </Attribute>
       <Attribute Center="Node" Name="Solution_velocity" Type="Vector">
-        <DataItem Dimensions="1 289 2" ItemType="HyperSlab" Type="HyperSlab">
-          <DataItem Dimensions="3 3" Format="XML">
-            0 0 0 1 1 1 1 289 2
-          </DataItem>
-          <DataItem DataType="Float" Dimensions="1 289 2" Format="HDF" Precision="8">
-            &HeavyData;:/vertex_fields/Solution_velocity
-          </DataItem>
+        <DataItem DataType="Float" Dimensions="289 2" Format="HDF" Name="_vertex_fields_Solution_velocity" Precision="8">
+          &HeavyData;:/vertex_fields/Solution_velocity
         </DataItem>
       </Attribute>
     </Grid>
