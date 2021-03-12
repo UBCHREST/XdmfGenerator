@@ -12,10 +12,16 @@ enum FieldType {SCALAR, VECTOR, TENSOR, MATRIX};
 
 class XdmfSpecification {
    private:
-    struct Description {
+    struct TopologyDescription {
         std::string path = "";
         unsigned long long number = 0;
         unsigned long long numberCorners = 0;
+        unsigned long long dimension = 0;
+    };
+
+    struct GeometryDescription {
+        std::string path = "";
+        unsigned long long number = 0;
         unsigned long long dimension = 0;
     };
 
@@ -27,21 +33,25 @@ class XdmfSpecification {
         FieldType fieldType;
     };
 
-//    struct GridDescription{
+    struct GridDescription{
         std::string name = "domain";
         // store each type of geometry/topology data
-        Description topology;
-        Description hybridTopology;
-        Description geometry;
+        TopologyDescription topology;
+        TopologyDescription hybridTopology;
+        GeometryDescription geometry;
 
         // store the field data
         std::vector<FieldDescription> fields;
 
+        // This is empty for steady state problems
         std::vector<double> time;
-//    };
+    };
 
     // Store the path to the file
     std::string hdf5File;
+
+    // store the list of grids
+    std::vector<GridDescription> grids;
 
     // helper functions
     static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields,FieldLocation location);

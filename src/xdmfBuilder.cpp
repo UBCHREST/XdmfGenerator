@@ -39,43 +39,49 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     auto& domainElement = document["Domain"];
     domainElement("Name") = "domain";
 
-    // add cells for topology
-    if (!specification->topology.path.empty() && specification->topology.number > 0) {
-        WriteCells(domainElement, specification->topology.path, specification->topology.number, specification->topology.numberCorners);
-    }
-    if (!specification->hybridTopology.path.empty() && specification->hybridTopology.number > 0) {
-        WriteCells(domainElement, specification->hybridTopology.path, specification->hybridTopology.number, specification->hybridTopology.numberCorners, "hcells");
-    }
-    // and the vertices
-    if (!specification->geometry.path.empty() && specification->geometry.number > 0) {
-        WriteVertices(domainElement, specification->geometry.path, specification->geometry.number, specification->geometry.dimension);
-    }
-
-    // check if we should use time
-    if(specification->time.empty()){
-        specification->time.push_back(-1); // make sure we do at least one time
-    }
-    auto useTime = !(specification->time.size() < 2 && specification->time[0] == -1);
-
-    // specify if we add each grid to the domain or a timeGridBase
-    auto& gridBase = useTime ? GenerateTimeGrid(domainElement, specification->time) : domainElement;
-
-    // march over and add each grid for each time
-    for (auto timeIndex = 0; timeIndex < specification->time.size(); timeIndex++) {
-        // add in the hybrid header
-        auto& timeIndexBase = specification->hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase) : gridBase;
-        if (specification->hybridTopology.number > 0) {
-            GenerateSpaceGrid(timeIndexBase, specification->hybridTopology.number, specification->hybridTopology.numberCorners, specification->hybridTopology.dimension, specification->geometry.dimension, "hcells");
+    // add in each grid
+    for(auto& xdmfGrid : specification->grids){
+        // add cells for topology
+        if (!xdmfGrid.topology.path.empty() && xdmfGrid.topology.number > 0) {
+            WriteCells(domainElement, xdmfGrid.topology.path, xdmfGrid.topology.number, xdmfGrid.topology.numberCorners);
+        }
+        if (!xdmfGrid.hybridTopology.path.empty() && xdmfGrid.hybridTopology.number > 0) {
+            WriteCells(domainElement, xdmfGrid.hybridTopology.path, xdmfGrid.hybridTopology.number, xdmfGrid.hybridTopology.numberCorners, "hcells");
+        }
+        // and the vertices
+        if (!xdmfGrid.geometry.path.empty() && xdmfGrid.geometry.number > 0) {
+            WriteVertices(domainElement, xdmfGrid.geometry.path, xdmfGrid.geometry.number, xdmfGrid.geometry.dimension);
         }
 
-        // write the space header
-        auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, specification->topology.number, specification->topology.numberCorners, specification->topology.dimension, specification->geometry.dimension);
-
-        // add in each field
-        for (auto& field : specification->fields) {
-            WriteField(spaceGrid, field, timeIndex, specification->time.size(), specification->topology.dimension, specification->geometry.dimension);
+        // check if we should use time
+        if(xdmfGrid.time.empty()){
+            xdmfGrid.time.push_back(-1); // make sure we do at least one time
         }
+        auto useTime = !(xdmfGrid.time.size() < 2 && xdmfGrid.time[0] == -1);
+
+        // specify if we add each grid to the domain or a timeGridBase
+        auto& gridBase = useTime ? GenerateTimeGrid(domainElement, xdmfGrid.time) : domainElement;
+
+        // march over and add each grid for each time
+        for (auto timeIndex = 0; timeIndex < xdmfGrid.time.size(); timeIndex++) {
+            // add in the hybrid header
+            auto& timeIndexBase = xdmfGrid.hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase) : gridBase;
+            if (xdmfGrid.hybridTopology.number > 0) {
+                GenerateSpaceGrid(timeIndexBase, xdmfGrid.hybridTopology.number, xdmfGrid.hybridTopology.numberCorners, xdmfGrid.hybridTopology.dimension, xdmfGrid.geometry.dimension, "hcells");
+            }
+
+            // write the space header
+            auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, xdmfGrid.topology.number, xdmfGrid.topology.numberCorners, xdmfGrid.topology.dimension, xdmfGrid.geometry.dimension);
+
+            // add in each field
+            for (auto& field : xdmfGrid.fields) {
+                WriteField(spaceGrid, field, timeIndex, xdmfGrid.time.size(), xdmfGrid.topology.dimension, xdmfGrid.geometry.dimension);
+            }
+        }
+
     }
+
+
 
     return documentPointer;
 }
