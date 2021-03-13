@@ -56,10 +56,7 @@ class XmlElement {
      * Get the path to this element
      * @return
      */
-    const std::string& Path() const{
-        return path;
-    }
-
+    const std::string& Path() const { return path; }
 
     /**
      * prints the xml object to the stream

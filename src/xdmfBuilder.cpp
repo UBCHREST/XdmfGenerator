@@ -145,7 +145,8 @@ petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateHybridS
 }
 
 petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateSpaceGrid(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription,
-                                                                                   const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep, const std::string& domainName) {
+                                                                                   const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep,
+                                                                                   const std::string& domainName) {
     auto& gridItem = element[Grid];
     gridItem("Name") = domainName;
     gridItem("GridType") = "Uniform";

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
-<!ENTITY HeavyData "swarm.static.mesh.0.hdf5">
+<!ENTITY HeavyData "swarmStaticMesh.0.hdf5">
 ]>
 <Xdmf>
   <Domain Name="domain">

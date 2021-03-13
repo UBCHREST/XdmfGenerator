@@ -6,8 +6,8 @@
 #include <string>
 #include <vector>
 #include "hdfObject.hpp"
-#include "xmlElement.hpp"
 #include "xdmfSpecification.hpp"
+#include "xmlElement.hpp"
 
 namespace petscXdmfGenerator {
 class XdmfBuilder {
@@ -21,11 +21,12 @@ class XdmfBuilder {
     // internal helper  write functions
     void WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, unsigned long long timeStep = TimeInvariant);
     void WriteVertices(XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep = TimeInvariant);
-    XmlElement& WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep );
+    XmlElement& WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep);
     void WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
     static XmlElement& GenerateHybridSpaceGrid(XmlElement& element, const std::string& domainName);
-    XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription , const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep, const std::string& domainName);
+    XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, const XdmfSpecification::FieldDescription& geometryDescription,
+                                  unsigned long long timeStep, const std::string& domainName);
 
     template <typename T>
     inline static std::string toString(T value) {
@@ -36,8 +37,7 @@ class XdmfBuilder {
 
     template <typename T>
     inline static std::string JoinVector(const std::vector<T>& vector, const std::string&& delim = " ") {
-        std::string joined =
-            std::accumulate(begin(vector), end(vector), std::string{}, [&delim](std::string r, T p) { return r.empty() ? toString(p) : std::move(r) + delim + toString(p); });
+        std::string joined = std::accumulate(begin(vector), end(vector), std::string{}, [&delim](std::string r, T p) { return r.empty() ? toString(p) : std::move(r) + delim + toString(p); });
         return joined;
     }
 
@@ -55,14 +55,9 @@ class XdmfBuilder {
 
     std::string Hdf5PathToName(std::string hdf5Path);
 
-    inline void AddReference(const std::string& hdf5Path, const std::string& xmlPath){
-        xmlReferences[hdf5Path] = xmlPath + "[@Name=\"" + Hdf5PathToName(hdf5Path)+ "\"]";
-    }
+    inline void AddReference(const std::string& hdf5Path, const std::string& xmlPath) { xmlReferences[hdf5Path] = xmlPath + "[@Name=\"" + Hdf5PathToName(hdf5Path) + "\"]"; }
 
-    inline bool HasReference(const std::string& hdf5Path){
-        return xmlReferences.count(hdf5Path) != 0;
-    }
-
+    inline bool HasReference(const std::string& hdf5Path) { return xmlReferences.count(hdf5Path) != 0; }
 
     void UseReference(XmlElement& element, std::string id);
 

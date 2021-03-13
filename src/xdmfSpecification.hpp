@@ -1,14 +1,14 @@
 #ifndef PETSCXDMFGENERATOR_XDMFSPECIFICATION_H
 #define PETSCXDMFGENERATOR_XDMFSPECIFICATION_H
 
-#include<string>
-#include<vector>
-#include<memory>
+#include <memory>
+#include <string>
+#include <vector>
 #include "hdfObject.hpp"
 
 namespace petscXdmfGenerator {
-enum FieldLocation {NODE, CELL};
-enum FieldType {SCALAR, VECTOR, TENSOR, MATRIX};
+enum FieldLocation { NODE, CELL };
+enum FieldType { SCALAR, VECTOR, TENSOR, MATRIX };
 
 class XdmfSpecification {
    private:
@@ -27,19 +27,13 @@ class XdmfSpecification {
         FieldType fieldType;
 
        public:
-        bool HasTimeDimension() const{
-            return shape.size() >2;
-        }
+        bool HasTimeDimension() const { return shape.size() > 2; }
 
-        unsigned long long GetDof() const{
-            return shape.size() > 2 ? shape[1]: shape[0];
-        }
-        unsigned long long GetDimension() const{
-            return shape.size() > 2 ? shape[2]: shape[1];
-        }
+        unsigned long long GetDof() const { return shape.size() > 2 ? shape[1] : shape[0]; }
+        unsigned long long GetDimension() const { return shape.size() > 2 ? shape[2] : shape[1]; }
     };
 
-    struct GridDescription{
+    struct GridDescription {
         std::string name = "domain";
         // store each type of geometry/topology data
         TopologyDescription topology;
@@ -60,7 +54,7 @@ class XdmfSpecification {
     std::vector<GridDescription> grids;
 
     // helper functions
-    static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields,FieldLocation location);
+    static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields, FieldLocation location);
     static std::shared_ptr<petscXdmfGenerator::HdfObject> FindPetscHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, std::string name);
     // Allow the builder to access
     friend class XdmfBuilder;
@@ -68,9 +62,7 @@ class XdmfSpecification {
    public:
     // provide generator functions
     static std::shared_ptr<XdmfSpecification> FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject>);
-
-
 };
 
-}
+}  // namespace petscXdmfGenerator
 #endif  // PETSCXDMFGENERATOR_XDMFSPECIFICATION_H
