@@ -6,53 +6,38 @@
 #include <string>
 #include <vector>
 #include "hdfObject.hpp"
+#include "xdmfSpecification.hpp"
 #include "xmlElement.hpp"
 
 namespace petscXdmfGenerator {
 class XdmfBuilder {
    private:
-    struct Description {
-        std::string path = "";
-        unsigned long long number = 0;
-        unsigned long long numberCorners = 0;
-        unsigned long long dimension = 0;
-    };
+    const std::shared_ptr<XdmfSpecification> specification;
+    std::map<std::string, std::string> xmlReferences;
 
-    struct FieldDescription {
-        std::string name = "";
-        std::string path = "";
-        std::vector<unsigned long long> shape;
-        std::string vectorFieldType = "";
-    };
+    // store constant values
+    inline const static unsigned long long TimeInvariant = -1;
 
-    // store each type of geometry/topology data
-    Description topology;
-    Description hybridTopology;
-    Description geometry;
-
-    std::string hdf5File;
-    std::vector<double> time;
-
-    // store the field data
-    std::vector<FieldDescription> vertexFields;
-    std::vector<FieldDescription> cellFields;
-
-    // internal helper functions
-    static std::shared_ptr<petscXdmfGenerator::HdfObject> FindHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, std::string name);
-
-    static void WriteCells(XmlElement& element, std::string path, unsigned long long numberCells, unsigned long long numberCorners, std::string cellName = "cells");
-    static void WriteVertices(XmlElement& element, std::string path, unsigned long long number, unsigned long long dimensions);
-    static void WriteField(XmlElement& element, FieldDescription& fieldDescription, unsigned long long timeStep, unsigned long long numSteps, unsigned long long cellDimension,
-                           unsigned long long spaceDimension, std::string domain);
+    // internal helper  write functions
+    void WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, unsigned long long timeStep = TimeInvariant);
+    void WriteVertices(XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep = TimeInvariant);
+    XmlElement& WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep);
+    void WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
-    static XmlElement& GenerateHybridSpaceGrid(XmlElement& element);
-    static XmlElement& GenerateSpaceGrid(XmlElement& element, unsigned long long numberCells, unsigned long long numberCorners, unsigned long long cellDimension, unsigned long long spaceDimension,
-                                         std::string cellName = "cells");
+    static XmlElement& GenerateHybridSpaceGrid(XmlElement& element, const std::string& domainName);
+    XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, const XdmfSpecification::FieldDescription& geometryDescription,
+                                  unsigned long long timeStep, const std::string& domainName);
 
     template <typename T>
-    inline static std::string Join(const std::vector<T>& vector, const std::string&& delim = " ") {
-        std::string joined =
-            std::accumulate(begin(vector), end(vector), std::string{}, [&delim](std::string r, T p) { return r.empty() ? std::to_string(p) : std::move(r) + delim + std::to_string(p); });
+    inline static std::string toString(T value) {
+        std::stringstream asString;
+        asString << value;
+        return asString.str();
+    }
+
+    template <typename T>
+    inline static std::string JoinVector(const std::vector<T>& vector, const std::string&& delim = " ") {
+        std::string joined = std::accumulate(begin(vector), end(vector), std::string{}, [&delim](std::string r, T p) { return r.empty() ? toString(p) : std::move(r) + delim + toString(p); });
         return joined;
     }
 
@@ -68,10 +53,16 @@ class XdmfBuilder {
         return joinedString;
     }
 
-   public:
-    // provide generator functions
-    static std::shared_ptr<XdmfBuilder> FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject>);
+    std::string Hdf5PathToName(std::string hdf5Path);
 
+    inline void AddReference(const std::string& hdf5Path, const std::string& xmlPath) { xmlReferences[hdf5Path] = xmlPath + "[@Name=\"" + Hdf5PathToName(hdf5Path) + "\"]"; }
+
+    inline bool HasReference(const std::string& hdf5Path) { return xmlReferences.count(hdf5Path) != 0; }
+
+    void UseReference(XmlElement& element, std::string id);
+
+   public:
+    explicit XdmfBuilder(std::shared_ptr<XdmfSpecification> specification);
     std::unique_ptr<XmlElement> Build();
 };
 }  // namespace petscXdmfGenerator

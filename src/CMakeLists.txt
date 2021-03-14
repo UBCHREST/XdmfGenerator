@@ -4,6 +4,8 @@ target_sources(petscXdmfGeneratorLibrary
         hdfObject.cpp
         xmlElement.cpp
         xmlElement.hpp
+        xdmfSpecification.hpp
+        xdmfSpecification.cpp
         xdmfBuilder.hpp
         xdmfBuilder.cpp
         generators.hpp

@@ -28,8 +28,9 @@ int main(int argc, char **args) {
 
     // prepare
     auto root = std::make_shared<petscXdmfGenerator::HdfObject>(filePath);
-    auto builder = petscXdmfGenerator::XdmfBuilder::FromPetscHdf(root);
-    auto xml = builder->Build();
+    auto specification = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(root);
+    auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+    auto xml = builder.Build();
 
     // build the path to the output file
     std::filesystem::path outputFile = filePath.parent_path();

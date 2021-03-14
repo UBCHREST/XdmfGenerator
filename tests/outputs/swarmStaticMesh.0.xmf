@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
-<!ENTITY HeavyData "flowField.0.hdf5">
+<!ENTITY HeavyData "swarmStaticMesh.0.hdf5">
 ]>
 <Xdmf>
   <Domain Name="domain">
@@ -12,8 +12,8 @@
     </DataItem>
     <Grid CollectionType="Temporal" GridType="Collection" Name="TimeSeries">
       <Time TimeType="List">
-        <DataItem Dimensions="31" Format="XML" NumberType="Float">
-          0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9 3
+        <DataItem Dimensions="16" Format="XML" NumberType="Float">
+          0 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.1 0.11 0.12 0.13 0.14 0.15
         </DataItem>
       </Time>
       <Grid GridType="Uniform" Name="domain">
@@ -32,7 +32,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               0 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -42,7 +42,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               0 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -52,7 +52,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               0 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -74,7 +74,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               1 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -84,7 +84,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               1 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -94,7 +94,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               1 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -116,7 +116,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               2 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -126,7 +126,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               2 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -136,7 +136,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               2 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -158,7 +158,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               3 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -168,7 +168,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               3 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -178,7 +178,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               3 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -200,7 +200,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               4 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -210,7 +210,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               4 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -220,7 +220,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               4 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -242,7 +242,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               5 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -252,7 +252,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               5 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -262,7 +262,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               5 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -284,7 +284,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               6 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -294,7 +294,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               6 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -304,7 +304,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               6 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -326,7 +326,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               7 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -336,7 +336,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               7 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -346,7 +346,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               7 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -368,7 +368,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               8 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -378,7 +378,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               8 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -388,7 +388,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               8 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -410,7 +410,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               9 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -420,7 +420,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               9 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -430,7 +430,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               9 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -452,7 +452,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               10 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -462,7 +462,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               10 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -472,7 +472,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               10 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -494,7 +494,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               11 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -504,7 +504,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               11 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -514,7 +514,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               11 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -536,7 +536,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               12 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -546,7 +546,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               12 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -556,7 +556,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               12 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -578,7 +578,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               13 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -588,7 +588,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               13 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -598,7 +598,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               13 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -620,7 +620,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               14 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -630,7 +630,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               14 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -640,7 +640,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               14 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
@@ -662,7 +662,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               15 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
             </DataItem>
           </DataItem>
@@ -672,7 +672,7 @@
             <DataItem Dimensions="3 3" Format="XML">
               15 0 0 1 1 1 1 81 1
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 1" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
             </DataItem>
           </DataItem>
@@ -682,638 +682,325 @@
             <DataItem Dimensions="3 3" Format="XML">
               15 0 0 1 1 1 1 81 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
+            <DataItem DataType="Float" Dimensions="16 81 2" Format="HDF" Precision="8">
               &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+    </Grid>
+    <DataItem Dimensions="100 0" Format="HDF" ItemType="Uniform" Name="" NumberType="Float" Precision="8">
+      &HeavyData;:
+    </DataItem>
+    <DataItem DataType="Float" Dimensions="100 2" Format="HDF" Name="_particles_coordinates" Precision="8">
+      &HeavyData;:/particles/coordinates
+    </DataItem>
+    <Grid CollectionType="Temporal" GridType="Collection" Name="TimeSeries">
+      <Time TimeType="List">
+        <DataItem Dimensions="16" Format="XML" NumberType="Float">
+          0 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.1 0.11 0.12 0.13 0.14 0.15
+        </DataItem>
+      </Time>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              16 0 0 1 1 1 1 81 1
+              0 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              16 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              16 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              17 0 0 1 1 1 1 81 1
+              1 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              17 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              17 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              18 0 0 1 1 1 1 81 1
+              2 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              18 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              18 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              19 0 0 1 1 1 1 81 1
+              3 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              19 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              19 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              20 0 0 1 1 1 1 81 1
+              4 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              20 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              20 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              21 0 0 1 1 1 1 81 1
+              5 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              21 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              21 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              22 0 0 1 1 1 1 81 1
+              6 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              22 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              22 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              23 0 0 1 1 1 1 81 1
+              7 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              23 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              23 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              24 0 0 1 1 1 1 81 1
+              8 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              24 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              24 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              25 0 0 1 1 1 1 81 1
+              9 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              25 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              25 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              26 0 0 1 1 1 1 81 1
+              10 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              26 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              26 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              27 0 0 1 1 1 1 81 1
+              11 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              27 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              27 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              28 0 0 1 1 1 1 81 1
+              12 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              28 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              28 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              29 0 0 1 1 1 1 81 1
+              13 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              29 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
-          </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              29 0 0 1 1 1 1 81 2
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
-      <Grid GridType="Uniform" Name="domain">
-        <Topology NumberOfElements="128" TopologyType="Triangle">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
-          </DataItem>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
         </Topology>
         <Geometry GeometryType="XY">
           <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
         </Geometry>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_pressure" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              30 0 0 1 1 1 1 81 1
+              14 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_pressure
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_temperature" Type="Scalar">
-          <DataItem Dimensions="1 81 1" ItemType="HyperSlab" Type="HyperSlab">
-            <DataItem Dimensions="3 3" Format="XML">
-              30 0 0 1 1 1 1 81 1
-            </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 1" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_temperature
-            </DataItem>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="100" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="_particles_coordinates"]
           </DataItem>
-        </Attribute>
-        <Attribute Center="Node" Name="Incompressible Flow Numerical Solution_velocity" Type="Vector">
-          <DataItem Dimensions="1 81 2" ItemType="HyperSlab" Type="HyperSlab">
+        </Geometry>
+        <Attribute Center="Node" Name="DMSwarmPIC_coor" Type="Vector">
+          <DataItem Dimensions="1 100 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              30 0 0 1 1 1 1 81 2
+              15 0 0 1 1 1 1 100 2
             </DataItem>
-            <DataItem DataType="Float" Dimensions="31 81 2" Format="HDF" Precision="8">
-              &HeavyData;:/vertex_fields/Incompressible Flow Numerical Solution_velocity
+            <DataItem DataType="Float" Dimensions="16 100 2" Format="HDF" Precision="8">
+              &HeavyData;:/particle_fields/DMSwarmPIC_coor
             </DataItem>
           </DataItem>
         </Attribute>

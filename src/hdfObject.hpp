@@ -97,6 +97,13 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
     std::vector<hsize_t> Shape() const;
 
     /**
+     * Checks to see if this object hold an attirbute
+     * @param name
+     * @return
+     */
+    bool HasAttribute(std::string name) const;
+
+    /**
      * Get an attribute as a certain type
      * @tparam T
      * @param name
@@ -177,10 +184,10 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
         free(rdata[0]);
         free(rdata);
 
-        status = H5Aclose(attLocation);
-        status = H5Tclose(memtype);
-        status = H5Sclose(space);
-        status = H5Tclose(filetype);
+        H5Aclose(attLocation);
+        H5Tclose(memtype);
+        H5Sclose(space);
+        H5Tclose(filetype);
 
         return data;
     }

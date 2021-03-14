@@ -9,7 +9,7 @@ set(CMAKE_CXX_COMPILER ${PETSC_CXX_COMPILER})
 endif()
 
 # Create the new project
-project(PetscXdmfGenerator VERSION 0.0.1)
+project(PetscXdmfGenerator VERSION 0.0.2)
 
 # Set the standards
 set(CMAKE_CXX_STANDARD 17)

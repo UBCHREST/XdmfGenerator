@@ -128,3 +128,15 @@ std::vector<hsize_t> petscXdmfGenerator::HdfObject::Shape() const {
 
     return shape;
 }
+
+bool petscXdmfGenerator::HdfObject::HasAttribute(std::string name) const {
+    // Check to see if the link is an attribute
+    auto objectCheck = H5Aexists_by_name(locId, ".", name.c_str(), H5P_DEFAULT);
+    if (objectCheck < 0) {
+        throw std::runtime_error("cannot check attribute " + name + " in " + this->name);
+    } else if (objectCheck == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
