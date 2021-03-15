@@ -2,7 +2,6 @@
 #include "xdmfBuilder.hpp"
 #include <algorithm>
 #include <map>
-#include <set>
 #include <string>
 
 static const auto DataItem = "DataItem";
