@@ -11,7 +11,7 @@ add_library(petscXdmfGeneratorLibrary)
 # Include access to HDF
 find_package(HDF5 REQUIRED)
 target_include_directories(petscXdmfGeneratorLibrary PRIVATE ${HDF5_INCLUDE_DIRS})
-message("HDF5_LIBRARIES " ${HDF5_LIBRARIES})
+#NOTE: Any use of this library is expected to link in the HDF5_LIBRARIES
 
 # Load in the lib
 add_subdirectory(src)
