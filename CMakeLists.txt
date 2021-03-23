@@ -20,7 +20,7 @@ include(FetchContent)
 
 # Include PETSc and MPI
 target_include_directories(petscXdmfGeneratorLibrary PUBLIC  ${HDF5_INCLUDE_DIRS})
-target_link_libraries(petscXdmfGeneratorLibrary PUBLIC ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
+target_link_libraries(petscXdmfGeneratorLibrary PRIVATE ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
 
 # Build a stand alone executable
 add_executable(petscXdmfGenerator main.cpp)
