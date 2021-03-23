@@ -13,6 +13,7 @@ add_subdirectory(src)
 # load in petsc
 # Load the Required 3rd Party Libaries
 find_package(HDF5 REQUIRED)
+message("HDF5_INCLUDE_DIRS" ${HDF5_INCLUDE_DIRS})
 
 # FetContent will allow downloading of other libraries
 include(FetchContent)
