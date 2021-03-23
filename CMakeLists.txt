@@ -1,25 +1,25 @@
 cmake_minimum_required(VERSION 3.14)
 
 # Create the new project
-project(PetscXdmfGenerator VERSION 0.0.4)
+project(PetscXdmf VERSION 0.0.4)
 
 # Set the standards
 set(CMAKE_CXX_STANDARD 17)
 
-# Load in the lib
 add_library(petscXdmfGeneratorLibrary)
-add_subdirectory(src)
 
-# load in petsc
-# Load the Required 3rd Party Libaries
+
+# Include access to HDF
 find_package(HDF5 REQUIRED)
+target_include_directories(petscXdmfGeneratorLibrary PRIVATE ${HDF5_INCLUDE_DIRS})
+target_link_libraries(petscXdmfGeneratorLibrary PRIVATE ${HDF5_LIBRARIES})
+
+# Load in the lib
+add_subdirectory(src)
+target_include_directories(petscXdmfGeneratorLibrary PUBLIC ${CMAKE_CURRENT_LIST_DIR}/interface)
 
 # FetContent will allow downloading of other libraries
 include(FetchContent)
-
-# Include PETSc and MPI
-target_include_directories(petscXdmfGeneratorLibrary PUBLIC ${HDF5_INCLUDE_DIRS})
-target_link_libraries(petscXdmfGeneratorLibrary PUBLIC ${HDF5_LIBRARIES})
 
 # Build a stand alone executable
 add_executable(petscXdmfGenerator main.cpp)

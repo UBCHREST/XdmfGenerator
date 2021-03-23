@@ -2,7 +2,7 @@
 #define PETSCXDMFGENERATOR_HDFOBJECT_HPP
 
 #define H5_USE_18_API_DEFAULT
-#include <hdf5.h>
+#include "hdf5.h"
 #include <filesystem>
 #include <iostream>
 #include <map>

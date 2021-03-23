@@ -4,6 +4,7 @@
 
 namespace petscXdmfGenerator {
 void Generate(std::filesystem::path, std::filesystem::path = {});
+void Generate(std::filesystem::path inputFilePath, std::ostream& stream);
 }
 
 #endif  // PETSCXDMFGENERATOR_CONVERTERS_HPP

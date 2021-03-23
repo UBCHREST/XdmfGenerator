@@ -1,6 +1,6 @@
-#include "generators.hpp"
 #include <fstream>
 #include "xdmfBuilder.hpp"
+#include <iostream>
 
 namespace petscXdmfGenerator {
 void Generate(std::filesystem::path inputFilePath, std::filesystem::path outputFilePath) {
@@ -21,5 +21,16 @@ void Generate(std::filesystem::path inputFilePath, std::filesystem::path outputF
     xmlFile.open(outputFilePath);
     xml->PrettyPrint(xmlFile);
     xmlFile.close();
+}
+
+void Generate(std::filesystem::path inputFilePath, std::ostream& stream) {
+    // prepare the builder
+    auto hdfObject = std::make_shared<petscXdmfGenerator::HdfObject>(inputFilePath);
+    auto specification = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
+    auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+    auto xml = builder.Build();
+
+    // write to the stream
+    xml->PrettyPrint(stream);
 }
 }  // namespace petscXdmfGenerator
