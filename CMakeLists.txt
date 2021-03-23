@@ -7,7 +7,7 @@ project(PetscXdmfGenerator VERSION 0.0.4)
 set(CMAKE_CXX_STANDARD 17)
 
 # Load in the lib
-add_library(petscXdmfGeneratorLibrary)
+add_library(petscXdmfGeneratorLibrary STATIC)
 add_subdirectory(src)
 
 # load in petsc
