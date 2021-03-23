@@ -1,13 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
 
-# Set the compilers based upon the PETSc package if we are not a sub-project
-if(NOT CMAKE_CXX_COMPILER)
-message("Setting custom compilers")
-find_package(PkgConfig REQUIRED)
-pkg_get_variable(PETSC_CXX_COMPILER PETSc cxxcompiler)
-set(CMAKE_CXX_COMPILER ${PETSC_CXX_COMPILER})
-endif()
-
 # Create the new project
 project(PetscXdmfGenerator VERSION 0.0.4)
 
@@ -16,7 +8,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Load in the lib
 add_library(petscXdmfGeneratorLibrary)
-#target_compile_definitions(petscXdmfGeneratorLibrary PRIVATE H5_USE_18_API_DEFAULT)
 add_subdirectory(src)
 
 # load in petsc
@@ -28,9 +19,8 @@ find_package(HDF5 REQUIRED)
 include(FetchContent)
 
 # Include PETSc and MPI
-target_include_directories(petscXdmfGeneratorLibrary PUBLIC ${PETSc_INCLUDE_DIRS} ${HDF5_INCLUDE_DIRS})
-target_link_libraries(petscXdmfGeneratorLibrary PUBLIC ${PETSc_LIBRARIES} ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
-target_link_directories (petscXdmfGeneratorLibrary PUBLIC ${PETSc_LIBRARY_DIRS})
+target_include_directories(petscXdmfGeneratorLibrary PUBLIC  ${HDF5_INCLUDE_DIRS})
+target_link_libraries(petscXdmfGeneratorLibrary PUBLIC ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
 
 # Build a stand alone executable
 add_executable(petscXdmfGenerator main.cpp)
