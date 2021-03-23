@@ -9,7 +9,7 @@ set(CMAKE_CXX_COMPILER ${PETSC_CXX_COMPILER})
 endif()
 
 # Create the new project
-project(PetscXdmfGenerator VERSION 0.0.3)
+project(PetscXdmfGenerator VERSION 0.0.4)
 
 # Set the standards
 set(CMAKE_CXX_STANDARD 17)
@@ -22,13 +22,14 @@ add_subdirectory(src)
 # load in petsc
 # Load the Required 3rd Party Libaries
 pkg_check_modules(PETSc REQUIRED PETSc)
+find_package(HDF5 REQUIRED)
 
 # FetContent will allow downloading of other libraries
 include(FetchContent)
 
 # Include PETSc and MPI
-target_include_directories(petscXdmfGeneratorLibrary PUBLIC ${PETSc_INCLUDE_DIRS})
-target_link_libraries(petscXdmfGeneratorLibrary PUBLIC ${PETSc_LIBRARIES} hdf5_hl hdf5)
+target_include_directories(petscXdmfGeneratorLibrary PUBLIC ${PETSc_INCLUDE_DIRS} ${HDF5_INCLUDE_DIRS})
+target_link_libraries(petscXdmfGeneratorLibrary PUBLIC ${PETSc_LIBRARIES} ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
 target_link_directories (petscXdmfGeneratorLibrary PUBLIC ${PETSc_LIBRARY_DIRS})
 
 # Build a stand alone executable
