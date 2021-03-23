@@ -8,11 +8,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_library(petscXdmfGeneratorLibrary)
 
-
 # Include access to HDF
 find_package(HDF5 REQUIRED)
 target_include_directories(petscXdmfGeneratorLibrary PRIVATE ${HDF5_INCLUDE_DIRS})
-target_link_libraries(petscXdmfGeneratorLibrary PRIVATE ${HDF5_LIBRARIES})
+message("HDF5_LIBRARIES " ${HDF5_LIBRARIES})
 
 # Load in the lib
 add_subdirectory(src)
@@ -23,7 +22,7 @@ include(FetchContent)
 
 # Build a stand alone executable
 add_executable(petscXdmfGenerator main.cpp)
-target_link_libraries(petscXdmfGenerator PRIVATE petscXdmfGeneratorLibrary)
+target_link_libraries(petscXdmfGenerator PRIVATE petscXdmfGeneratorLibrary ${HDF5_LIBRARIES})
 
 # Check if we should enable testing options
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
