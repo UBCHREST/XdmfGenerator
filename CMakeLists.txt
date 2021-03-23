@@ -12,7 +12,6 @@ add_subdirectory(src)
 
 # load in petsc
 # Load the Required 3rd Party Libaries
-pkg_check_modules(PETSc REQUIRED PETSc)
 find_package(HDF5 REQUIRED)
 
 # FetContent will allow downloading of other libraries
