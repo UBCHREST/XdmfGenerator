@@ -8,7 +8,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 add_executable(tests "")
-target_link_libraries(tests PUBLIC gtest gtest_main petscXdmfGeneratorLibrary)
+target_link_libraries(tests PUBLIC gtest gtest_main petscXdmfGeneratorLibrary ${HDF5_LIBRARIES})
 
 target_sources(tests
         PRIVATE
