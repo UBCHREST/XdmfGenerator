@@ -1,6 +1,6 @@
 #include <fstream>
-#include "xdmfBuilder.hpp"
 #include <iostream>
+#include "xdmfBuilder.hpp"
 
 namespace petscXdmfGenerator {
 void Generate(std::filesystem::path inputFilePath, std::filesystem::path outputFilePath) {
