@@ -23,6 +23,9 @@ class XdmfSpecification {
         std::string name = "";
         std::string path = "";
         std::vector<unsigned long long> shape;
+        unsigned long long componentOffset = 0;
+        unsigned long long componentStride = 1;
+        unsigned long long componentDimension;
         FieldLocation fieldLocation;
         FieldType fieldType;
 
@@ -30,7 +33,7 @@ class XdmfSpecification {
         bool HasTimeDimension() const { return shape.size() > 2; }
 
         unsigned long long GetDof() const { return shape.size() > 2 ? shape[1] : shape[0]; }
-        unsigned long long GetDimension() const { return shape.size() > 2 ? shape[2] : shape[1]; }
+        unsigned long long GetDimension() const { return componentDimension; }
     };
 
     struct GridDescription {
