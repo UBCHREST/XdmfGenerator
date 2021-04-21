@@ -1,0 +1,229 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
+<!ENTITY HeavyData "flowWithMultipleComponents.hdf5">
+]>
+<Xdmf>
+  <Domain Name="domain">
+    <DataItem Dimensions="25 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+      &HeavyData;:/viz/topology/cells
+    </DataItem>
+    <DataItem DataType="Float" Dimensions="36 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+      &HeavyData;:/geometry/vertices
+    </DataItem>
+    <Grid CollectionType="Temporal" GridType="Collection" Name="TimeSeries">
+      <Time TimeType="List">
+        <DataItem Dimensions="4" Format="XML" NumberType="Float">
+          0 0.000179701 0.000361204 0.000543334
+        </DataItem>
+      </Time>
+      <Grid GridType="Uniform" Name="domain">
+        <Topology NumberOfElements="25" TopologyType="Quadrilateral">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
+          </DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Cell" Name="Numerical Solution_euler0" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler1" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 1 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler2" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 2 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler3" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 3 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="domain">
+        <Topology NumberOfElements="25" TopologyType="Quadrilateral">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
+          </DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Cell" Name="Numerical Solution_euler0" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 0 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler1" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 1 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler2" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 2 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler3" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 3 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="domain">
+        <Topology NumberOfElements="25" TopologyType="Quadrilateral">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
+          </DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Cell" Name="Numerical Solution_euler0" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 0 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler1" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 1 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler2" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 2 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler3" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 3 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="domain">
+        <Topology NumberOfElements="25" TopologyType="Quadrilateral">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
+          </DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Reference="XML">
+            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Cell" Name="Numerical Solution_euler0" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 0 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler1" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 1 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler2" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 2 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="Numerical Solution_euler3" Type="Scalar">
+          <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 3 1 1 4 1 25 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
+              &HeavyData;:/cell_fields/Numerical Solution_euler
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>

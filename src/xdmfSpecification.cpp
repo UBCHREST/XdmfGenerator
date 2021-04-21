@@ -20,12 +20,39 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
             throw std::runtime_error("Cannot determine field type for " + description.name);
         }
 
-        // the 1 dimension is left off for scalars, add it back to the shape
+        bool separateIntoComponents = false;
+
         if (description.fieldType == SCALAR) {
-            description.shape.push_back(1);
+            // the 1 dimension is left off for scalars, add it back to the shape if the object holds a single vector
+            if (description.shape.size() < 3) {
+                description.shape.push_back(1);
+            } else {
+                // This is a component type, a single object that holds multiple types
+                separateIntoComponents = true;
+            }
         }
 
-        fields.push_back(description);
+        // determine the dimensions from the shape
+        description.componentDimension = description.shape.size() > 2 ? description.shape[2] : description.shape[1];
+
+        // If this is a components field, separate into each component
+        if (separateIntoComponents) {
+            for (auto c = 0; c < description.GetDimension(); c++) {
+                // create a temporary fieldDescription for each component
+                petscXdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = description.name + std::to_string(c),
+                                                                                                  .path = description.path,
+                                                                                                  .shape = description.shape,
+                                                                                                  .componentOffset = static_cast<unsigned long long>(c),
+                                                                                                  .componentStride = description.GetDimension(),
+                                                                                                  .componentDimension = 1,
+                                                                                                  .fieldLocation = description.fieldLocation,
+                                                                                                  .fieldType = SCALAR};
+
+                fields.push_back(componentFieldDescription);
+            }
+        } else {
+            fields.push_back(description);
+        }
     }
 }
 std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject> rootObject) {
@@ -42,7 +69,7 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
         // store the geometry
         auto verticesObject = geometryObject->Get("vertices");
         mainGrid.geometry.name = verticesObject->Name(), mainGrid.geometry.path = verticesObject->Path(), mainGrid.geometry.shape = verticesObject->Shape(), mainGrid.geometry.fieldLocation = NODE,
-        mainGrid.geometry.fieldType = VECTOR;
+        mainGrid.geometry.fieldType = VECTOR, mainGrid.geometry.componentDimension = mainGrid.geometry.shape.size() > 2 ? mainGrid.geometry.shape[2] : mainGrid.geometry.shape[1];
 
         // check for and get the topology
         std::shared_ptr<petscXdmfGenerator::HdfObject> topologyObject = FindPetscHdfChild(rootObject, "topology");
@@ -92,7 +119,8 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
             std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = rootObject->Get("particles")->Get("coordinates");
             // store the geometry
             particleGrid.geometry.name = geometryObject->Name(), particleGrid.geometry.path = geometryObject->Path(), particleGrid.geometry.shape = geometryObject->Shape(),
-            particleGrid.geometry.fieldLocation = NODE, particleGrid.geometry.fieldType = VECTOR;
+            particleGrid.geometry.fieldLocation = NODE, particleGrid.geometry.fieldType = VECTOR,
+            particleGrid.geometry.componentDimension = particleGrid.geometry.shape.size() > 2 ? particleGrid.geometry.shape[2] : particleGrid.geometry.shape[1];
         } else {
             // grad the geometry from the particle_fields
             auto gridField = std::find_if(particleGrid.fields.begin(), particleGrid.fields.end(), [](const auto& f) { return f.name == "DMSwarmPIC_coor"; });

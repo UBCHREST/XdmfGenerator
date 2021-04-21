@@ -182,7 +182,8 @@ XmlElement& petscXdmfGenerator::XdmfBuilder::WriteData(petscXdmfGenerator::XmlEl
             auto& dataItemItem = dataItem[DataItem];
             dataItemItem("Dimensions") = Join(3, 3);
             dataItemItem("Format") = "XML";
-            dataItemItem() = Join(timeStep, 0, 0) + " " + Join(1, 1, 1) + " " + Join(1, fieldDescription.GetDof(), fieldDescription.GetDimension());  // start, stride, size
+            dataItemItem() = Join(timeStep, 0, fieldDescription.componentOffset) + " " + Join(1, 1, fieldDescription.componentStride) + " " +
+                             Join(1, fieldDescription.GetDof(), fieldDescription.GetDimension());  // start, stride, size
         }
         {
             auto& dataItemItem = dataItem[DataItem];
