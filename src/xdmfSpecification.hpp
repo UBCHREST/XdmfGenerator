@@ -8,7 +8,7 @@
 
 namespace petscXdmfGenerator {
 enum FieldLocation { NODE, CELL };
-enum FieldType { SCALAR, VECTOR, TENSOR, MATRIX };
+enum FieldType { SCALAR, VECTOR, TENSOR, MATRIX, NONE };
 
 class XdmfSpecification {
    private:

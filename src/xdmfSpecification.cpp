@@ -13,9 +13,19 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
         FieldDescription description{.name = hdfField->Name(), .path = hdfField->Path(), .shape = hdfField->Shape(), .fieldLocation = location};
 
         if (hdfField->HasAttribute("vector_field_type")) {
-            description.fieldType = petscTypeLookUpFromFieldType.at(hdfField->AttributeString("vector_field_type"));
+            auto vector_field_type = hdfField->AttributeString("vector_field_type");
+            if(petscTypeLookUpFromFieldType.count(vector_field_type)) {
+                description.fieldType = petscTypeLookUpFromFieldType.at(vector_field_type);
+            }else{
+                description.fieldType = NONE;
+            }
         } else if (hdfField->HasAttribute("Nc")) {
-            description.fieldType = petscTypeLookUpFromNC.at(hdfField->Attribute<int>("Nc"));
+            auto nc = hdfField->Attribute<int>("Nc");
+            if(petscTypeLookUpFromNC.count(nc)) {
+                description.fieldType = petscTypeLookUpFromNC.at(nc);
+            }else{
+                description.fieldType = NONE;
+            }
         } else {
             throw std::runtime_error("Cannot determine field type for " + description.name);
         }
@@ -36,22 +46,24 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
         description.componentDimension = description.shape.size() > 2 ? description.shape[2] : description.shape[1];
 
         // If this is a components field, separate into each component
-        if (separateIntoComponents) {
-            for (auto c = 0; c < description.GetDimension(); c++) {
-                // create a temporary fieldDescription for each component
-                petscXdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = description.name + std::to_string(c),
-                                                                                                  .path = description.path,
-                                                                                                  .shape = description.shape,
-                                                                                                  .componentOffset = static_cast<unsigned long long>(c),
-                                                                                                  .componentStride = description.GetDimension(),
-                                                                                                  .componentDimension = 1,
-                                                                                                  .fieldLocation = description.fieldLocation,
-                                                                                                  .fieldType = SCALAR};
+        if(description.fieldType != NONE) {
+            if (separateIntoComponents) {
+                for (auto c = 0; c < description.GetDimension(); c++) {
+                    // create a temporary fieldDescription for each component
+                    petscXdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = description.name + std::to_string(c),
+                                                                                                      .path = description.path,
+                                                                                                      .shape = description.shape,
+                                                                                                      .componentOffset = static_cast<unsigned long long>(c),
+                                                                                                      .componentStride = description.GetDimension(),
+                                                                                                      .componentDimension = 1,
+                                                                                                      .fieldLocation = description.fieldLocation,
+                                                                                                      .fieldType = SCALAR};
 
-                fields.push_back(componentFieldDescription);
+                    fields.push_back(componentFieldDescription);
+                }
+            } else {
+                fields.push_back(description);
             }
-        } else {
-            fields.push_back(description);
         }
     }
 }
