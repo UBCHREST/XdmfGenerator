@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 # Create the new project
-project(PetscXdmf VERSION 0.0.5)
+project(PetscXdmf VERSION 0.0.6)
 
 # Set the standards
 set(CMAKE_CXX_STANDARD 17)
