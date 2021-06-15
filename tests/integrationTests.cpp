@@ -33,4 +33,5 @@ TEST_P(PETScHdf5ToXdmfTestFixture, ShouldGenerateExpectedXml) {
 }
 
 INSTANTIATE_TEST_SUITE_P(Tests, PETScHdf5ToXdmfTestFixture,
-                         ::testing::Values("flowField.0", "steadyState.0", "swarmStaticMesh.0", "flowWithParticles.0", "particlesOnly.0", "particlesDynamic3D", "flowWithMultipleComponents", "particleWithExtraFields"));
+                         ::testing::Values("flowField.0", "steadyState.0", "swarmStaticMesh.0", "flowWithParticles.0", "particlesOnly.0", "particlesDynamic3D", "flowWithMultipleComponents",
+                                           "particleWithExtraFields"));

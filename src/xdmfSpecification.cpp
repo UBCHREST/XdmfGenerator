@@ -14,16 +14,16 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
 
         if (hdfField->HasAttribute("vector_field_type")) {
             auto vector_field_type = hdfField->AttributeString("vector_field_type");
-            if(petscTypeLookUpFromFieldType.count(vector_field_type)) {
+            if (petscTypeLookUpFromFieldType.count(vector_field_type)) {
                 description.fieldType = petscTypeLookUpFromFieldType.at(vector_field_type);
-            }else{
+            } else {
                 description.fieldType = NONE;
             }
         } else if (hdfField->HasAttribute("Nc")) {
             auto nc = hdfField->Attribute<int>("Nc");
-            if(petscTypeLookUpFromNC.count(nc)) {
+            if (petscTypeLookUpFromNC.count(nc)) {
                 description.fieldType = petscTypeLookUpFromNC.at(nc);
-            }else{
+            } else {
                 description.fieldType = NONE;
             }
         } else {
@@ -46,7 +46,7 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
         description.componentDimension = description.shape.size() > 2 ? description.shape[2] : description.shape[1];
 
         // If this is a components field, separate into each component
-        if(description.fieldType != NONE) {
+        if (description.fieldType != NONE) {
             if (separateIntoComponents) {
                 for (auto c = 0; c < description.GetDimension(); c++) {
                     // create a temporary fieldDescription for each component
