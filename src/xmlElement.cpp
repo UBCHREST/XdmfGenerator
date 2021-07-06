@@ -1,6 +1,6 @@
 #include "xmlElement.hpp"
 
-petscXdmfGenerator::XmlElement::XmlElement(std::string name, std::string preamble, std::string currentPath) : name(name), preamble(preamble), path(currentPath + "/" + name) {}
+petscXdmfGenerator::XmlElement::XmlElement(std::string name, std::string preamble, std::string currentPath) : preamble(preamble), name(name), path(currentPath + "/" + name) {}
 
 namespace petscXdmfGenerator {
 std::ostream& operator<<(std::ostream& os, const petscXdmfGenerator::XmlElement& object) {
@@ -20,14 +20,14 @@ std::ostream& operator<<(std::ostream& os, const petscXdmfGenerator::XmlElement&
 }
 }  // namespace petscXdmfGenerator
 
-petscXdmfGenerator::XmlElement& petscXdmfGenerator::XmlElement::operator[](const std::string&& name) {
-    elements.push_back(std::make_unique<XmlElement>(name, "", path));
+petscXdmfGenerator::XmlElement& petscXdmfGenerator::XmlElement::operator[](const std::string&& childName) {
+    elements.push_back(std::make_unique<XmlElement>(childName, "", path));
     return *elements[elements.size() - 1];
 }
 
 petscXdmfGenerator::XmlElement& petscXdmfGenerator::XmlElement::operator[](const size_t&& index) { return *elements[index]; }
 
-std::string& petscXdmfGenerator::XmlElement::operator()(const std::string&& name) { return attributes[name]; }
+std::string& petscXdmfGenerator::XmlElement::operator()(const std::string&& childName) { return attributes[childName]; }
 
 std::string& petscXdmfGenerator::XmlElement::operator()() { return value; }
 

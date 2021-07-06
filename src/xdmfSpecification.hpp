@@ -13,15 +13,15 @@ enum FieldType { SCALAR, VECTOR, TENSOR, MATRIX, NONE };
 class XdmfSpecification {
    private:
     struct TopologyDescription {
-        std::string path = "";
+        std::string path;
         unsigned long long number = 0;
         unsigned long long numberCorners = 0;
         unsigned long long dimension = 0;
     };
 
     struct FieldDescription {
-        std::string name = "";
-        std::string path = "";
+        std::string name;
+        std::string path;
         std::vector<unsigned long long> shape;
         unsigned long long componentOffset = 0;
         unsigned long long componentStride = 1;

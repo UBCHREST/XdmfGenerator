@@ -18,7 +18,7 @@ petscXdmfGenerator::HdfObject::HdfObject(std::filesystem::path filePath) : paren
     }
 }
 
-petscXdmfGenerator::HdfObject::HdfObject(std::shared_ptr<HdfObject> parent, H5O_info_t information, std::string name) : information(information), parent(parent), name(name) {
+petscXdmfGenerator::HdfObject::HdfObject(std::shared_ptr<HdfObject> parent, H5O_info_t information, std::string name) : parent(parent), name(name), information(information) {
     // Open the location
     locId = H5Oopen_by_addr(parent->locId, information.addr);
     if (locId < 0) {

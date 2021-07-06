@@ -26,10 +26,10 @@ class XmlElement {
 
     /**
      * creates a new child element with the name
-     * @param name
+     * @param childName
      * @return
      */
-    XmlElement& operator[](const std::string&& name);
+    XmlElement& operator[](const std::string&& childName);
 
     /**
      * Gets the element at the index
@@ -40,10 +40,10 @@ class XmlElement {
 
     /**
      * gets/sets the attribute
-     * @param name
+     * @param childName
      * @return
      */
-    std::string& operator()(const std::string&& name);
+    std::string& operator()(const std::string&& childName);
 
     /**
      * gets/sets the value for the element
