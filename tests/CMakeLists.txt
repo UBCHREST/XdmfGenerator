@@ -9,7 +9,7 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(tests "")
 target_link_libraries(tests PUBLIC gtest gtest_main petscXdmfGeneratorLibrary ${HDF5_LIBRARIES})
-target_compile_options(tests PUBLIC $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>: -Werror -Wall -Wwrite-strings -Wno-strict-aliasing -Wno-unknown-pragmas -fstack-protector -fno-stack-check -Qunused-arguments>)
+target_compile_options(tests PUBLIC $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>: -Werror -Wall -Wwrite-strings -Wno-strict-aliasing -Wno-unknown-pragmas -fstack-protector -fno-stack-check -fvisibility=hidden>)
 
 target_sources(tests
         PRIVATE
