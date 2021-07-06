@@ -48,7 +48,7 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
         // If this is a components field, separate into each component
         if (description.fieldType != NONE) {
             if (separateIntoComponents) {
-                for (auto c = 0; c < description.GetDimension(); c++) {
+                for (unsigned long long c = 0; c < description.GetDimension(); c++) {
                     // create a temporary fieldDescription for each component
                     petscXdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = description.name + std::to_string(c),
                                                                                                       .path = description.path,

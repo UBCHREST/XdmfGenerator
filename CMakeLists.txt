@@ -24,8 +24,12 @@ add_executable(petscXdmfGenerator main.cpp)
 target_link_libraries(petscXdmfGenerator PRIVATE petscXdmfGeneratorLibrary ${HDF5_LIBRARIES})
 
 # Add required warnings for projects
-target_compile_options(petscXdmfGeneratorLibrary PRIVATE $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>: -Werror -Wall -Wwrite-strings -Wno-strict-aliasing -Wno-unknown-pragmas -fstack-protector -fno-stack-check -fvisibility=hidden>)
-target_compile_options(petscXdmfGenerator PRIVATE $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>: -Werror -Wall -Wwrite-strings -Wno-strict-aliasing -Wno-unknown-pragmas -fstack-protector -fno-stack-check -fvisibility=hidden>)
+function(default_target_compile_options target)
+    target_compile_options(${target} PUBLIC $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>: -Werror -Wall -Wwrite-strings -Wno-strict-aliasing -Wno-unknown-pragmas -Wsign-compare -fstack-protector -fno-stack-check -fvisibility=hidden>)
+endfunction()
+
+default_target_compile_options(petscXdmfGeneratorLibrary)
+default_target_compile_options(petscXdmfGenerator)
 
 # Check if we should enable testing options
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
