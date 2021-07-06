@@ -64,7 +64,7 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
         auto& gridBase = useTime ? GenerateTimeGrid(domainElement, xdmfGrid.time) : domainElement;
 
         // march over and add each grid for each time
-        for (auto timeIndex = 0; timeIndex < xdmfGrid.time.size(); timeIndex++) {
+        for (std::size_t timeIndex = 0; timeIndex < xdmfGrid.time.size(); timeIndex++) {
             auto gridTimeIndex = xdmfGrid.geometry.HasTimeDimension() ? timeIndex : TimeInvariant;
 
             // add in the hybrid header

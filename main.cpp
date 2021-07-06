@@ -1,5 +1,3 @@
-static char help[] = "Command line executable to generate xdmf file hdf5 visualization. \n";
-
 #include <filesystem>
 #include <iostream>
 #include <memory>

@@ -155,7 +155,7 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
          */
         auto space = H5Aget_space(attLocation);
         hsize_t dims[1] = {0};
-        auto ndims = H5Sget_simple_extent_dims(space, dims, NULL);
+        H5Sget_simple_extent_dims(space, dims, NULL);
 
         // define and allocate the read buffer
         // Allocate array of pointers to rows.
@@ -164,7 +164,7 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
         rdata[0] = (char *)malloc(dims[0] * sdim * sizeof(char));
 
         // Set the rest of the pointers to rows to the correct addresses.
-        for (auto i = 1; i < dims[0]; i++) {
+        for (hsize_t i = 1; i < dims[0]; i++) {
             rdata[i] = rdata[0] + i * sdim;
         }
 

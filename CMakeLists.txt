@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 # Create the new project
-project(PetscXdmf VERSION 0.0.6)
+project(PetscXdmf VERSION 0.0.7)
 
 # Set the standards
 set(CMAKE_CXX_STANDARD 17)
@@ -22,6 +22,14 @@ include(FetchContent)
 # Build a stand alone executable
 add_executable(petscXdmfGenerator main.cpp)
 target_link_libraries(petscXdmfGenerator PRIVATE petscXdmfGeneratorLibrary ${HDF5_LIBRARIES})
+
+# Add required warnings for projects
+function(default_target_compile_options target)
+    target_compile_options(${target} PUBLIC $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>: -Werror -Wall -Wwrite-strings -Wno-strict-aliasing -Wno-unknown-pragmas -Wsign-compare -fstack-protector -fno-stack-check -fvisibility=hidden>)
+endfunction()
+
+default_target_compile_options(petscXdmfGeneratorLibrary)
+default_target_compile_options(petscXdmfGenerator)
 
 # Check if we should enable testing options
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)

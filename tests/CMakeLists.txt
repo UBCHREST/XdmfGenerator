@@ -9,6 +9,7 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(tests "")
 target_link_libraries(tests PUBLIC gtest gtest_main petscXdmfGeneratorLibrary ${HDF5_LIBRARIES})
+default_target_compile_options(tests)
 
 target_sources(tests
         PRIVATE
