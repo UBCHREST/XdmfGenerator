@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 # Create the new project
-project(PetscXdmf VERSION 0.0.9)
+project(PetscXdmf VERSION 0.0.10)
 
 # Set the standards
 set(CMAKE_CXX_STANDARD 17)
@@ -40,11 +40,12 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
     # Include the format command only if we are the main project
     include(clangFormatter.cmake)
+
+    # Setup and configure testing
+    if(BUILD_TESTING)
+        enable_testing()
+        include(GoogleTest)
+        add_subdirectory(tests)
+    endif()
 endif()
 
-# Setup and configure testing
-if(BUILD_TESTING)
-    enable_testing()
-    include(GoogleTest)
-    add_subdirectory(tests)
-endif()
