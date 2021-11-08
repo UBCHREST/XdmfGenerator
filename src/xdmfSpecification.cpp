@@ -49,8 +49,16 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
         if (description.fieldType != NONE) {
             if (separateIntoComponents) {
                 for (unsigned long long c = 0; c < description.GetDimension(); c++) {
+                    // check to see if the component was named in the hdf5 file
+                    std::string componentName = description.name + std::to_string(c);
+                    const std::string attributeName = "componentName" + std::to_string(c);
+                    if (hdfField->HasAttribute(attributeName)) {
+                        auto hdfComponentName = hdfField->AttributeString(attributeName);
+                        componentName = description.name + "_" + hdfComponentName;
+                    }
+
                     // create a temporary fieldDescription for each component
-                    petscXdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = description.name + std::to_string(c),
+                    petscXdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = componentName,
                                                                                                       .path = description.path,
                                                                                                       .shape = description.shape,
                                                                                                       .componentOffset = static_cast<unsigned long long>(c),
@@ -128,9 +136,9 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
         }
 
         if (rootObject->Contains("particles")) {
-            std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = rootObject->Get("particles")->Get("coordinates");
+            std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObjectLocal = rootObject->Get("particles")->Get("coordinates");
             // store the geometry
-            particleGrid.geometry.name = geometryObject->Name(), particleGrid.geometry.path = geometryObject->Path(), particleGrid.geometry.shape = geometryObject->Shape(),
+            particleGrid.geometry.name = geometryObjectLocal->Name(), particleGrid.geometry.path = geometryObjectLocal->Path(), particleGrid.geometry.shape = geometryObjectLocal->Shape(),
             particleGrid.geometry.fieldLocation = NODE, particleGrid.geometry.fieldType = VECTOR,
             particleGrid.geometry.componentDimension = particleGrid.geometry.shape.size() > 2 ? particleGrid.geometry.shape[2] : particleGrid.geometry.shape[1];
         } else {
@@ -159,7 +167,8 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
 
     return specification;
 }
-std::shared_ptr<petscXdmfGenerator::HdfObject> XdmfSpecification::FindPetscHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, std::string name) {
+
+std::shared_ptr<petscXdmfGenerator::HdfObject> XdmfSpecification::FindPetscHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, const std::string& name) {
     if (root->Contains("viz") && root->Get("viz")->Contains(name)) {
         return root->Get("viz")->Get(name);
     } else if (root->Contains(name)) {
