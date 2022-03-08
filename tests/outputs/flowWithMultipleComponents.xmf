@@ -1,15 +1,7 @@
 <?xml version="1.0" ?>
-<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" [
-<!ENTITY HeavyData "flowWithMultipleComponents.hdf5">
-]>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
 <Xdmf>
   <Domain Name="domain">
-    <DataItem Dimensions="25 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
-      &HeavyData;:/viz/topology/cells
-    </DataItem>
-    <DataItem DataType="Float" Dimensions="36 2" Format="HDF" Name="_geometry_vertices" Precision="8">
-      &HeavyData;:/geometry/vertices
-    </DataItem>
     <Grid CollectionType="Temporal" GridType="Collection" Name="TimeSeries">
       <Time TimeType="List">
         <DataItem Dimensions="4" Format="XML" NumberType="Float">
@@ -18,13 +10,13 @@
       </Time>
       <Grid GridType="Uniform" Name="domain">
         <Topology NumberOfElements="25" TopologyType="Quadrilateral">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
+          <DataItem Dimensions="25 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+            flowWithMultipleComponents.hdf5:/viz/topology/cells
           </DataItem>
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+          <DataItem DataType="Float" Dimensions="36 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+            flowWithMultipleComponents.hdf5:/geometry/vertices
           </DataItem>
         </Geometry>
         <Attribute Center="Cell" Name="Numerical Solution_euler0" Type="Scalar">
@@ -33,7 +25,7 @@
               0 0 0 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -43,7 +35,7 @@
               0 0 1 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -53,7 +45,7 @@
               0 0 2 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -63,20 +55,20 @@
               0 0 3 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="domain">
         <Topology NumberOfElements="25" TopologyType="Quadrilateral">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
+          <DataItem Dimensions="25 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+            flowWithMultipleComponents.hdf5:/viz/topology/cells
           </DataItem>
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+          <DataItem DataType="Float" Dimensions="36 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+            flowWithMultipleComponents.hdf5:/geometry/vertices
           </DataItem>
         </Geometry>
         <Attribute Center="Cell" Name="Numerical Solution_euler0" Type="Scalar">
@@ -85,7 +77,7 @@
               1 0 0 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -95,7 +87,7 @@
               1 0 1 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -105,7 +97,7 @@
               1 0 2 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -115,20 +107,20 @@
               1 0 3 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="domain">
         <Topology NumberOfElements="25" TopologyType="Quadrilateral">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
+          <DataItem Dimensions="25 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+            flowWithMultipleComponents.hdf5:/viz/topology/cells
           </DataItem>
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+          <DataItem DataType="Float" Dimensions="36 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+            flowWithMultipleComponents.hdf5:/geometry/vertices
           </DataItem>
         </Geometry>
         <Attribute Center="Cell" Name="Numerical Solution_euler0" Type="Scalar">
@@ -137,7 +129,7 @@
               2 0 0 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -147,7 +139,7 @@
               2 0 1 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -157,7 +149,7 @@
               2 0 2 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -167,20 +159,20 @@
               2 0 3 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
       </Grid>
       <Grid GridType="Uniform" Name="domain">
         <Topology NumberOfElements="25" TopologyType="Quadrilateral">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_viz_topology_cells"]
+          <DataItem Dimensions="25 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+            flowWithMultipleComponents.hdf5:/viz/topology/cells
           </DataItem>
         </Topology>
         <Geometry GeometryType="XY">
-          <DataItem Reference="XML">
-            /Xdmf/Domain/DataItem[@Name="_geometry_vertices"]
+          <DataItem DataType="Float" Dimensions="36 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+            flowWithMultipleComponents.hdf5:/geometry/vertices
           </DataItem>
         </Geometry>
         <Attribute Center="Cell" Name="Numerical Solution_euler0" Type="Scalar">
@@ -189,7 +181,7 @@
               3 0 0 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -199,7 +191,7 @@
               3 0 1 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -209,7 +201,7 @@
               3 0 2 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>
@@ -219,7 +211,7 @@
               3 0 3 1 1 4 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="4 25 4" Format="HDF" Precision="8">
-              &HeavyData;:/cell_fields/Numerical Solution_euler
+              flowWithMultipleComponents.hdf5:/cell_fields/Numerical Solution_euler
             </DataItem>
           </DataItem>
         </Attribute>

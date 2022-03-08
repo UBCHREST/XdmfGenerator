@@ -12,8 +12,13 @@ enum FieldType { SCALAR, VECTOR, TENSOR, MATRIX, NONE };
 
 class XdmfSpecification {
    private:
-    struct TopologyDescription {
+    struct DataLocation {
         std::string path;
+        std::string file;
+    };
+
+    struct TopologyDescription {
+        DataLocation location;
         unsigned long long number = 0;
         unsigned long long numberCorners = 0;
         unsigned long long dimension = 0;
@@ -21,7 +26,7 @@ class XdmfSpecification {
 
     struct FieldDescription {
         std::string name;
-        std::string path;
+        DataLocation location;
         std::vector<unsigned long long> shape;
         unsigned long long componentOffset = 0;
         unsigned long long componentStride = 1;
@@ -36,8 +41,10 @@ class XdmfSpecification {
         unsigned long long GetDimension() const { return componentDimension; }
     };
 
+    /**
+     * Grid at a set point in time
+     */
     struct GridDescription {
-        std::string name = "domain";
         // store each type of geometry/topology data
         TopologyDescription topology;
         TopologyDescription hybridTopology;
@@ -46,18 +53,26 @@ class XdmfSpecification {
         // store the field data
         std::vector<FieldDescription> fields;
 
-        // This is empty for steady state problems
-        std::vector<double> time;
+        // store the time at this grid
+        double time = -1;
     };
 
-    // Store the path to the file
-    std::string hdf5File;
+    /**
+     * Collection of time varying grids
+     */
+    struct GridCollectionDescription {
+        std::string name = "domain";
+
+        // grids in time order
+        std::vector<GridDescription> grids;
+    };
 
     // store the list of grids
-    std::vector<GridDescription> grids;
+    std::vector<GridCollectionDescription> gridsCollections;
 
     // helper functions
-    static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields, FieldLocation location);
+    static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields, FieldLocation location,
+                                        const std::string& fileName);
     static std::shared_ptr<petscXdmfGenerator::HdfObject> FindPetscHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, const std::string& name);
     // Allow the builder to access
     friend class XdmfBuilder;

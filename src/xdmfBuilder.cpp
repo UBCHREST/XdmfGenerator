@@ -25,11 +25,7 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     // build the preamble
     std::string preamble =
         "<?xml version=\"1.0\" ?>\n"
-        "<!DOCTYPE Xdmf SYSTEM \"Xdmf.dtd\" [\n"
-        "<!ENTITY HeavyData \"" +
-        specification->hdf5File +
-        "\">\n"
-        "]>";
+        "<!DOCTYPE Xdmf SYSTEM \"Xdmf.dtd\" []>";
 
     auto documentPointer = std::make_unique<XmlElement>("Xdmf", preamble);
     auto& document = *documentPointer;
@@ -39,45 +35,35 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     domainElement("Name") = "domain";
 
     // add in each grid
-    for (auto& xdmfGrid : specification->grids) {
-        // store a central reference for time invariant data
-        if (!xdmfGrid.geometry.HasTimeDimension()) {
-            if (xdmfGrid.topology.number > 0) {
-                WriteCells(domainElement, xdmfGrid.topology);
-            }
-            if (xdmfGrid.hybridTopology.number > 0) {
-                WriteCells(domainElement, xdmfGrid.hybridTopology);
-            }
-            // and the vertices
-            if (xdmfGrid.geometry.GetDof() > 0) {
-                WriteVertices(domainElement, xdmfGrid.geometry);
-            }
-        }
+    for (auto& xdmfGridCollection : specification->gridsCollections) {
+        // If there is a time and it is positive
+        auto useTime = !(xdmfGridCollection.grids.empty() || xdmfGridCollection.grids.front().time < 0);
 
-        // check if we should use time
-        if (xdmfGrid.time.empty()) {
-            xdmfGrid.time.push_back(-1);  // make sure we do at least one time
+        // build a time vector
+        std::vector<double> timeVector;
+        for (const auto& grid : xdmfGridCollection.grids) {
+            timeVector.push_back(grid.time);
         }
-        auto useTime = !(xdmfGrid.time.size() < 2 && xdmfGrid.time[0] == -1);
 
         // specify if we add each grid to the domain or a timeGridBase
-        auto& gridBase = useTime ? GenerateTimeGrid(domainElement, xdmfGrid.time) : domainElement;
+        auto& gridBase = useTime ? GenerateTimeGrid(domainElement, timeVector) : domainElement;
 
         // march over and add each grid for each time
-        for (std::size_t timeIndex = 0; timeIndex < xdmfGrid.time.size(); timeIndex++) {
-            auto gridTimeIndex = xdmfGrid.geometry.HasTimeDimension() ? timeIndex : TimeInvariant;
+        for (std::size_t timeIndex = 0; timeIndex < timeVector.size(); timeIndex++) {
+            auto& grid = xdmfGridCollection.grids[timeIndex];
+            auto gridTimeIndex = grid.geometry.HasTimeDimension() ? timeIndex : TimeInvariant;
 
             // add in the hybrid header
-            auto& timeIndexBase = xdmfGrid.hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase, xdmfGrid.name) : gridBase;
-            if (xdmfGrid.hybridTopology.number > 0) {
-                GenerateSpaceGrid(timeIndexBase, xdmfGrid.hybridTopology, xdmfGrid.geometry, gridTimeIndex, xdmfGrid.name);
+            auto& timeIndexBase = grid.hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase, xdmfGridCollection.name) : gridBase;
+            if (grid.hybridTopology.number > 0) {
+                GenerateSpaceGrid(timeIndexBase, grid.hybridTopology, grid.geometry, gridTimeIndex, xdmfGridCollection.name);
             }
 
             // write the space header
-            auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, xdmfGrid.topology, xdmfGrid.geometry, gridTimeIndex, xdmfGrid.name);
+            auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, grid.topology, grid.geometry, gridTimeIndex, xdmfGridCollection.name);
 
             // add in each field
-            for (auto& field : xdmfGrid.fields) {
+            for (auto& field : grid.fields) {
                 WriteField(spaceGrid, field, timeIndex);
             }
         }
@@ -86,36 +72,21 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     return documentPointer;
 }
 
-void petscXdmfGenerator::XdmfBuilder::WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, unsigned long long timeStep) {
+void petscXdmfGenerator::XdmfBuilder::WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, unsigned long long) {
     // check for an existing reference
-    if (HasReference(topologyDescription.path) && timeStep == TimeInvariant) {
-        UseReference(element, topologyDescription.path);
-    } else {
-        auto& dataItem = element[DataItem];
-        dataItem("Name") = Hdf5PathToName(topologyDescription.path);
-        dataItem("ItemType") = "Uniform";
-        dataItem("Format") = "HDF";
-        dataItem("Precision") = "8";
-        dataItem("NumberType") = "Float";
-        dataItem("Dimensions") = std::to_string(topologyDescription.number) + " " + std::to_string(topologyDescription.numberCorners);
-        dataItem() = "&HeavyData;:" + topologyDescription.path;
-
-        if (timeStep == TimeInvariant) {
-            AddReference(topologyDescription.path, dataItem.Path());
-        }
-    }
+    auto& dataItem = element[DataItem];
+    dataItem("Name") = Hdf5PathToName(topologyDescription.location.path);
+    dataItem("ItemType") = "Uniform";
+    dataItem("Format") = "HDF";
+    dataItem("Precision") = "8";
+    dataItem("NumberType") = "Float";
+    dataItem("Dimensions") = std::to_string(topologyDescription.number) + " " + std::to_string(topologyDescription.numberCorners);
+    dataItem() = topologyDescription.location.file + ":" + topologyDescription.location.path;
 }
 
 void petscXdmfGenerator::XdmfBuilder::WriteVertices(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep) {
     // check for an existing reference
-    if (HasReference(geometryDescription.path) && timeStep == TimeInvariant) {
-        UseReference(element, geometryDescription.path);
-    } else {
-        auto& dataItem = WriteData(element, geometryDescription, timeStep);
-        if (timeStep == TimeInvariant) {
-            AddReference(geometryDescription.path, dataItem.Path());
-        }
-    }
+    WriteData(element, geometryDescription, timeStep);
 }
 
 petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateTimeGrid(petscXdmfGenerator::XmlElement& element, const std::vector<double>& time) {
@@ -191,17 +162,17 @@ XmlElement& petscXdmfGenerator::XdmfBuilder::WriteData(petscXdmfGenerator::XmlEl
             dataItemItem("Dimensions") = JoinVector(fieldDescription.shape);
             dataItemItem("Format") = "HDF";
             dataItemItem("Precision") = "8";
-            dataItemItem() = "&HeavyData;:" + fieldDescription.path;
+            dataItemItem() = fieldDescription.location.file + ":" + fieldDescription.location.path;
         }
         return dataItem;
     } else {
         auto& dataItemItem = element[DataItem];
-        dataItemItem("Name") = Hdf5PathToName(fieldDescription.path);
+        dataItemItem("Name") = Hdf5PathToName(fieldDescription.location.path);
         dataItemItem("DataType") = "Float";
         dataItemItem("Dimensions") = JoinVector(fieldDescription.shape);
         dataItemItem("Format") = "HDF";
         dataItemItem("Precision") = "8";
-        dataItemItem() = "&HeavyData;:" + fieldDescription.path;
+        dataItemItem() = fieldDescription.location.file + ":" + fieldDescription.location.path;
         return dataItemItem;
     }
 }
@@ -215,11 +186,6 @@ void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement&
     WriteData(attribute, fieldDescription, timeStep);
 }
 
-void XdmfBuilder::UseReference(XmlElement& element, std::string id) {
-    auto& reference = element[DataItem];
-    reference("Reference") = "XML";
-    reference() = xmlReferences.at(id);
-}
 std::string XdmfBuilder::Hdf5PathToName(std::string hdf5Path) {
     std::replace(hdf5Path.begin(), hdf5Path.end(), '/', '_');
     return hdf5Path;
