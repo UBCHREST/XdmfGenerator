@@ -80,6 +80,9 @@ class XdmfSpecification {
    public:
     // provide generator functions
     static std::shared_ptr<XdmfSpecification> FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject>);
+
+    //! multiple file xdmfs
+    static std::shared_ptr<XdmfSpecification> FromPetscHdf(std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>);
 };
 
 }  // namespace petscXdmfGenerator

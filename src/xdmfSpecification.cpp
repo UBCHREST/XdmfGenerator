@@ -75,6 +75,7 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
         }
     }
 }
+
 std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject> rootObject) {
     auto specification = std::make_shared<XdmfSpecification>();
 
@@ -181,6 +182,124 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
 
         // add to the list of grids
         specification->gridsCollections.push_back(particleGrid);
+    }
+
+    return specification;
+}
+
+std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPetscHdf(std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>> objects) {
+    auto specification = std::make_shared<XdmfSpecification>();
+
+    // store a map of possible collections
+    std::map<std::string, GridCollectionDescription> grids;
+
+    // march over each object
+    for (auto& hdf5Object : objects) {
+        // petsc hdf5 files may have a root domain (this is often a real mesh (FE/FV))
+        std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(hdf5Object, "geometry");
+        if (geometryObject) {
+            auto& mainGrid = grids["domain"];
+
+            // store the file name
+            auto hdf5File = hdf5Object->Name();
+
+            // get the time
+            auto time = hdf5Object->Contains("time") ? hdf5Object->Get("time")->RawData<double>() : std::vector<double>{-1};
+
+            // add in each time
+            GridDescription gridDescription;
+            gridDescription.time = time[0];  // always the first time index
+
+            // store the geometry
+            auto verticesObject = geometryObject->Get("vertices");
+            gridDescription.geometry.name = verticesObject->Name(), gridDescription.geometry.location.path = verticesObject->Path(), gridDescription.geometry.location.file = hdf5File,
+            gridDescription.geometry.shape = verticesObject->Shape(), gridDescription.geometry.fieldLocation = NODE, gridDescription.geometry.fieldType = VECTOR,
+            gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape[1];
+
+            // check for and get the topology
+            std::shared_ptr<petscXdmfGenerator::HdfObject> topologyObject = FindPetscHdfChild(hdf5Object, "topology");
+            if (topologyObject) {
+                auto cellObject = topologyObject->Get("cells");
+                gridDescription.topology.location.path = cellObject->Path();
+                gridDescription.topology.location.file = hdf5File;
+                gridDescription.topology.number = cellObject->Shape()[0];
+                gridDescription.topology.numberCorners = cellObject->Shape()[1];
+                gridDescription.topology.dimension = cellObject->Attribute<unsigned long long>("cell_dim");
+            }
+            // hybrid topology
+            std::shared_ptr<petscXdmfGenerator::HdfObject> hybridTopologyObject = FindPetscHdfChild(hdf5Object, "hybrid_topology");
+            if (hybridTopologyObject) {
+                auto cellObject = topologyObject->Get("hcells");
+                gridDescription.hybridTopology.location.path = cellObject->Path();
+                gridDescription.hybridTopology.location.file = hdf5File;
+                gridDescription.hybridTopology.number = cellObject->Shape()[0];
+                gridDescription.hybridTopology.numberCorners = cellObject->Shape()[1];
+            }
+
+            // get the vertex fields and map into a vertex map
+            if (hdf5Object->Contains("vertex_fields")) {
+                GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("vertex_fields")->Items(), NODE, hdf5File);
+            }
+            if (hdf5Object->Contains("cell_fields")) {
+                GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("cell_fields")->Items(), CELL, hdf5File);
+            }
+
+            mainGrid.grids.push_back(gridDescription);
+        }
+
+        // check for particles
+        if (hdf5Object->Contains("particles") || hdf5Object->Contains("particle_fields")) {
+            auto& particleGrid = grids["domain"];
+            particleGrid.name = "particle_domain";
+
+            // store the file name
+            auto hdf5File = hdf5Object->Name();
+
+            // get the time
+            auto time = hdf5Object->Contains("time") ? hdf5Object->Get("time")->RawData<double>() : std::vector<double>{-1};
+
+            for (std::size_t timeIndex = 0; timeIndex < time.size(); timeIndex++) {
+                GridDescription gridDescription;
+                gridDescription.time = time[timeIndex];
+
+                // add in any other fields
+                if (hdf5Object->Contains("particle_fields")) {
+                    GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("particle_fields")->Items(), NODE, hdf5File);
+                }
+
+                if (hdf5Object->Contains("particles")) {
+                    std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObjectLocal = hdf5Object->Get("particles")->Get("coordinates");
+                    // store the geometry
+                    gridDescription.geometry.name = geometryObjectLocal->Name(), gridDescription.geometry.location.path = geometryObjectLocal->Path(),
+                    gridDescription.geometry.location.file = hdf5File, gridDescription.geometry.shape = geometryObjectLocal->Shape(), gridDescription.geometry.fieldLocation = NODE,
+                    gridDescription.geometry.fieldType = VECTOR,
+                    gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape[1];
+                } else {
+                    // grad the geometry from the particle_fields
+                    auto gridField = std::find_if(gridDescription.fields.begin(), gridDescription.fields.end(), [](const auto& f) { return f.name == "DMSwarmPIC_coor"; });
+                    if (gridField != gridDescription.fields.end()) {
+                        gridDescription.geometry = *gridField;
+                        gridDescription.fields.erase(gridField);
+                    } else {
+                        throw std::runtime_error("Cannot determine geometry for particles");
+                    }
+                }
+
+                // hard code simple topology
+                gridDescription.topology.location.path = "";
+                gridDescription.topology.location.file = hdf5File;
+                gridDescription.topology.number = gridDescription.geometry.GetDof();
+                gridDescription.topology.numberCorners = 0;
+                gridDescription.topology.dimension = gridDescription.geometry.GetDimension();
+
+                particleGrid.grids.push_back(gridDescription);
+            }
+        }
+    }
+
+    // add to the list of grids
+    for (const auto& [name, grid] : grids) {
+        specification->gridsCollections.push_back(grid);
     }
 
     return specification;
