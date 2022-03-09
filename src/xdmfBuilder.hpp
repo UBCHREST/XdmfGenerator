@@ -13,7 +13,6 @@ namespace petscXdmfGenerator {
 class XdmfBuilder {
    private:
     const std::shared_ptr<XdmfSpecification> specification;
-    std::map<std::string, std::string> xmlReferences;
 
     // store constant values
     inline const static unsigned long long TimeInvariant = -1;
@@ -54,12 +53,6 @@ class XdmfBuilder {
     }
 
     std::string Hdf5PathToName(std::string hdf5Path);
-
-    inline void AddReference(const std::string& hdf5Path, const std::string& xmlPath) { xmlReferences[hdf5Path] = xmlPath + "[@Name=\"" + Hdf5PathToName(hdf5Path) + "\"]"; }
-
-    inline bool HasReference(const std::string& hdf5Path) { return xmlReferences.count(hdf5Path) != 0; }
-
-    void UseReference(XmlElement& element, std::string id);
 
    public:
     explicit XdmfBuilder(std::shared_ptr<XdmfSpecification> specification);
