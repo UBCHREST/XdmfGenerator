@@ -28,6 +28,7 @@ class XdmfSpecification {
         std::string name;
         DataLocation location;
         std::vector<unsigned long long> shape;
+        unsigned long long timeOffset = 0;
         unsigned long long componentOffset = 0;
         unsigned long long componentStride = 1;
         unsigned long long componentDimension;
@@ -72,7 +73,7 @@ class XdmfSpecification {
 
     // helper functions
     static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields, FieldLocation location,
-                                        const std::string& fileName);
+                                        const std::string& fileName, unsigned long long timeOffset);
     static std::shared_ptr<petscXdmfGenerator::HdfObject> FindPetscHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, const std::string& name);
     // Allow the builder to access
     friend class XdmfBuilder;

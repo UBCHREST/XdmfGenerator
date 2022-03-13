@@ -14,18 +14,15 @@ class XdmfBuilder {
    private:
     const std::shared_ptr<XdmfSpecification> specification;
 
-    // store constant values
-    inline const static unsigned long long TimeInvariant = -1;
-
     // internal helper  write functions
-    void WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, unsigned long long timeStep = TimeInvariant);
-    void WriteVertices(XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep = TimeInvariant);
-    XmlElement& WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep);
-    void WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep);
+    void WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription);
+    void WriteVertices(XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription);
+    XmlElement& WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
+    void WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
     static XmlElement& GenerateHybridSpaceGrid(XmlElement& element, const std::string& domainName);
     XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, const XdmfSpecification::FieldDescription& geometryDescription,
-                                  unsigned long long timeStep, const std::string& domainName);
+                                  const std::string& domainName);
 
     template <typename T>
     inline static std::string toString(T value) {
