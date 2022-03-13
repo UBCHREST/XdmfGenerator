@@ -51,20 +51,19 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
         // march over and add each grid for each time
         for (std::size_t timeIndex = 0; timeIndex < timeVector.size(); timeIndex++) {
             auto& grid = xdmfGridCollection.grids[timeIndex];
-            auto gridTimeIndex = grid.geometry.HasTimeDimension() ? timeIndex : TimeInvariant;
 
             // add in the hybrid header
             auto& timeIndexBase = grid.hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase, xdmfGridCollection.name) : gridBase;
             if (grid.hybridTopology.number > 0) {
-                GenerateSpaceGrid(timeIndexBase, grid.hybridTopology, grid.geometry, gridTimeIndex, xdmfGridCollection.name);
+                GenerateSpaceGrid(timeIndexBase, grid.hybridTopology, grid.geometry, xdmfGridCollection.name);
             }
 
             // write the space header
-            auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, grid.topology, grid.geometry, gridTimeIndex, xdmfGridCollection.name);
+            auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, grid.topology, grid.geometry, xdmfGridCollection.name);
 
             // add in each field
             for (auto& field : grid.fields) {
-                WriteField(spaceGrid, field, timeIndex);
+                WriteField(spaceGrid, field);
             }
         }
     }
@@ -72,7 +71,7 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     return documentPointer;
 }
 
-void petscXdmfGenerator::XdmfBuilder::WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, unsigned long long) {
+void petscXdmfGenerator::XdmfBuilder::WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription) {
     // check for an existing reference
     auto& dataItem = element[DataItem];
     dataItem("Name") = Hdf5PathToName(topologyDescription.location.path);
@@ -84,9 +83,9 @@ void petscXdmfGenerator::XdmfBuilder::WriteCells(petscXdmfGenerator::XmlElement&
     dataItem() = topologyDescription.location.file + ":" + topologyDescription.location.path;
 }
 
-void petscXdmfGenerator::XdmfBuilder::WriteVertices(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep) {
+void petscXdmfGenerator::XdmfBuilder::WriteVertices(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription) {
     // check for an existing reference
-    WriteData(element, geometryDescription, timeStep);
+    WriteData(element, geometryDescription);
 }
 
 petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateTimeGrid(petscXdmfGenerator::XmlElement& element, const std::vector<double>& time) {
@@ -115,8 +114,7 @@ petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateHybridS
 }
 
 petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateSpaceGrid(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription,
-                                                                                   const XdmfSpecification::FieldDescription& geometryDescription, unsigned long long timeStep,
-                                                                                   const std::string& domainName) {
+                                                                                   const XdmfSpecification::FieldDescription& geometryDescription, const std::string& domainName) {
     auto& gridItem = element[Grid];
     gridItem("Name") = domainName;
     gridItem("GridType") = "Uniform";
@@ -129,19 +127,18 @@ petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateSpaceGr
 
         } else {
             topology("NumberOfElements") = std::to_string(topologyDescription.number);
-            WriteCells(topology, topologyDescription, timeStep);
+            WriteCells(topology, topologyDescription);
         }
     }
 
     auto& geometry = gridItem["Geometry"];
     geometry("GeometryType") = geometryDescription.GetDimension() > 2 ? "XYZ" : "XY";
-    WriteVertices(geometry, geometryDescription, timeStep);
+    WriteVertices(geometry, geometryDescription);
 
     return gridItem;
 }
 
-XmlElement& petscXdmfGenerator::XdmfBuilder::WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription,
-                                                       unsigned long long timeStep) {
+XmlElement& petscXdmfGenerator::XdmfBuilder::WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription) {
     // determine if we need to use a HyperSlab
     if (fieldDescription.HasTimeDimension()) {
         auto& dataItem = element[DataItem];
@@ -153,7 +150,7 @@ XmlElement& petscXdmfGenerator::XdmfBuilder::WriteData(petscXdmfGenerator::XmlEl
             auto& dataItemItem = dataItem[DataItem];
             dataItemItem("Dimensions") = Join(3, 3);
             dataItemItem("Format") = "XML";
-            dataItemItem() = Join(timeStep, 0, fieldDescription.componentOffset) + " " + Join(1, 1, fieldDescription.componentStride) + " " +
+            dataItemItem() = Join(fieldDescription.timeOffset, 0, fieldDescription.componentOffset) + " " + Join(1, 1, fieldDescription.componentStride) + " " +
                              Join(1, fieldDescription.GetDof(), fieldDescription.GetDimension());  // start, stride, size
         }
         {
@@ -177,13 +174,13 @@ XmlElement& petscXdmfGenerator::XdmfBuilder::WriteData(petscXdmfGenerator::XmlEl
     }
 }
 
-void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription, unsigned long long timeStep) {
+void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription) {
     auto& attribute = element["Attribute"];
     attribute("Name") = fieldDescription.name;
     attribute("Type") = typeMap[fieldDescription.fieldType];
     attribute("Center") = locationMap[fieldDescription.fieldLocation];
 
-    WriteData(attribute, fieldDescription, timeStep);
+    WriteData(attribute, fieldDescription);
 }
 
 std::string XdmfBuilder::Hdf5PathToName(std::string hdf5Path) {

@@ -32,6 +32,7 @@ int main(int argc, char** args) {
 
     // check if it is a directory
     if (std::filesystem::is_directory(filePath)) {
+        filePath = std::filesystem::canonical(filePath);
         std::vector<std::filesystem::path> inputFilePaths;
         std::filesystem::path outputFile = filePath / (filePath.stem().string() + ".xmf");
 

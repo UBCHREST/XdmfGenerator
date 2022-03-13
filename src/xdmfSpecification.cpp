@@ -8,9 +8,10 @@ const static std::map<std::string, FieldType> petscTypeLookUpFromFieldType = {{"
 const static std::map<int, FieldType> petscTypeLookUpFromNC = {{1, SCALAR}, {2, VECTOR}, {3, VECTOR}};
 
 void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields,
-                                                                    petscXdmfGenerator::FieldLocation location, const std::string& fileName) {
+                                                                    petscXdmfGenerator::FieldLocation location, const std::string& fileName, unsigned long long timeOffset) {
     for (auto& hdfField : hdfFields) {
-        FieldDescription description{.name = hdfField->Name(), .location = {.path = hdfField->Path(), .file = fileName}, .shape = hdfField->Shape(), .fieldLocation = location};
+        FieldDescription description{
+            .name = hdfField->Name(), .location = {.path = hdfField->Path(), .file = fileName}, .shape = hdfField->Shape(), .timeOffset = timeOffset, .fieldLocation = location};
 
         if (hdfField->HasAttribute("vector_field_type")) {
             auto vector_field_type = hdfField->AttributeString("vector_field_type");
@@ -61,6 +62,7 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
                     petscXdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = componentName,
                                                                                                       .location = description.location,
                                                                                                       .shape = description.shape,
+                                                                                                      .timeOffset = description.timeOffset,
                                                                                                       .componentOffset = static_cast<unsigned long long>(c),
                                                                                                       .componentStride = description.GetDimension(),
                                                                                                       .componentDimension = 1,
@@ -123,10 +125,10 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
 
             // get the vertex fields and map into a vertex map
             if (rootObject->Contains("vertex_fields")) {
-                GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("vertex_fields")->Items(), NODE, hdf5File);
+                GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("vertex_fields")->Items(), NODE, hdf5File, timeIndex);
             }
             if (rootObject->Contains("cell_fields")) {
-                GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("cell_fields")->Items(), CELL, hdf5File);
+                GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("cell_fields")->Items(), CELL, hdf5File, timeIndex);
             }
 
             mainGrid.grids.push_back(gridDescription);
@@ -150,7 +152,7 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
 
             // add in any other fields
             if (rootObject->Contains("particle_fields")) {
-                GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("particle_fields")->Items(), NODE, hdf5File);
+                GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("particle_fields")->Items(), NODE, hdf5File, timeIndex);
             }
 
             if (rootObject->Contains("particles")) {
@@ -236,12 +238,12 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
                 gridDescription.hybridTopology.numberCorners = cellObject->Shape()[1];
             }
 
-            // get the vertex fields and map into a vertex map
+            // get the vertex fields and map into a vertex map. NOTE: multi file time index is always 0
             if (hdf5Object->Contains("vertex_fields")) {
-                GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("vertex_fields")->Items(), NODE, hdf5File);
+                GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("vertex_fields")->Items(), NODE, hdf5File, 0);
             }
             if (hdf5Object->Contains("cell_fields")) {
-                GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("cell_fields")->Items(), CELL, hdf5File);
+                GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("cell_fields")->Items(), CELL, hdf5File, 0);
             }
 
             mainGrid.grids.push_back(gridDescription);
@@ -262,9 +264,9 @@ std::shared_ptr<XdmfSpecification> petscXdmfGenerator::XdmfSpecification::FromPe
                 GridDescription gridDescription;
                 gridDescription.time = time[timeIndex];
 
-                // add in any other fields
+                // add in any other fields. NOTE: time offset for multi file is always zero
                 if (hdf5Object->Contains("particle_fields")) {
-                    GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("particle_fields")->Items(), NODE, hdf5File);
+                    GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("particle_fields")->Items(), NODE, hdf5File, 0);
                 }
 
                 if (hdf5Object->Contains("particles")) {

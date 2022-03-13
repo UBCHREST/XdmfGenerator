@@ -94,7 +94,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              1 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00001.hdf5:/vertex_fields/exact_pressure
@@ -104,7 +104,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              1 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00001.hdf5:/vertex_fields/exact_temperature
@@ -114,7 +114,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              1 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00001.hdf5:/vertex_fields/exact_velocity
@@ -124,7 +124,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              1 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00001.hdf5:/vertex_fields/solution_pressure
@@ -134,7 +134,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              1 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00001.hdf5:/vertex_fields/solution_temperature
@@ -144,7 +144,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              1 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00001.hdf5:/vertex_fields/solution_velocity
@@ -166,7 +166,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              2 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00002.hdf5:/vertex_fields/exact_pressure
@@ -176,7 +176,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              2 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00002.hdf5:/vertex_fields/exact_temperature
@@ -186,7 +186,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              2 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00002.hdf5:/vertex_fields/exact_velocity
@@ -196,7 +196,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              2 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00002.hdf5:/vertex_fields/solution_pressure
@@ -206,7 +206,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              2 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00002.hdf5:/vertex_fields/solution_temperature
@@ -216,7 +216,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              2 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00002.hdf5:/vertex_fields/solution_velocity
@@ -238,7 +238,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              3 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00003.hdf5:/vertex_fields/exact_pressure
@@ -248,7 +248,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              3 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00003.hdf5:/vertex_fields/exact_temperature
@@ -258,7 +258,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              3 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00003.hdf5:/vertex_fields/exact_velocity
@@ -268,7 +268,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              3 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00003.hdf5:/vertex_fields/solution_pressure
@@ -278,7 +278,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              3 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00003.hdf5:/vertex_fields/solution_temperature
@@ -288,7 +288,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              3 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00003.hdf5:/vertex_fields/solution_velocity
@@ -310,7 +310,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              4 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00004.hdf5:/vertex_fields/exact_pressure
@@ -320,7 +320,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              4 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00004.hdf5:/vertex_fields/exact_temperature
@@ -330,7 +330,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              4 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00004.hdf5:/vertex_fields/exact_velocity
@@ -340,7 +340,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              4 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00004.hdf5:/vertex_fields/solution_pressure
@@ -350,7 +350,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              4 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00004.hdf5:/vertex_fields/solution_temperature
@@ -360,7 +360,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              4 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00004.hdf5:/vertex_fields/solution_velocity
@@ -382,7 +382,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              5 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00005.hdf5:/vertex_fields/exact_pressure
@@ -392,7 +392,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              5 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00005.hdf5:/vertex_fields/exact_temperature
@@ -402,7 +402,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              5 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00005.hdf5:/vertex_fields/exact_velocity
@@ -412,7 +412,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              5 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00005.hdf5:/vertex_fields/solution_pressure
@@ -422,7 +422,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              5 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00005.hdf5:/vertex_fields/solution_temperature
@@ -432,7 +432,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              5 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00005.hdf5:/vertex_fields/solution_velocity
@@ -454,7 +454,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              6 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00006.hdf5:/vertex_fields/exact_pressure
@@ -464,7 +464,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              6 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00006.hdf5:/vertex_fields/exact_temperature
@@ -474,7 +474,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              6 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00006.hdf5:/vertex_fields/exact_velocity
@@ -484,7 +484,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              6 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00006.hdf5:/vertex_fields/solution_pressure
@@ -494,7 +494,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              6 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00006.hdf5:/vertex_fields/solution_temperature
@@ -504,7 +504,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              6 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00006.hdf5:/vertex_fields/solution_velocity
@@ -526,7 +526,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              7 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00007.hdf5:/vertex_fields/exact_pressure
@@ -536,7 +536,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              7 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00007.hdf5:/vertex_fields/exact_temperature
@@ -546,7 +546,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              7 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00007.hdf5:/vertex_fields/exact_velocity
@@ -556,7 +556,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              7 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00007.hdf5:/vertex_fields/solution_pressure
@@ -566,7 +566,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              7 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00007.hdf5:/vertex_fields/solution_temperature
@@ -576,7 +576,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              7 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00007.hdf5:/vertex_fields/solution_velocity
@@ -598,7 +598,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              8 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00008.hdf5:/vertex_fields/exact_pressure
@@ -608,7 +608,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              8 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00008.hdf5:/vertex_fields/exact_temperature
@@ -618,7 +618,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              8 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00008.hdf5:/vertex_fields/exact_velocity
@@ -628,7 +628,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              8 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00008.hdf5:/vertex_fields/solution_pressure
@@ -638,7 +638,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              8 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00008.hdf5:/vertex_fields/solution_temperature
@@ -648,7 +648,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              8 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00008.hdf5:/vertex_fields/solution_velocity
@@ -670,7 +670,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              9 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00009.hdf5:/vertex_fields/exact_pressure
@@ -680,7 +680,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              9 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00009.hdf5:/vertex_fields/exact_temperature
@@ -690,7 +690,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              9 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00009.hdf5:/vertex_fields/exact_velocity
@@ -700,7 +700,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              9 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00009.hdf5:/vertex_fields/solution_pressure
@@ -710,7 +710,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              9 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00009.hdf5:/vertex_fields/solution_temperature
@@ -720,7 +720,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              9 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00009.hdf5:/vertex_fields/solution_velocity
@@ -742,7 +742,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              10 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00010.hdf5:/vertex_fields/exact_pressure
@@ -752,7 +752,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              10 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00010.hdf5:/vertex_fields/exact_temperature
@@ -762,7 +762,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              10 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00010.hdf5:/vertex_fields/exact_velocity
@@ -772,7 +772,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              10 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00010.hdf5:/vertex_fields/solution_pressure
@@ -782,7 +782,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              10 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00010.hdf5:/vertex_fields/solution_temperature
@@ -792,7 +792,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              10 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00010.hdf5:/vertex_fields/solution_velocity
@@ -814,7 +814,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              11 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00011.hdf5:/vertex_fields/exact_pressure
@@ -824,7 +824,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              11 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00011.hdf5:/vertex_fields/exact_temperature
@@ -834,7 +834,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              11 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00011.hdf5:/vertex_fields/exact_velocity
@@ -844,7 +844,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              11 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00011.hdf5:/vertex_fields/solution_pressure
@@ -854,7 +854,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              11 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00011.hdf5:/vertex_fields/solution_temperature
@@ -864,7 +864,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              11 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00011.hdf5:/vertex_fields/solution_velocity
@@ -886,7 +886,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              12 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00012.hdf5:/vertex_fields/exact_pressure
@@ -896,7 +896,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              12 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00012.hdf5:/vertex_fields/exact_temperature
@@ -906,7 +906,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              12 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00012.hdf5:/vertex_fields/exact_velocity
@@ -916,7 +916,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              12 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00012.hdf5:/vertex_fields/solution_pressure
@@ -926,7 +926,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              12 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00012.hdf5:/vertex_fields/solution_temperature
@@ -936,7 +936,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              12 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00012.hdf5:/vertex_fields/solution_velocity
@@ -958,7 +958,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              13 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00013.hdf5:/vertex_fields/exact_pressure
@@ -968,7 +968,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              13 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00013.hdf5:/vertex_fields/exact_temperature
@@ -978,7 +978,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              13 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00013.hdf5:/vertex_fields/exact_velocity
@@ -988,7 +988,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              13 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00013.hdf5:/vertex_fields/solution_pressure
@@ -998,7 +998,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              13 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00013.hdf5:/vertex_fields/solution_temperature
@@ -1008,7 +1008,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              13 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00013.hdf5:/vertex_fields/solution_velocity
@@ -1030,7 +1030,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              14 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00014.hdf5:/vertex_fields/exact_pressure
@@ -1040,7 +1040,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              14 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00014.hdf5:/vertex_fields/exact_temperature
@@ -1050,7 +1050,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              14 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00014.hdf5:/vertex_fields/exact_velocity
@@ -1060,7 +1060,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              14 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00014.hdf5:/vertex_fields/solution_pressure
@@ -1070,7 +1070,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              14 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00014.hdf5:/vertex_fields/solution_temperature
@@ -1080,7 +1080,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              14 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00014.hdf5:/vertex_fields/solution_velocity
@@ -1102,7 +1102,7 @@
         <Attribute Center="Node" Name="exact_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              15 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00015.hdf5:/vertex_fields/exact_pressure
@@ -1112,7 +1112,7 @@
         <Attribute Center="Node" Name="exact_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              15 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00015.hdf5:/vertex_fields/exact_temperature
@@ -1122,7 +1122,7 @@
         <Attribute Center="Node" Name="exact_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              15 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00015.hdf5:/vertex_fields/exact_velocity
@@ -1132,7 +1132,7 @@
         <Attribute Center="Node" Name="solution_pressure" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              15 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00015.hdf5:/vertex_fields/solution_pressure
@@ -1142,7 +1142,7 @@
         <Attribute Center="Node" Name="solution_temperature" Type="Scalar">
           <DataItem Dimensions="1 25 1" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              15 0 0 1 1 1 1 25 1
+              0 0 0 1 1 1 1 25 1
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 1" Format="HDF" Precision="8">
               domain.00015.hdf5:/vertex_fields/solution_temperature
@@ -1152,7 +1152,7 @@
         <Attribute Center="Node" Name="solution_velocity" Type="Vector">
           <DataItem Dimensions="1 25 2" ItemType="HyperSlab" Type="HyperSlab">
             <DataItem Dimensions="3 3" Format="XML">
-              15 0 0 1 1 1 1 25 2
+              0 0 0 1 1 1 1 25 2
             </DataItem>
             <DataItem DataType="Float" Dimensions="1 25 2" Format="HDF" Precision="8">
               domain.00015.hdf5:/vertex_fields/solution_velocity
