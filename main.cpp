@@ -45,15 +45,19 @@ int main(int argc, char** args) {
         // sort the paths
         std::sort(inputFilePaths.begin(), inputFilePaths.end());
 
-        petscXdmfGenerator::Generate(inputFilePaths, outputFile);
-        std::cout << "XDMF file written to " << outputFile << std::endl;
+        auto paths = petscXdmfGenerator::Generate(inputFilePaths, outputFile);
+        for (const auto& path : paths) {
+            std::cout << "XDMF file written to " << path << std::endl;
+        }
     } else {
         // build the path to the output file
         std::filesystem::path outputFile = filePath.parent_path();
         outputFile /= (filePath.stem().string() + ".xmf");
 
         // write to the file
-        petscXdmfGenerator::Generate(filePath, outputFile);
-        std::cout << "XDMF file written to " << outputFile << std::endl;
+        auto paths = petscXdmfGenerator::Generate(filePath, outputFile);
+        for (const auto& path : paths) {
+            std::cout << "XDMF file written to " << path << std::endl;
+        }
     }
 }
