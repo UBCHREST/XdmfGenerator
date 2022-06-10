@@ -7,26 +7,46 @@ namespace petscXdmfGenerator {
 void Generate(std::filesystem::path inputFilePath, std::ostream& stream) {
     // prepare the builder
     auto hdfObject = std::make_shared<petscXdmfGenerator::HdfObject>(inputFilePath);
-    auto specification = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
-    auto builder = petscXdmfGenerator::XdmfBuilder(specification);
-    auto xml = builder.Build();
+    auto specifications = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
 
-    // write to the stream
-    xml->PrettyPrint(stream);
+    for (const auto& specification : specifications) {
+        auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+        auto xml = builder.Build();
+
+        // write to the stream
+        xml->PrettyPrint(stream);
+    }
 }
 
-void Generate(std::filesystem::path inputFilePath, std::filesystem::path outputFilePath) {
+std::vector<std::filesystem::path> Generate(std::filesystem::path inputFilePath, std::filesystem::path outputFilePath) {
     // build the path to the output file
     if (outputFilePath.empty()) {
         outputFilePath = inputFilePath.parent_path();
         outputFilePath /= (inputFilePath.stem().string() + ".xmf");
     }
 
-    // write to the file
-    std::ofstream xmlFile;
-    xmlFile.open(outputFilePath);
-    Generate(inputFilePath, xmlFile);
-    xmlFile.close();
+    // prepare the builder
+    auto hdfObject = std::make_shared<petscXdmfGenerator::HdfObject>(inputFilePath);
+    auto specifications = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
+    std::vector<std::filesystem::path> outputPaths;
+
+    for (const auto& specification : specifications) {
+        auto specificationOutputPath = outputFilePath.parent_path() / (outputFilePath.stem().string() + specification->GetIdentifier() + outputFilePath.extension().string());
+
+        // write to the file
+        std::ofstream xmlFile;
+        xmlFile.open(specificationOutputPath);
+
+        auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+        auto xml = builder.Build();
+
+        // write to the stream
+        xml->PrettyPrint(xmlFile);
+
+        xmlFile.close();
+        outputPaths.push_back(specificationOutputPath);
+    }
+    return outputPaths;
 }
 
 void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& stream) {
@@ -36,22 +56,41 @@ void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& s
         hdfObjects.push_back(std::make_shared<petscXdmfGenerator::HdfObject>(inputFile));
     }
 
-    auto specification = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObjects);
-    auto builder = petscXdmfGenerator::XdmfBuilder(specification);
-    auto xml = builder.Build();
+    auto specifications = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObjects);
+    for (const auto& specification : specifications) {
+        auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+        auto xml = builder.Build();
 
-    // write to the stream
-    xml->PrettyPrint(stream);
+        // write to the stream
+        xml->PrettyPrint(stream);
+    }
 }
 
-void Generate(std::vector<std::filesystem::path> inputFilePaths, std::filesystem::path outputFilePath) {
-    // write to the file
-    std::ofstream xmlFile;
-    xmlFile.open(outputFilePath);
+std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path> inputFilePaths, std::filesystem::path outputFilePath) {
+    std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>> hdfObjects;
+    for (const auto& inputFile : inputFilePaths) {
+        hdfObjects.push_back(std::make_shared<petscXdmfGenerator::HdfObject>(inputFile));
+    }
 
-    Generate(inputFilePaths, xmlFile);
+    std::vector<std::filesystem::path> outputPaths;
 
-    xmlFile.close();
+    auto specifications = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObjects);
+    for (const auto& specification : specifications) {
+        auto specificationOutputPath = outputFilePath.parent_path() / (outputFilePath.stem().string() + specification->GetIdentifier() + outputFilePath.extension().string());
+
+        // write to the file
+        std::ofstream xmlFile;
+        xmlFile.open(specificationOutputPath);
+
+        auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+        auto xml = builder.Build();
+
+        // write to the stream
+        xml->PrettyPrint(xmlFile);
+
+        xmlFile.close();
+        outputPaths.push_back(specificationOutputPath);
+    }
+    return outputPaths;
 }
-
 }  // namespace petscXdmfGenerator

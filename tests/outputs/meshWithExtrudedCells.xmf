@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf>
+  <Domain Name="domain">
+    <Grid GridType="Uniform" Name="domain">
+      <Topology NumberOfElements="2244" TopologyType="Tetrahedron">
+        <DataItem Dimensions="2244 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+          meshWithExtrudedCells.hdf5:/viz/topology/cells
+        </DataItem>
+      </Topology>
+      <Geometry GeometryType="XYZ">
+        <DataItem DataType="Float" Dimensions="999 3" Format="HDF" Name="_geometry_vertices" Precision="8">
+          meshWithExtrudedCells.hdf5:/geometry/vertices
+        </DataItem>
+      </Geometry>
+    </Grid>
+  </Domain>
+</Xdmf><?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf>
+  <Domain Name="domain">
+    <Grid GridType="Uniform" Name="domain">
+      <Topology NumberOfElements="832" TopologyType="Wedge">
+        <DataItem Dimensions="832 6" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+          meshWithExtrudedCells.hdf5:/viz/topology_1/cells
+        </DataItem>
+      </Topology>
+      <Geometry GeometryType="XYZ">
+        <DataItem DataType="Float" Dimensions="999 3" Format="HDF" Name="_geometry_vertices" Precision="8">
+          meshWithExtrudedCells.hdf5:/geometry/vertices
+        </DataItem>
+      </Geometry>
+    </Grid>
+  </Domain>
+</Xdmf>
