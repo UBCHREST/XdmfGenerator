@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace petscXdmfGenerator {
+namespace xdmfGenerator {
 
 class XmlElement {
    private:
@@ -75,6 +75,6 @@ class XmlElement {
     void PrettyPrint(std::ostream& stream, size_t depth = 0);
 };
 
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
 
 #endif  // PETSCXDMFGENERATOR_XMLELEMENT_HPP

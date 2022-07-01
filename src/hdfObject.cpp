@@ -7,7 +7,7 @@ static std::map<H5O_type_t, std::string> h50bjectTypes = {{H5O_TYPE_UNKNOWN, "H5
                                                           {H5O_TYPE_NAMED_DATATYPE, "H5O_TYPE_NAMED_DATATYPE"},
                                                           {H5O_TYPE_MAP, "H5O_TYPE_MAP"}};
 
-petscXdmfGenerator::HdfObject::HdfObject(std::filesystem::path filePath) : parent(nullptr), name(filePath.filename()) {
+xdmfGenerator::HdfObject::HdfObject(std::filesystem::path filePath) : parent(nullptr), name(filePath.filename()) {
     locId = H5Fopen(filePath.c_str(), H5F_ACC_RDONLY, H5P_DEFAULT);
     if (locId < 0) {
         throw std::runtime_error("cannot open hdf5 file " + filePath.string());
@@ -18,7 +18,7 @@ petscXdmfGenerator::HdfObject::HdfObject(std::filesystem::path filePath) : paren
     }
 }
 
-petscXdmfGenerator::HdfObject::HdfObject(std::shared_ptr<HdfObject> parent, H5O_info_t information, std::string name) : parent(parent), name(name), information(information) {
+xdmfGenerator::HdfObject::HdfObject(std::shared_ptr<HdfObject> parent, H5O_info_t information, std::string name) : parent(parent), name(name), information(information) {
     // Open the location
     locId = H5Oopen_by_addr(parent->locId, information.addr);
     if (locId < 0) {
@@ -26,7 +26,7 @@ petscXdmfGenerator::HdfObject::HdfObject(std::shared_ptr<HdfObject> parent, H5O_
     }
 }
 
-petscXdmfGenerator::HdfObject::~HdfObject() {
+xdmfGenerator::HdfObject::~HdfObject() {
     if (parent) {
         H5Oclose(locId);
     } else {
@@ -34,7 +34,7 @@ petscXdmfGenerator::HdfObject::~HdfObject() {
     }
 }
 
-std::shared_ptr<petscXdmfGenerator::HdfObject> petscXdmfGenerator::HdfObject::Get(std::string name) {
+std::shared_ptr<xdmfGenerator::HdfObject> xdmfGenerator::HdfObject::Get(std::string name) {
     H5O_info_t information;
     auto err = H5Oget_info_by_name(locId, name.c_str(), &information, H5P_DEFAULT);
     if (err < 0) {
@@ -45,23 +45,23 @@ std::shared_ptr<petscXdmfGenerator::HdfObject> petscXdmfGenerator::HdfObject::Ge
 }
 
 struct listDataContext {
-    std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>> childrenList;
-    std::shared_ptr<petscXdmfGenerator::HdfObject> parent;
+    std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> childrenList;
+    std::shared_ptr<xdmfGenerator::HdfObject> parent;
 };
 
-herr_t petscXdmfGenerator::HdfObject::addChildToList(hid_t locId, const char *name, const H5L_info_t *info, void *operator_data) {
+herr_t xdmfGenerator::HdfObject::addChildToList(hid_t locId, const char *name, const H5L_info_t *info, void *operator_data) {
     // get the children list
     auto context = (listDataContext *)operator_data;
 
     H5O_info_t information;
     auto err = H5Oget_info_by_name(locId, name, &information, H5P_DEFAULT);
     if (err >= 0) {
-        context->childrenList.push_back(std::shared_ptr<petscXdmfGenerator::HdfObject>(new petscXdmfGenerator::HdfObject(context->parent, information, name)));
+        context->childrenList.push_back(std::shared_ptr<xdmfGenerator::HdfObject>(new xdmfGenerator::HdfObject(context->parent, information, name)));
     }
     return err;
 }
 
-std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>> petscXdmfGenerator::HdfObject::Items() {
+std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> xdmfGenerator::HdfObject::Items() {
     listDataContext context{.childrenList = {}, .parent = shared_from_this()};
 
     // march over each child
@@ -73,7 +73,7 @@ std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>> petscXdmfGenerator::
     return context.childrenList;
 }
 
-bool petscXdmfGenerator::HdfObject::Contains(std::string name) const {
+bool xdmfGenerator::HdfObject::Contains(std::string name) const {
     auto linkCheck = H5Lexists(locId, name.c_str(), H5P_DEFAULT);
     if (linkCheck < 0) {
         throw std::runtime_error("cannot check link " + name + " in " + this->name);
@@ -92,16 +92,16 @@ bool petscXdmfGenerator::HdfObject::Contains(std::string name) const {
     }
 }
 
-namespace petscXdmfGenerator {
-std::ostream &operator<<(std::ostream &os, const petscXdmfGenerator::HdfObject &object) {
+namespace xdmfGenerator {
+std::ostream &operator<<(std::ostream &os, const xdmfGenerator::HdfObject &object) {
     os << object.name << ": " << object.TypeName();
     return os;
 }
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
 
-std::string petscXdmfGenerator::HdfObject::TypeName() const { return h50bjectTypes.count(Type()) > 0 ? h50bjectTypes.at(Type()) : h50bjectTypes.at(H5O_TYPE_UNKNOWN); }
+std::string xdmfGenerator::HdfObject::TypeName() const { return h50bjectTypes.count(Type()) > 0 ? h50bjectTypes.at(Type()) : h50bjectTypes.at(H5O_TYPE_UNKNOWN); }
 
-std::string petscXdmfGenerator::HdfObject::Path() const {
+std::string xdmfGenerator::HdfObject::Path() const {
     std::string path = "";
     if (parent) {
         path = parent->Path() + "/";
@@ -111,7 +111,7 @@ std::string petscXdmfGenerator::HdfObject::Path() const {
     return path;
 }
 
-std::vector<hsize_t> petscXdmfGenerator::HdfObject::Shape() const {
+std::vector<hsize_t> xdmfGenerator::HdfObject::Shape() const {
     if (Type() != H5O_TYPE_DATASET) {
         throw std::runtime_error("Shape can only be called on H5O_TYPE_DATASET objects");
     }
@@ -129,7 +129,7 @@ std::vector<hsize_t> petscXdmfGenerator::HdfObject::Shape() const {
     return shape;
 }
 
-bool petscXdmfGenerator::HdfObject::HasAttribute(std::string name) const {
+bool xdmfGenerator::HdfObject::HasAttribute(std::string name) const {
     // Check to see if the link is an attribute
     auto objectCheck = H5Aexists_by_name(locId, ".", name.c_str(), H5P_DEFAULT);
     if (objectCheck < 0) {

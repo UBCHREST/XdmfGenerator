@@ -11,7 +11,7 @@ class SingleHdf5FileTextFixture : public ::testing::TestWithParam<std::string> {
     std::filesystem::path expectedOutputFilePath = "outputs";
 
    public:
-    void SetUp() {
+    void SetUp() override {
         inputFilePath /= (GetParam() + ".hdf5");
         expectedOutputFilePath /= (GetParam() + ".xmf");
     }
@@ -27,7 +27,7 @@ TEST_P(SingleHdf5FileTextFixture, ShouldGenerateExpectedXml) {
     std::stringstream resultStream;
 
     // act
-    petscXdmfGenerator::Generate(inputFilePath, resultStream);
+    xdmfGenerator::Generate(inputFilePath, resultStream);
 
     // assert
     ASSERT_EQ(resultStream.str(), expectedOutput.str());
@@ -43,7 +43,7 @@ class MultiHdf5FileTextFixture : public ::testing::TestWithParam<std::string> {
     std::filesystem::path expectedOutputFilePath = "outputs";
 
    public:
-    void SetUp() {
+    void SetUp() override {
         inputDirPath /= GetParam();
         expectedOutputFilePath /= (GetParam() + ".xmf");
     }
@@ -68,7 +68,7 @@ TEST_P(MultiHdf5FileTextFixture, ShouldGenerateExpectedXml) {
     std::sort(inputFilePaths.begin(), inputFilePaths.end());
 
     // act
-    petscXdmfGenerator::Generate(inputFilePaths, resultStream);
+    xdmfGenerator::Generate(inputFilePaths, resultStream);
 
     // assert
     ASSERT_EQ(resultStream.str(), expectedOutput.str());

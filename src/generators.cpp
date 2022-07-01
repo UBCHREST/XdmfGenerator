@@ -2,15 +2,15 @@
 #include <iostream>
 #include "xdmfBuilder.hpp"
 
-namespace petscXdmfGenerator {
+namespace xdmfGenerator {
 
 void Generate(std::filesystem::path inputFilePath, std::ostream& stream) {
     // prepare the builder
-    auto hdfObject = std::make_shared<petscXdmfGenerator::HdfObject>(inputFilePath);
-    auto specifications = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
+    auto hdfObject = std::make_shared<xdmfGenerator::HdfObject>(inputFilePath);
+    auto specifications = xdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
 
     for (const auto& specification : specifications) {
-        auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+        auto builder = xdmfGenerator::XdmfBuilder(specification);
         auto xml = builder.Build();
 
         // write to the stream
@@ -26,8 +26,8 @@ std::vector<std::filesystem::path> Generate(std::filesystem::path inputFilePath,
     }
 
     // prepare the builder
-    auto hdfObject = std::make_shared<petscXdmfGenerator::HdfObject>(inputFilePath);
-    auto specifications = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
+    auto hdfObject = std::make_shared<xdmfGenerator::HdfObject>(inputFilePath);
+    auto specifications = xdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
     std::vector<std::filesystem::path> outputPaths;
 
     for (const auto& specification : specifications) {
@@ -37,7 +37,7 @@ std::vector<std::filesystem::path> Generate(std::filesystem::path inputFilePath,
         std::ofstream xmlFile;
         xmlFile.open(specificationOutputPath);
 
-        auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+        auto builder = xdmfGenerator::XdmfBuilder(specification);
         auto xml = builder.Build();
 
         // write to the stream
@@ -51,14 +51,14 @@ std::vector<std::filesystem::path> Generate(std::filesystem::path inputFilePath,
 
 void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& stream) {
     // prepare the builder
-    std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>> hdfObjects;
+    std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> hdfObjects;
     for (const auto& inputFile : inputFilePaths) {
-        hdfObjects.push_back(std::make_shared<petscXdmfGenerator::HdfObject>(inputFile));
+        hdfObjects.push_back(std::make_shared<xdmfGenerator::HdfObject>(inputFile));
     }
 
-    auto specifications = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObjects);
+    auto specifications = xdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObjects);
     for (const auto& specification : specifications) {
-        auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+        auto builder = xdmfGenerator::XdmfBuilder(specification);
         auto xml = builder.Build();
 
         // write to the stream
@@ -67,14 +67,14 @@ void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& s
 }
 
 std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path> inputFilePaths, std::filesystem::path outputFilePath) {
-    std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>> hdfObjects;
+    std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> hdfObjects;
     for (const auto& inputFile : inputFilePaths) {
-        hdfObjects.push_back(std::make_shared<petscXdmfGenerator::HdfObject>(inputFile));
+        hdfObjects.push_back(std::make_shared<xdmfGenerator::HdfObject>(inputFile));
     }
 
     std::vector<std::filesystem::path> outputPaths;
 
-    auto specifications = petscXdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObjects);
+    auto specifications = xdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObjects);
     for (const auto& specification : specifications) {
         auto specificationOutputPath = outputFilePath.parent_path() / (outputFilePath.stem().string() + specification->GetIdentifier() + outputFilePath.extension().string());
 
@@ -82,7 +82,7 @@ std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path> i
         std::ofstream xmlFile;
         xmlFile.open(specificationOutputPath);
 
-        auto builder = petscXdmfGenerator::XdmfBuilder(specification);
+        auto builder = xdmfGenerator::XdmfBuilder(specification);
         auto xml = builder.Build();
 
         // write to the stream
@@ -93,4 +93,4 @@ std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path> i
     }
     return outputPaths;
 }
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
