@@ -75,6 +75,6 @@ class XmlElement {
     void PrettyPrint(std::ostream& stream, size_t depth = 0);
 };
 
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
 
 #endif  // PETSCXDMFGENERATOR_XMLELEMENT_HPP

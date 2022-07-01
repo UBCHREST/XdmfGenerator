@@ -97,7 +97,7 @@ std::ostream &operator<<(std::ostream &os, const xdmfGenerator::HdfObject &objec
     os << object.name << ": " << object.TypeName();
     return os;
 }
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
 
 std::string xdmfGenerator::HdfObject::TypeName() const { return h50bjectTypes.count(Type()) > 0 ? h50bjectTypes.at(Type()) : h50bjectTypes.at(H5O_TYPE_UNKNOWN); }
 

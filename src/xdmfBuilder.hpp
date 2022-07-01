@@ -55,6 +55,6 @@ class XdmfBuilder {
     explicit XdmfBuilder(std::shared_ptr<XdmfSpecification> specification);
     std::unique_ptr<XmlElement> Build();
 };
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
 
 #endif  // PETSCXDMFGENERATOR_XDMF_HPP

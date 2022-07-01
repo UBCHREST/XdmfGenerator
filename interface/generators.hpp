@@ -8,6 +8,6 @@ std::vector<std::filesystem::path> Generate(std::filesystem::path, std::filesyst
 void Generate(std::filesystem::path inputFilePath, std::ostream& stream);
 std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path>, std::filesystem::path);
 void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& stream);
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
 
 #endif  // PETSCXDMFGENERATOR_CONVERTERS_HPP

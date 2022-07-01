@@ -93,4 +93,4 @@ std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path> i
     }
     return outputPaths;
 }
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator

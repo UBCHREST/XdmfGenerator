@@ -101,5 +101,5 @@ class XdmfSpecification {
     const std::string& GetIdentifier() const { return identifier; }
 };
 
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
 #endif  // PETSCXDMFGENERATOR_XDMFSPECIFICATION_H

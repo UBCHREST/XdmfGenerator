@@ -232,6 +232,6 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
     friend std::ostream &operator<<(std::ostream &os, const HdfObject &object);
 };
 
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
 
 #endif  // PETSCXDMFGENERATOR_HDFOBJECT_HPP

@@ -114,7 +114,7 @@ xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateHybridSpaceGrid(x
 }
 
 xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateSpaceGrid(xdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription,
-                                                                                   const XdmfSpecification::FieldDescription& geometryDescription, const std::string& domainName) {
+                                                                         const XdmfSpecification::FieldDescription& geometryDescription, const std::string& domainName) {
     auto& gridItem = element[Grid];
     gridItem("Name") = domainName;
     gridItem("GridType") = "Uniform";

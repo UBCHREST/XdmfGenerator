@@ -18,7 +18,7 @@ std::ostream& operator<<(std::ostream& os, const xdmfGenerator::XmlElement& obje
 
     return os;
 }
-}  // namespace petscXdmfGenerator
+}  // namespace xdmfGenerator
 
 xdmfGenerator::XmlElement& xdmfGenerator::XmlElement::operator[](const std::string&& childName) {
     elements.push_back(std::make_unique<XmlElement>(childName, "", path));

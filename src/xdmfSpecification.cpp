@@ -60,14 +60,14 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
 
                     // create a temporary fieldDescription for each component
                     xdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = componentName,
-                                                                                                      .location = description.location,
-                                                                                                      .shape = description.shape,
-                                                                                                      .timeOffset = description.timeOffset,
-                                                                                                      .componentOffset = static_cast<unsigned long long>(c),
-                                                                                                      .componentStride = description.GetDimension(),
-                                                                                                      .componentDimension = 1,
-                                                                                                      .fieldLocation = description.fieldLocation,
-                                                                                                      .fieldType = SCALAR};
+                                                                                                 .location = description.location,
+                                                                                                 .shape = description.shape,
+                                                                                                 .timeOffset = description.timeOffset,
+                                                                                                 .componentOffset = static_cast<unsigned long long>(c),
+                                                                                                 .componentStride = description.GetDimension(),
+                                                                                                 .componentDimension = 1,
+                                                                                                 .fieldLocation = description.fieldLocation,
+                                                                                                 .fieldType = SCALAR};
 
                     fields.push_back(componentFieldDescription);
                 }
