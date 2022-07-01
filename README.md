@@ -1,4 +1,4 @@
-# PETSc Xdmf Generator
+# Xdmf Generator
 Simple library that can be used in other projects to generate the Xdmf files for PETSc generated hdf5 files.  This library requires that a PETSc configure (built with hdf5) can be found in the package configuration path.  The project also generates a self-contained command line executable.
 
 ## Running Tests Locally

@@ -11,7 +11,7 @@ class SingleHdf5FileTextFixture : public ::testing::TestWithParam<std::string> {
     std::filesystem::path expectedOutputFilePath = "outputs";
 
    public:
-    void SetUp() {
+    void SetUp() override {
         inputFilePath /= (GetParam() + ".hdf5");
         expectedOutputFilePath /= (GetParam() + ".xmf");
     }
@@ -43,7 +43,7 @@ class MultiHdf5FileTextFixture : public ::testing::TestWithParam<std::string> {
     std::filesystem::path expectedOutputFilePath = "outputs";
 
    public:
-    void SetUp() {
+    void SetUp() override {
         inputDirPath /= GetParam();
         expectedOutputFilePath /= (GetParam() + ".xmf");
     }

@@ -1,5 +1,4 @@
-
-target_sources(petscXdmfGeneratorLibrary
+target_sources(xdmfGeneratorLibrary
         PRIVATE
         hdfObject.hpp
         hdfObject.cpp
@@ -12,4 +11,4 @@ target_sources(petscXdmfGeneratorLibrary
         generators.cpp
         )
 
-target_include_directories(petscXdmfGeneratorLibrary PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(xdmfGeneratorLibrary PRIVATE ${CMAKE_CURRENT_LIST_DIR})

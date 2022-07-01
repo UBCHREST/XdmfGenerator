@@ -1,4 +1,5 @@
 # Download google test
+SET(INSTALL_GTEST OFF CACHE BOOL "Don't install gtest" FORCE)
 FetchContent_Declare(
         googletest
         GIT_REPOSITORY https://github.com/google/googletest.git
@@ -8,8 +9,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 add_executable(tests "")
-target_link_libraries(tests PUBLIC gtest gtest_main petscXdmfGeneratorLibrary ${HDF5_LIBRARIES})
-default_target_compile_options(tests)
+target_link_libraries(tests PUBLIC gtest gtest_main xdmfGeneratorLibrary ${HDF5_LIBRARIES} chrestCompilerFlags)
 
 target_sources(tests
         PRIVATE
