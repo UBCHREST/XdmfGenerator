@@ -6,7 +6,7 @@
 #include <vector>
 #include "hdfObject.hpp"
 
-namespace petscXdmfGenerator {
+namespace xdmfGenerator {
 enum FieldLocation { NODE, CELL };
 enum FieldType { SCALAR, VECTOR, TENSOR, MATRIX, NONE };
 
@@ -74,9 +74,9 @@ class XdmfSpecification {
     std::vector<GridCollectionDescription> gridsCollections;
 
     // helper functions
-    static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields, FieldLocation location,
+    static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<xdmfGenerator::HdfObject>>& hdfFields, FieldLocation location,
                                         const std::string& fileName, unsigned long long timeOffset);
-    static std::shared_ptr<petscXdmfGenerator::HdfObject> FindPetscHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, const std::string& name);
+    static std::shared_ptr<xdmfGenerator::HdfObject> FindPetscHdfChild(std::shared_ptr<xdmfGenerator::HdfObject>& root, const std::string& name);
 
     static std::string GetTopologyPostfix(int index) {
         if (index > 0) {
@@ -93,10 +93,10 @@ class XdmfSpecification {
     XdmfSpecification(const std::string& identifier = "") : identifier(identifier) {}
 
     // provide generator functions
-    static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject>);
+    static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(std::shared_ptr<xdmfGenerator::HdfObject>);
 
     //! multiple file xdmfs
-    static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>);
+    static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(std::vector<std::shared_ptr<xdmfGenerator::HdfObject>>);
 
     const std::string& GetIdentifier() const { return identifier; }
 };

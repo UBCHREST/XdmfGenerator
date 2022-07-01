@@ -9,16 +9,16 @@
 #include "xdmfSpecification.hpp"
 #include "xmlElement.hpp"
 
-namespace petscXdmfGenerator {
+namespace xdmfGenerator {
 class XdmfBuilder {
    private:
     const std::shared_ptr<XdmfSpecification> specification;
 
     // internal helper  write functions
-    void WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription);
+    void WriteCells(xdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription);
     void WriteVertices(XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription);
-    XmlElement& WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
-    void WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
+    XmlElement& WriteData(xdmfGenerator::XmlElement& element, const xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
+    void WriteField(xdmfGenerator::XmlElement& element, xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
     static XmlElement& GenerateHybridSpaceGrid(XmlElement& element, const std::string& domainName);
     XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, const XdmfSpecification::FieldDescription& geometryDescription,

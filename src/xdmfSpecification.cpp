@@ -2,13 +2,13 @@
 #include <algorithm>
 #include <stdexcept>
 
-using namespace petscXdmfGenerator;
+using namespace xdmfGenerator;
 
 const static std::map<std::string, FieldType> petscTypeLookUpFromFieldType = {{"scalar", SCALAR}, {"vector", VECTOR}, {"tensor", TENSOR}, {"matrix", MATRIX}};
 const static std::map<int, FieldType> petscTypeLookUpFromNC = {{1, SCALAR}, {2, VECTOR}, {3, VECTOR}};
 
-void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>>& hdfFields,
-                                                                    petscXdmfGenerator::FieldLocation location, const std::string& fileName, unsigned long long timeOffset) {
+void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<xdmfGenerator::HdfObject>>& hdfFields,
+                                                               xdmfGenerator::FieldLocation location, const std::string& fileName, unsigned long long timeOffset) {
     for (auto& hdfField : hdfFields) {
         FieldDescription description{
             .name = hdfField->Name(), .location = {.path = hdfField->Path(), .file = fileName}, .shape = hdfField->Shape(), .timeOffset = timeOffset, .fieldLocation = location};
@@ -59,7 +59,7 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
                     }
 
                     // create a temporary fieldDescription for each component
-                    petscXdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = componentName,
+                    xdmfGenerator::XdmfSpecification::FieldDescription componentFieldDescription{.name = componentName,
                                                                                                       .location = description.location,
                                                                                                       .shape = description.shape,
                                                                                                       .timeOffset = description.timeOffset,
@@ -78,14 +78,14 @@ void petscXdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<
     }
 }
 
-std::vector<std::shared_ptr<XdmfSpecification>> petscXdmfGenerator::XdmfSpecification::FromPetscHdf(std::shared_ptr<petscXdmfGenerator::HdfObject> rootObject) {
+std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::shared_ptr<xdmfGenerator::HdfObject> rootObject) {
     auto specifications = std::map<std::string, std::shared_ptr<XdmfSpecification>>();
 
     // store the file name
     auto hdf5File = rootObject->Name();
 
     // petsc hdf5 files may have a root domain (this is often a real mesh (FE/FV))
-    std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(rootObject, "geometry");
+    std::shared_ptr<xdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(rootObject, "geometry");
     if (geometryObject) {
         // march over each possible topology
         int topologyIndex = 0;
@@ -118,7 +118,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> petscXdmfGenerator::XdmfSpecific
                     gridDescription.topology.dimension = cellObject->Attribute<unsigned long long>("cell_dim");
                 }
                 // hybrid topology
-                std::shared_ptr<petscXdmfGenerator::HdfObject> hybridTopologyObject = FindPetscHdfChild(rootObject, "hybrid_topology");
+                std::shared_ptr<xdmfGenerator::HdfObject> hybridTopologyObject = FindPetscHdfChild(rootObject, "hybrid_topology");
                 if (hybridTopologyObject) {
                     auto cellObject = topologyObject->Get("hcells");
                     gridDescription.hybridTopology.location.path = cellObject->Path();
@@ -164,7 +164,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> petscXdmfGenerator::XdmfSpecific
             }
 
             if (rootObject->Contains("particles")) {
-                std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObjectLocal = rootObject->Get("particles")->Get("coordinates");
+                std::shared_ptr<xdmfGenerator::HdfObject> geometryObjectLocal = rootObject->Get("particles")->Get("coordinates");
                 // store the geometry
                 gridDescription.geometry.name = geometryObjectLocal->Name(), gridDescription.geometry.location.path = geometryObjectLocal->Path(), gridDescription.geometry.location.file = hdf5File,
                 gridDescription.geometry.shape = geometryObjectLocal->Shape(), gridDescription.geometry.fieldLocation = NODE, gridDescription.geometry.fieldType = VECTOR,
@@ -199,13 +199,13 @@ std::vector<std::shared_ptr<XdmfSpecification>> petscXdmfGenerator::XdmfSpecific
     return list;
 }
 
-std::vector<std::shared_ptr<XdmfSpecification>> petscXdmfGenerator::XdmfSpecification::FromPetscHdf(std::vector<std::shared_ptr<petscXdmfGenerator::HdfObject>> objects) {
+std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> objects) {
     auto specifications = std::map<std::string, std::shared_ptr<XdmfSpecification>>();
 
     // march over each object
     for (auto& hdf5Object : objects) {
         // petsc hdf5 files may have a root domain (this is often a real mesh (FE/FV))
-        std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(hdf5Object, "geometry");
+        std::shared_ptr<xdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(hdf5Object, "geometry");
         if (geometryObject) {
             // march over each possible topology
             int topologyIndex = 0;
@@ -247,7 +247,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> petscXdmfGenerator::XdmfSpecific
                     gridDescription.topology.dimension = cellObject->Attribute<unsigned long long>("cell_dim");
                 }
                 // hybrid topology
-                std::shared_ptr<petscXdmfGenerator::HdfObject> hybridTopologyObject = FindPetscHdfChild(hdf5Object, "hybrid_topology");
+                std::shared_ptr<xdmfGenerator::HdfObject> hybridTopologyObject = FindPetscHdfChild(hdf5Object, "hybrid_topology");
                 if (hybridTopologyObject) {
                     auto cellObject = topologyObject->Get("hcells");
                     gridDescription.hybridTopology.location.path = cellObject->Path();
@@ -296,7 +296,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> petscXdmfGenerator::XdmfSpecific
                 }
 
                 if (hdf5Object->Contains("particles")) {
-                    std::shared_ptr<petscXdmfGenerator::HdfObject> geometryObjectLocal = hdf5Object->Get("particles")->Get("coordinates");
+                    std::shared_ptr<xdmfGenerator::HdfObject> geometryObjectLocal = hdf5Object->Get("particles")->Get("coordinates");
                     // store the geometry
                     gridDescription.geometry.name = geometryObjectLocal->Name(), gridDescription.geometry.location.path = geometryObjectLocal->Path(),
                     gridDescription.geometry.location.file = hdf5File, gridDescription.geometry.shape = geometryObjectLocal->Shape(), gridDescription.geometry.fieldLocation = NODE,
@@ -330,7 +330,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> petscXdmfGenerator::XdmfSpecific
     return list;
 }
 
-std::shared_ptr<petscXdmfGenerator::HdfObject> XdmfSpecification::FindPetscHdfChild(std::shared_ptr<petscXdmfGenerator::HdfObject>& root, const std::string& name) {
+std::shared_ptr<xdmfGenerator::HdfObject> XdmfSpecification::FindPetscHdfChild(std::shared_ptr<xdmfGenerator::HdfObject>& root, const std::string& name) {
     if (root->Contains("viz") && root->Get("viz")->Contains(name)) {
         return root->Get("viz")->Get(name);
     } else if (root->Contains(name)) {

@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace petscXdmfGenerator {
+namespace xdmfGenerator {
 
 class XmlElement {
    private:

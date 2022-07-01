@@ -7,7 +7,7 @@
 static const auto DataItem = "DataItem";
 static const auto Grid = "Grid";
 
-using namespace petscXdmfGenerator;
+using namespace xdmfGenerator;
 static std::map<unsigned long long, std::map<unsigned long long, std::string>> cellMap = {{1, {{0, "Polyvertex"}, {1, "Polyvertex"}, {2, "Polyline"}}},
                                                                                           {2, {{0, "Polyvertex"}, {3, "Triangle"}, {4, "Quadrilateral"}}},
                                                                                           {3, {{0, "Polyvertex"}, {4, "Tetrahedron"}, {6, "Wedge"}, {8, "Hexahedron"}}}};
@@ -21,7 +21,7 @@ static std::map<unsigned long long, std::map<FieldType, std::vector<std::string>
 
 XdmfBuilder::XdmfBuilder(std::shared_ptr<XdmfSpecification> specification) : specification(specification) {}
 
-std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder::Build() {
+std::unique_ptr<xdmfGenerator::XmlElement> xdmfGenerator::XdmfBuilder::Build() {
     // build the preamble
     std::string preamble =
         "<?xml version=\"1.0\" ?>\n"
@@ -71,7 +71,7 @@ std::unique_ptr<petscXdmfGenerator::XmlElement> petscXdmfGenerator::XdmfBuilder:
     return documentPointer;
 }
 
-void petscXdmfGenerator::XdmfBuilder::WriteCells(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription) {
+void xdmfGenerator::XdmfBuilder::WriteCells(xdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription) {
     // check for an existing reference
     auto& dataItem = element[DataItem];
     dataItem("Name") = Hdf5PathToName(topologyDescription.location.path);
@@ -83,12 +83,12 @@ void petscXdmfGenerator::XdmfBuilder::WriteCells(petscXdmfGenerator::XmlElement&
     dataItem() = topologyDescription.location.file + ":" + topologyDescription.location.path;
 }
 
-void petscXdmfGenerator::XdmfBuilder::WriteVertices(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription) {
+void xdmfGenerator::XdmfBuilder::WriteVertices(xdmfGenerator::XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription) {
     // check for an existing reference
     WriteData(element, geometryDescription);
 }
 
-petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateTimeGrid(petscXdmfGenerator::XmlElement& element, const std::vector<double>& time) {
+xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateTimeGrid(xdmfGenerator::XmlElement& element, const std::vector<double>& time) {
     auto& gridItem = element[Grid];
     gridItem("Name") = "TimeSeries";
     gridItem("GridType") = "Collection";
@@ -106,14 +106,14 @@ petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateTimeGri
     return gridItem;
 }
 
-petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateHybridSpaceGrid(petscXdmfGenerator::XmlElement& element, const std::string& domainName) {
+xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateHybridSpaceGrid(xdmfGenerator::XmlElement& element, const std::string& domainName) {
     auto& hybridGridItem = element[Grid];
     hybridGridItem("Name") = domainName;
     hybridGridItem("GridType") = "Collection";
     return hybridGridItem;
 }
 
-petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateSpaceGrid(petscXdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription,
+xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateSpaceGrid(xdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription,
                                                                                    const XdmfSpecification::FieldDescription& geometryDescription, const std::string& domainName) {
     auto& gridItem = element[Grid];
     gridItem("Name") = domainName;
@@ -138,7 +138,7 @@ petscXdmfGenerator::XmlElement& petscXdmfGenerator::XdmfBuilder::GenerateSpaceGr
     return gridItem;
 }
 
-XmlElement& petscXdmfGenerator::XdmfBuilder::WriteData(petscXdmfGenerator::XmlElement& element, const petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription) {
+XmlElement& xdmfGenerator::XdmfBuilder::WriteData(xdmfGenerator::XmlElement& element, const xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription) {
     // determine if we need to use a HyperSlab
     if (fieldDescription.HasTimeDimension()) {
         auto& dataItem = element[DataItem];
@@ -174,7 +174,7 @@ XmlElement& petscXdmfGenerator::XdmfBuilder::WriteData(petscXdmfGenerator::XmlEl
     }
 }
 
-void petscXdmfGenerator::XdmfBuilder::WriteField(petscXdmfGenerator::XmlElement& element, petscXdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription) {
+void xdmfGenerator::XdmfBuilder::WriteField(xdmfGenerator::XmlElement& element, xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription) {
     auto& attribute = element["Attribute"];
     attribute("Name") = fieldDescription.name;
     attribute("Type") = typeMap[fieldDescription.fieldType];

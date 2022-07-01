@@ -11,7 +11,7 @@
 #include <typeinfo>
 #include <vector>
 
-namespace petscXdmfGenerator {
+namespace xdmfGenerator {
 class HdfObject : public std::enable_shared_from_this<HdfObject> {
    private:
     const std::shared_ptr<HdfObject> parent = nullptr;
