@@ -199,11 +199,11 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
     return list;
 }
 
-std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> objects) {
+std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::function<std::shared_ptr<xdmfGenerator::HdfObject>()> consumer) {
     auto specifications = std::map<std::string, std::shared_ptr<XdmfSpecification>>();
 
     // march over each object
-    for (auto& hdf5Object : objects) {
+    while (auto hdf5Object = consumer()) {
         // petsc hdf5 files may have a root domain (this is often a real mesh (FE/FV))
         std::shared_ptr<xdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(hdf5Object, "geometry");
         if (geometryObject) {
@@ -328,6 +328,13 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
     std::vector<std::shared_ptr<XdmfSpecification>> list;
     std::transform(specifications.begin(), specifications.end(), std::back_inserter(list), [](const auto& pair) { return pair.second; });
     return list;
+}
+
+std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> objects) {
+    auto start = objects.begin();
+    auto end = objects.end();
+
+    return FromPetscHdf([&start, &end]() { return start == end ? nullptr : *(start++); });
 }
 
 std::shared_ptr<xdmfGenerator::HdfObject> XdmfSpecification::FindPetscHdfChild(std::shared_ptr<xdmfGenerator::HdfObject>& root, const std::string& name) {

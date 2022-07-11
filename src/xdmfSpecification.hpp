@@ -1,6 +1,7 @@
 #ifndef PETSCXDMFGENERATOR_XDMFSPECIFICATION_H
 #define PETSCXDMFGENERATOR_XDMFSPECIFICATION_H
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
@@ -96,6 +97,7 @@ class XdmfSpecification {
     static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(std::shared_ptr<xdmfGenerator::HdfObject>);
 
     //! multiple file xdmfs
+    static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(std::function<std::shared_ptr<xdmfGenerator::HdfObject>()>);
     static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(std::vector<std::shared_ptr<xdmfGenerator::HdfObject>>);
 
     const std::string& GetIdentifier() const { return identifier; }
