@@ -67,14 +67,14 @@ void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& s
 }
 
 std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path> inputFilePaths, std::filesystem::path outputFilePath) {
-    std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> hdfObjects;
-    for (const auto& inputFile : inputFilePaths) {
-        hdfObjects.push_back(std::make_shared<xdmfGenerator::HdfObject>(inputFile));
-    }
+    // prevent all hdfObjects from being open at once
+    auto inputFileStart = inputFilePaths.begin();
+    auto inputFileEnd = inputFilePaths.end();
+    auto consumer = ([&inputFileStart, &inputFileEnd]() { return inputFileStart == inputFileEnd ? nullptr : std::make_shared<xdmfGenerator::HdfObject>(*(inputFileStart++)); });
 
     std::vector<std::filesystem::path> outputPaths;
 
-    auto specifications = xdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObjects);
+    auto specifications = xdmfGenerator::XdmfSpecification::FromPetscHdf(consumer);
     for (const auto& specification : specifications) {
         auto specificationOutputPath = outputFilePath.parent_path() / (outputFilePath.stem().string() + specification->GetIdentifier() + outputFilePath.extension().string());
 
