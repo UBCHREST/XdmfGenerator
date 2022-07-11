@@ -334,9 +334,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
     auto start = objects.begin();
     auto end = objects.end();
 
-    return FromPetscHdf([&start,&end](){
-        return start == end ? nullptr : *(start++);
-    });
+    return FromPetscHdf([&start, &end]() { return start == end ? nullptr : *(start++); });
 }
 
 std::shared_ptr<xdmfGenerator::HdfObject> XdmfSpecification::FindPetscHdfChild(std::shared_ptr<xdmfGenerator::HdfObject>& root, const std::string& name) {

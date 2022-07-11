@@ -1,11 +1,11 @@
 #ifndef PETSCXDMFGENERATOR_XDMFSPECIFICATION_H
 #define PETSCXDMFGENERATOR_XDMFSPECIFICATION_H
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
 #include "hdfObject.hpp"
-#include <functional>
 
 namespace xdmfGenerator {
 enum FieldLocation { NODE, CELL };
