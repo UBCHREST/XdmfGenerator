@@ -132,7 +132,6 @@ xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateSpaceGrid(xdmfGen
         topology("TopologyType") = cellMap[topologyDescription.dimension][topologyDescription.numberCorners];
 
         // check to see if nodes per element is specified
-
         if (nodesPerCell.count(topologyDescription.dimension) && nodesPerCell[topologyDescription.dimension].count(topologyDescription.numberCorners)) {
             auto nodesPerCellValue = nodesPerCell[topologyDescription.dimension][topologyDescription.numberCorners];
             if (nodesPerCellValue < 1) {
