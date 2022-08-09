@@ -134,8 +134,8 @@ xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateSpaceGrid(xdmfGen
         // check to see if nodes per element is specified
         if (nodesPerCell.count(topologyDescription.dimension) && nodesPerCell[topologyDescription.dimension].count(topologyDescription.numberCorners)) {
             auto nodesPerCellValue = nodesPerCell[topologyDescription.dimension][topologyDescription.numberCorners];
-            if (nodesPerCellValue < 1) {
-                // if less than one set to the topologyDescription size
+            if (nodesPerCellValue < 0) {
+                // if less than zero set to the topologyDescription size
                 topology("NodesPerElement") = std::to_string(topologyDescription.number);
             } else {
                 topology("NodesPerElement") = std::to_string(nodesPerCellValue);
