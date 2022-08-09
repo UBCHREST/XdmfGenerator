@@ -8,9 +8,17 @@ static const auto DataItem = "DataItem";
 static const auto Grid = "Grid";
 
 using namespace xdmfGenerator;
+/**
+ * dim, corners to cell type
+ */
 static std::map<unsigned long long, std::map<unsigned long long, std::string>> cellMap = {{1, {{0, "Polyvertex"}, {1, "Polyvertex"}, {2, "Polyline"}}},
-                                                                                          {2, {{0, "Polyvertex"}, {3, "Triangle"}, {4, "Quadrilateral"}}},
+                                                                                          {2, {{0, "Polyvertex"}, {2, "Polyline"}, {3, "Triangle"}, {4, "Quadrilateral"}}},
                                                                                           {3, {{0, "Polyvertex"}, {4, "Tetrahedron"}, {6, "Wedge"}, {8, "Hexahedron"}}}};
+
+/**
+ * dim, corners to nodes per cell. Empty omits the NodesPerElement tag.  If negative set to the size of the system
+ */
+static std::map<unsigned long long, std::map<unsigned long long, int>> nodesPerCell = {{1, {{0, -1}}}, {2, {{0, -1}, {2, 2}}}, {3, {{0, -1}}}};
 
 static std::map<FieldType, std::string> typeMap = {{SCALAR, "Scalar"}, {VECTOR, "Vector"}, {TENSOR, "Tensor6"}, {MATRIX, "Matrix"}};
 
@@ -122,10 +130,20 @@ xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateSpaceGrid(xdmfGen
     {
         auto& topology = gridItem["Topology"];
         topology("TopologyType") = cellMap[topologyDescription.dimension][topologyDescription.numberCorners];
-        if (topologyDescription.numberCorners == 0) {
-            topology("NodesPerElement") = std::to_string(topologyDescription.number);
 
-        } else {
+        // check to see if nodes per element is specified
+
+        if (nodesPerCell.count(topologyDescription.dimension) && nodesPerCell[topologyDescription.dimension].count(topologyDescription.numberCorners)) {
+            auto nodesPerCellValue = nodesPerCell[topologyDescription.dimension][topologyDescription.numberCorners];
+            if (nodesPerCellValue < 1) {
+                // if less than one set to the topologyDescription size
+                topology("NodesPerElement") = std::to_string(topologyDescription.number);
+            } else {
+                topology("NodesPerElement") = std::to_string(nodesPerCellValue);
+            }
+        }
+
+        if (topologyDescription.numberCorners) {
             topology("NumberOfElements") = std::to_string(topologyDescription.number);
             WriteCells(topology, topologyDescription);
         }

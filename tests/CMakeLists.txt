@@ -22,18 +22,14 @@ gtest_discover_tests(tests
         PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${PROJECT_DIR}"
         )
 
-add_custom_command(
-        TARGET tests
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_CURRENT_SOURCE_DIR}/outputs/
-        $<TARGET_FILE_DIR:tests>/outputs
-)
+# Define a function to allow copying directories.  This function will automatically update files when they are changed
+FUNCTION(copy_to_test_directory DIRECTORY)
+    FILE(GLOB_RECURSE files ${DIRECTORY}/*)
+    FOREACH(absFile ${files})
+        file(RELATIVE_PATH relFile ${CMAKE_CURRENT_SOURCE_DIR} ${absFile})
+        configure_file(${absFile} ${relFile} COPYONLY)
+    ENDFOREACH()
+ENDFUNCTION()
 
-add_custom_command(
-        TARGET tests
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_CURRENT_SOURCE_DIR}/inputs/
-        $<TARGET_FILE_DIR:tests>/inputs
-)
+copy_to_test_directory(${CMAKE_CURRENT_SOURCE_DIR}/outputs)
+copy_to_test_directory(${CMAKE_CURRENT_SOURCE_DIR}/inputs)

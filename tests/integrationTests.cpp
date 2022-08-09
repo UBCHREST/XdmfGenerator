@@ -74,4 +74,4 @@ TEST_P(MultiHdf5FileTextFixture, ShouldGenerateExpectedXml) {
     ASSERT_EQ(resultStream.str(), expectedOutput.str());
 }
 
-INSTANTIATE_TEST_SUITE_P(Tests, MultiHdf5FileTextFixture, ::testing::Values("multiFileFlowField.0", "multiFileParticles.0"));
+INSTANTIATE_TEST_SUITE_P(Tests, MultiHdf5FileTextFixture, ::testing::Values("multiFileFlowField.0", "multiFileParticles.0", "multiFile.2DLine.0"));

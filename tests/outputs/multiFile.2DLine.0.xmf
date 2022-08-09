@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf>
+  <Domain Name="domain">
+    <Grid CollectionType="Temporal" GridType="Collection" Name="TimeSeries">
+      <Time TimeType="List">
+        <DataItem Dimensions="2" Format="XML" NumberType="Float">
+          0 1e-10
+        </DataItem>
+      </Time>
+      <Grid GridType="Uniform" Name="domain">
+        <Topology NodesPerElement="2" NumberOfElements="26" TopologyType="Polyline">
+          <DataItem Dimensions="26 2" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+            faceMonitor.00000.hdf5:/viz/topology/cells
+          </DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem DataType="Float" Dimensions="27 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+            faceMonitor.00000.hdf5:/geometry/vertices
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Cell" Name="faceVec_hFlux" Type="Scalar">
+          <DataItem Dimensions="1 26 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 1 1 26 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="1 26 1" Format="HDF" Precision="8">
+              faceMonitor.00000.hdf5:/cell_fields/faceVec_hFlux
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="faceVec_regRate" Type="Scalar">
+          <DataItem Dimensions="1 26 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 1 1 26 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="1 26 1" Format="HDF" Precision="8">
+              faceMonitor.00000.hdf5:/cell_fields/faceVec_regRate
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="domain">
+        <Topology NodesPerElement="2" NumberOfElements="26" TopologyType="Polyline">
+          <DataItem Dimensions="26 2" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+            faceMonitor.00001.hdf5:/viz/topology/cells
+          </DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem DataType="Float" Dimensions="27 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+            faceMonitor.00001.hdf5:/geometry/vertices
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Cell" Name="faceVec_hFlux" Type="Scalar">
+          <DataItem Dimensions="1 26 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 1 1 26 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="1 26 1" Format="HDF" Precision="8">
+              faceMonitor.00001.hdf5:/cell_fields/faceVec_hFlux
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Cell" Name="faceVec_regRate" Type="Scalar">
+          <DataItem Dimensions="1 26 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 1 1 26 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="1 26 1" Format="HDF" Precision="8">
+              faceMonitor.00001.hdf5:/cell_fields/faceVec_regRate
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>
