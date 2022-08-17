@@ -13,25 +13,30 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
         FieldDescription description{
             .name = hdfField->Name(), .location = {.path = hdfField->Path(), .file = fileName}, .shape = hdfField->Shape(), .timeOffset = timeOffset, .fieldLocation = location};
 
-        if (hdfField->HasAttribute("vector_field_type")) {
+        bool separateIntoComponents = false;
+
+        if (hdfField->HasAttribute("vector_field_type")) {  // it is a cell based field
             auto vector_field_type = hdfField->AttributeString("vector_field_type");
             if (petscTypeLookUpFromFieldType.count(vector_field_type)) {
                 description.fieldType = petscTypeLookUpFromFieldType.at(vector_field_type);
             } else {
                 description.fieldType = NONE;
             }
-        } else if (hdfField->HasAttribute("Nc")) {
+        } else if (hdfField->HasAttribute("Nc")) {  // it is a particle field
             auto nc = hdfField->Attribute<int>("Nc");
             if (petscTypeLookUpFromNC.count(nc)) {
                 description.fieldType = petscTypeLookUpFromNC.at(nc);
+            } else if (nc) {
+                // If there is nc but not between 1-3 assume it is a packed vector and separate
+                description.fieldType = VECTOR;
+                separateIntoComponents = true;
             } else {
                 description.fieldType = NONE;
             }
+
         } else {
             throw std::runtime_error("Cannot determine field type for " + description.name);
         }
-
-        bool separateIntoComponents = false;
 
         if (description.fieldType == SCALAR) {
             // the 1 dimension is left off for scalars, add it back to the shape if the object holds a single vector

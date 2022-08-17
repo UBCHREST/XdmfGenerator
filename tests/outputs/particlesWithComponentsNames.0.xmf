@@ -1,0 +1,3787 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf>
+  <Domain Name="domain">
+    <Grid CollectionType="Temporal" GridType="Collection" Name="TimeSeries">
+      <Time TimeType="List">
+        <DataItem Dimensions="51" Format="XML" NumberType="Float">
+          0 7.22281e-05 0.000147672 0.000226388 0.000308162 0.000392205 0.000478401 0.000566967 0.00065776 0.000749709 0.000842952 0.000937517 0.00103344 0.00112895 0.00122353 0.00131718 0.00140974 0.00150114 0.00159151 0.00168114 0.00177026 0.00185905 0.00194786 0.002037 0.00212672 0.00221724 0.00230857 0.00240047 0.00249271 0.00258549 0.00267915 0.00277373 0.00286916 0.00296495 0.0030607 0.00315607 0.00325102 0.00334581 0.00344065 0.0035354 0.00363008 0.0037248 0.00381971 0.00391484 0.0040102 0.00410586 0.00420196 0.00429835 0.00439506 0.00449223 0.00458977
+        </DataItem>
+      </Time>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              0 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              1 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              2 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              3 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              4 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              4 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              4 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              4 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              4 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              4 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              4 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              5 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              5 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              5 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              5 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              5 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              5 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              5 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              6 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              6 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              6 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              6 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              6 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              6 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              6 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              7 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              7 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              7 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              7 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              7 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              7 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              7 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              8 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              8 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              8 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              8 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              8 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              8 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              8 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              9 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              9 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              9 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              9 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              9 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              9 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              9 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              10 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              10 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              10 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              10 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              10 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              10 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              10 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              11 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              11 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              11 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              11 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              11 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              11 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              11 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              12 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              12 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              12 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              12 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              12 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              12 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              12 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              13 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              13 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              13 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              13 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              13 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              13 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              13 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              14 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              14 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              14 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              14 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              14 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              14 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              14 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              15 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              15 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              15 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              15 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              15 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              15 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              15 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              16 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              16 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              16 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              16 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              16 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              16 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              16 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              17 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              17 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              17 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              17 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              17 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              17 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              17 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              18 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              18 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              18 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              18 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              18 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              18 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              18 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              19 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              19 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              19 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              19 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              19 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              19 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              19 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              20 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              20 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              20 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              20 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              20 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              20 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              20 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              21 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              21 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              21 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              21 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              21 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              21 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              21 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              22 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              22 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              22 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              22 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              22 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              22 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              22 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              23 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              23 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              23 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              23 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              23 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              23 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              23 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              24 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              24 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              24 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              24 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              24 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              24 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              24 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              25 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              25 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              25 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              25 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              25 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              25 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              25 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              26 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              26 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              26 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              26 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              26 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              26 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              26 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              27 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              27 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              27 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              27 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              27 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              27 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              27 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              28 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              28 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              28 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              28 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              28 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              28 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              28 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              29 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              29 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              29 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              29 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              29 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              29 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              29 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              30 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              30 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              30 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              30 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              30 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              30 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              30 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              31 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              31 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              31 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              31 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              31 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              31 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              31 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              32 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              32 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              32 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              32 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              32 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              32 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              32 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              33 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              33 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              33 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              33 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              33 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              33 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              33 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              34 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              34 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              34 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              34 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              34 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              34 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              34 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              35 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              35 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              35 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              35 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              35 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              35 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              35 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              36 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              36 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              36 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              36 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              36 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              36 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              36 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              37 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              37 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              37 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              37 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              37 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              37 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              37 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              38 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              38 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              38 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              38 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              38 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              38 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              38 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              39 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              39 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              39 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              39 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              39 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              39 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              39 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              40 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              40 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              40 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              40 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              40 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              40 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              40 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              41 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              41 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              41 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              41 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              41 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              41 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              41 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              42 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              42 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              42 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              42 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              42 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              42 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              42 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              43 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              43 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              43 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              43 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              43 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              43 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              43 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              44 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              44 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              44 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              44 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              44 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              44 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              44 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              45 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              45 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              45 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              45 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              45 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              45 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              45 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              46 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              46 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              46 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              46 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              46 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              46 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              46 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              47 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              47 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              47 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              47 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              47 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              47 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              47 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              48 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              48 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              48 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              48 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              48 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              48 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              48 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              49 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              49 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              49 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              49 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              49 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              49 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              49 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+      <Grid GridType="Uniform" Name="particle_domain">
+        <Topology NodesPerElement="90" TopologyType="Polyvertex">
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="1 90 2" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              50 0 0 1 1 1 1 90 2
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 2" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/DMSwarmPIC_coor
+            </DataItem>
+          </DataItem>
+        </Geometry>
+        <Attribute Center="Node" Name="PackedSolution_u" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              50 0 0 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_v" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              50 0 1 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_X" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              50 0 2 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="PackedSolution_Y" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              50 0 3 1 1 4 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 4" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/PackedSolution
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDensity" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              50 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDensity
+            </DataItem>
+          </DataItem>
+        </Attribute>
+        <Attribute Center="Node" Name="ParticleDiameter" Type="Scalar">
+          <DataItem Dimensions="1 90 1" ItemType="HyperSlab" Type="HyperSlab">
+            <DataItem Dimensions="3 3" Format="XML">
+              50 0 0 1 1 1 1 90 1
+            </DataItem>
+            <DataItem DataType="Float" Dimensions="51 90 1" Format="HDF" Precision="8">
+              particlesWithComponentsNames.0.hdf5:/particle_fields/ParticleDiameter
+            </DataItem>
+          </DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>
