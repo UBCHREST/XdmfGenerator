@@ -19,6 +19,12 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
             auto vector_field_type = hdfField->AttributeString("vector_field_type");
             if (petscTypeLookUpFromFieldType.count(vector_field_type)) {
                 description.fieldType = petscTypeLookUpFromFieldType.at(vector_field_type);
+
+                // put a check for 1D scalars in cells.  This is a result in mesh dimensionality reduction
+                if (description.fieldType == VECTOR && description.shape.size() < 3 && location == CELL) {
+                    description.fieldType = SCALAR;
+                }
+
             } else {
                 description.fieldType = NONE;
             }
