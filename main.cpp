@@ -45,7 +45,9 @@ int main(int argc, char** args) {
         // sort the paths
         std::sort(inputFilePaths.begin(), inputFilePaths.end());
 
-        auto paths = xdmfGenerator::Generate(inputFilePaths, outputFile);
+        auto paths = xdmfGenerator::Generate(inputFilePaths, outputFile, [](const std::filesystem::path& monitorPath, std::size_t i, std::size_t count){
+            std::cout << i << "/" << count << ": " << monitorPath.stem() << std::endl;
+        });
         for (const auto& path : paths) {
             std::cout << "XDMF file written to " << path << std::endl;
         }
