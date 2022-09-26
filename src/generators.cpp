@@ -66,11 +66,25 @@ void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& s
     }
 }
 
-std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path> inputFilePaths, std::filesystem::path outputFilePath) {
+std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path> inputFilePaths, std::filesystem::path outputFilePath,
+                                            std::function<void(const std::filesystem::path& path, std::size_t i, std::size_t count)> monitor) {
     // prevent all hdfObjects from being open at once
     auto inputFileStart = inputFilePaths.begin();
     auto inputFileEnd = inputFilePaths.end();
-    auto consumer = ([&inputFileStart, &inputFileEnd]() { return inputFileStart == inputFileEnd ? nullptr : std::make_shared<xdmfGenerator::HdfObject>(*(inputFileStart++)); });
+
+    auto size = inputFilePaths.size();
+
+    std::function<std::shared_ptr<xdmfGenerator::HdfObject>()> consumer;
+    if (monitor) {
+        consumer = ([&inputFileStart, &inputFileEnd, monitor, size]() {
+            if (inputFileStart != inputFileEnd) {
+                monitor(*inputFileStart, size - std::distance(inputFileStart, inputFileEnd) + 1, size);
+            }
+            return inputFileStart == inputFileEnd ? nullptr : std::make_shared<xdmfGenerator::HdfObject>(*(inputFileStart++));
+        });
+    } else {
+        consumer = ([&inputFileStart, &inputFileEnd]() { return inputFileStart == inputFileEnd ? nullptr : std::make_shared<xdmfGenerator::HdfObject>(*(inputFileStart++)); });
+    }
 
     std::vector<std::filesystem::path> outputPaths;
 
