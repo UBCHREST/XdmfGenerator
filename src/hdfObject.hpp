@@ -106,15 +106,15 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
     /**
      * Get an attribute as a certain type
      * @tparam T
-     * @param name
+     * @param attributeName
      * @return
      */
     template <typename T>
-    T Attribute(std::string name) const {
+    T Attribute(std::string attributeName) const {
         // get the attribute
-        auto attLocation = H5Aopen_name(locId, name.c_str());
+        auto attLocation = H5Aopen_name(locId, attributeName.c_str());
         if (attLocation < 0) {
-            throw std::invalid_argument("unable to find " + name + " on object " + name);
+            throw std::invalid_argument("unable to find " + attributeName + " on object " + attributeName);
         }
 
         // get the requestedType
@@ -124,7 +124,7 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
         T data;
         auto status = H5Aread(attLocation, requestedType, &data);
         if (status < 0) {
-            throw std::runtime_error("cannot obtain attribute " + name);
+            throw std::runtime_error("cannot obtain attribute " + attributeName);
         }
         H5Aclose(attLocation);
         return data;
@@ -133,14 +133,14 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
     /**
      * Get an attribute as a string
      * @tparam T
-     * @param name
+     * @param attributeName
      * @return
      */
-    std::string AttributeString(std::string name) const {
+    std::string AttributeString(std::string attributeName) const {
         // get the attribute
-        auto attLocation = H5Aopen_name(locId, name.c_str());
+        auto attLocation = H5Aopen_name(locId, attributeName.c_str());
         if (attLocation < 0) {
-            throw std::invalid_argument("unable to find " + name + " on object " + name);
+            throw std::invalid_argument("unable to find " + attributeName + " on object " + attributeName);
         }
 
         // Get the datatype and its size.
@@ -154,7 +154,7 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
          * in steps.
          */
         auto space = H5Aget_space(attLocation);
-        hsize_t dims[1] = {0};
+        hsize_t dims[1] = {1};
         H5Sget_simple_extent_dims(space, dims, NULL);
 
         // define and allocate the read buffer
@@ -175,7 +175,7 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
         // read the data
         status = H5Aread(attLocation, memtype, rdata[0]);
         if (status < 0) {
-            throw std::runtime_error("cannot obtain attribute " + name);
+            throw std::runtime_error("cannot obtain attribute " + attributeName);
         }
 
         std::string data(rdata[0]);
