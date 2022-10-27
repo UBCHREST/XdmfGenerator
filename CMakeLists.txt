@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.18.4)
 
 # Create the new project
-project(xdmfGenerator VERSION 0.1.8)
+project(xdmfGenerator VERSION 0.1.9)
 
 # Set the standards
 set(CMAKE_CXX_STANDARD 17)
