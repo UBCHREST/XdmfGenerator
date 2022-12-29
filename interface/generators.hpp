@@ -1,5 +1,5 @@
-#ifndef PETSCXDMFGENERATOR_GENERATORS_HPP
-#define PETSCXDMFGENERATOR_GENERATORS_HPP
+#ifndef XDMFGENERATOR_GENERATORS_HPP
+#define XDMFGENERATOR_GENERATORS_HPP
 #include <filesystem>
 #include <vector>
 #include <functional>
@@ -12,4 +12,4 @@ std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path>, 
 void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& stream);
 }  // namespace xdmfGenerator
 
-#endif  // PETSCXDMFGENERATOR_CONVERTERS_HPP
+#endif  // XDMFGENERATOR_CONVERTERS_HPP

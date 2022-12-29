@@ -1,5 +1,5 @@
-#ifndef PETSCXDMFGENERATOR_XMLELEMENT_HPP
-#define PETSCXDMFGENERATOR_XMLELEMENT_HPP
+#ifndef XDMFGENERATOR_XMLELEMENT_HPP
+#define XDMFGENERATOR_XMLELEMENT_HPP
 
 #include <iostream>
 #include <map>
@@ -77,4 +77,4 @@ class XmlElement {
 
 }  // namespace xdmfGenerator
 
-#endif  // PETSCXDMFGENERATOR_XMLELEMENT_HPP
+#endif  // XDMFGENERATOR_XMLELEMENT_HPP

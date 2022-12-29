@@ -1,5 +1,5 @@
-#ifndef PETSCXDMFGENERATOR_XDMF_HPP
-#define PETSCXDMFGENERATOR_XDMF_HPP
+#ifndef XDMFGENERATOR_XDMF_HPP
+#define XDMFGENERATOR_XDMF_HPP
 
 #include <numeric>
 #include <sstream>
@@ -57,4 +57,4 @@ class XdmfBuilder {
 };
 }  // namespace xdmfGenerator
 
-#endif  // PETSCXDMFGENERATOR_XDMF_HPP
+#endif  // XDMFGENERATOR_XDMF_HPP
