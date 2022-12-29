@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <iostream>
 #include <memory>
+#include <optional>
 #include <vector>
 #include "generators.hpp"
 
@@ -10,6 +11,26 @@ void PrintHelp() {
     std::cout << "Required Input Options: " << std::endl;
     std::cout << "- Single HDF5 file: This option is for a single hdf5 file that contains one or more time steps." << std::endl;
     std::cout << "- Directory: This option is for a multiple hdf5 files inside a directory.  Only hdf5/hdf files will be used." << std::endl;
+    std::cout << "      Optional Arguments:" << std::endl;
+    std::cout << "          +n : Starts processing directory hdf5 files at item n" << std::endl;
+    std::cout << "          -n : Stop processing directory hdf5 files at total items - n" << std::endl;
+}
+
+/**
+ * helper function to parse  command line arguments
+ * @param prefix
+ * @param argc
+ * @param args
+ * @return
+ */
+static std::optional<int> findNumber(char prefix, int argc, char** args) {
+    for (int a = 0; a < argc; ++a) {
+        auto arg = std::string(args[a]);
+        if (arg.rfind(prefix, 0) == 0) {
+            return std::stoi(arg.substr(1));
+        }
+    }
+    return {};
 }
 
 int main(int argc, char** args) {
@@ -45,9 +66,19 @@ int main(int argc, char** args) {
         // sort the paths
         std::sort(inputFilePaths.begin(), inputFilePaths.end());
 
-        auto paths = xdmfGenerator::Generate(inputFilePaths, outputFile, [](const std::filesystem::path& monitorPath, std::size_t i, std::size_t count){
-            std::cout << i << "/" << count << ": " << monitorPath.stem() << std::endl;
-        });
+        // check for +/- limits
+        if (auto plusLimit = findNumber('+', argc, args)) {
+            inputFilePaths.erase(inputFilePaths.begin(), inputFilePaths.begin() + plusLimit.value());
+        }
+
+        if (auto minusLimit = findNumber('-', argc, args)) {
+            int newSize = inputFilePaths.size() - minusLimit.value();
+            newSize = std::max(newSize, 0);
+            inputFilePaths.resize(newSize);
+        }
+
+        auto paths = xdmfGenerator::Generate(
+            inputFilePaths, outputFile, [](const std::filesystem::path& monitorPath, std::size_t i, std::size_t count) { std::cout << i << "/" << count << ": " << monitorPath.stem() << std::endl; });
         for (const auto& path : paths) {
             std::cout << "XDMF file written to " << path << std::endl;
         }
