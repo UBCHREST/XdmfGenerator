@@ -1,5 +1,5 @@
-#ifndef PETSCXDMFGENERATOR_HDFOBJECT_HPP
-#define PETSCXDMFGENERATOR_HDFOBJECT_HPP
+#ifndef XDMFGENERATOR_HDFOBJECT_HPP
+#define XDMFGENERATOR_HDFOBJECT_HPP
 
 #define H5_USE_18_API_DEFAULT
 #include <hdf5.h>
@@ -234,4 +234,4 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
 
 }  // namespace xdmfGenerator
 
-#endif  // PETSCXDMFGENERATOR_HDFOBJECT_HPP
+#endif  // XDMFGENERATOR_HDFOBJECT_HPP
