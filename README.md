@@ -30,5 +30,5 @@ When using the xdmfGenerator executable the following command line arguments be 
 ### Example
 The following example skips the first 3 files, omits the last file, and only processes every 5 files.
 ```bash
-xdmfGenerator +3 -1 ~5 /path/to/output/dir
+xdmfGenerator /path/to/output/dir +3 -1 ~5 
 ```
