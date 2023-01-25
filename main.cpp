@@ -14,6 +14,7 @@ void PrintHelp() {
     std::cout << "      Optional Arguments:" << std::endl;
     std::cout << "          +n : Starts processing directory hdf5 files at item n" << std::endl;
     std::cout << "          -n : Stop processing directory hdf5 files at total items - n" << std::endl;
+    std::cout << "          ~n : Only process every n files" << std::endl;
 }
 
 /**
@@ -75,6 +76,17 @@ int main(int argc, char** args) {
             int newSize = inputFilePaths.size() - minusLimit.value();
             newSize = std::max(newSize, 0);
             inputFilePaths.resize(newSize);
+        }
+
+        if (auto extractNumberOptional = findNumber('~', argc, args)) {
+            std::size_t extractNumber = extractNumberOptional.value();
+            std::vector<std::filesystem::path> inputFilePathsExtract;
+
+            for (std::size_t i = 0; i < inputFilePaths.size(); i += extractNumber) {
+                inputFilePathsExtract.push_back(inputFilePaths[i]);
+            }
+
+            inputFilePaths = inputFilePathsExtract;
         }
 
         auto paths = xdmfGenerator::Generate(
