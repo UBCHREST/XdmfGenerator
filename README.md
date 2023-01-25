@@ -15,3 +15,20 @@ docker build -t testing_image -f DockerTestFile .
 docker run --rm testing_image 
 
 ```
+
+## xdmfGenerator Executable
+When using the xdmfGenerator executable the following command line arguments be used.
+
+ - Single HDF5 file: This option is for a single hdf5 file that contains one or more time steps." << std::endl;
+ - Directory: This option is for a multiple hdf5 files inside a directory.  Only hdf5/hdf files will be used." << std::endl; 
+   - Optional Arguments:" << std::endl; 
+     - +n : Starts processing directory hdf5 files at item n" << std::endl; 
+     - -n : Stop processing directory hdf5 files at total items - n" << std::endl; 
+     - ~n : Only process every n files" << std::endl;
+
+
+### Example
+The following example skips the first 3 files, omits the last file, and only processes every 5 files.
+```bash
+xdmfGenerator +3 -1 ~5 /path/to/output/dir
+```
