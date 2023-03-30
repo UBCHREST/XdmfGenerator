@@ -10,8 +10,15 @@ const static std::map<int, FieldType> petscTypeLookUpFromNC = {{1, SCALAR}, {2, 
 void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<xdmfGenerator::HdfObject>>& hdfFields,
                                                                xdmfGenerator::FieldLocation location, const std::string& fileName, unsigned long long timeOffset) {
     for (auto& hdfField : hdfFields) {
-        FieldDescription description{
-            .name = hdfField->Name(), .location = {.path = hdfField->Path(), .file = fileName}, .shape = hdfField->Shape(), .timeOffset = timeOffset, .fieldLocation = location};
+        FieldDescription description{.name = hdfField->Name(),
+                                     .location = {.path = hdfField->Path(), .file = fileName},
+                                     .shape = hdfField->Shape(),
+                                     .timeOffset = timeOffset,
+                                     .componentOffset = 0,
+                                     .componentStride = 1,
+                                     .componentDimension = 0,
+                                     .fieldLocation = location,
+                                     .fieldType = FieldType::NONE};
 
         bool separateIntoComponents = false;
 
