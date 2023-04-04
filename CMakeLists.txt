@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.18.4)
 
 # Create the new project
-project(xdmfGenerator VERSION 0.1.13)
+project(xdmfGenerator VERSION 0.1.14)
 
 # Set the standards
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 # check for and download yaml-cpp
 find_package(HDF5 REQUIRED)
