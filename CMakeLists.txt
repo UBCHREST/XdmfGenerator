@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.18.4)
 
 # Create the new project
-project(xdmfGenerator VERSION 0.1.14)
+project(xdmfGenerator VERSION 0.1.15)
 
 # Set the standards
 set(CMAKE_CXX_STANDARD 17)
@@ -63,7 +63,7 @@ install(TARGETS xdmfGeneratorLibrary xdmfGenerator chrestCompilerFlags
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-        )
+)
 
 # install header file(s)
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/interface/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} FILES_MATCHING PATTERN "*.hpp")
@@ -73,7 +73,7 @@ install(EXPORT xdmfGeneratorLibraryTargets
         FILE xdmfGeneratorLibraryTargets.cmake
         NAMESPACE CHREST::
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/xdmfGeneratorLibrary
-        )
+)
 
 # include CMakePackageConfigHelpers macro
 include(CMakePackageConfigHelpers)
@@ -89,17 +89,17 @@ write_basic_package_version_file(
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
         "${CMAKE_CURRENT_BINARY_DIR}/xdmfGeneratorLibraryConfig.cmake"
         INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/xdmfGeneratorLibrary
-        )
+)
 
 # install config files
 install(FILES
         "${CMAKE_CURRENT_BINARY_DIR}/xdmfGeneratorLibraryConfig.cmake"
         "${CMAKE_CURRENT_BINARY_DIR}/xdmfGeneratorLibraryConfigVersion.cmake"
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/xdmfGeneratorLibrary
-        )
+)
 
 # generate the export targets for the build tree
 export(EXPORT xdmfGeneratorLibraryTargets
         FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/xdmfGeneratorLibraryTargets.cmake"
         NAMESPACE CHREST::
-        )
+)
