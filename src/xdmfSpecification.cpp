@@ -124,7 +124,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
                 auto verticesObject = geometryObject->Get("vertices");
                 gridDescription.geometry.name = verticesObject->Name(), gridDescription.geometry.location.path = verticesObject->Path(), gridDescription.geometry.location.file = hdf5File,
                 gridDescription.geometry.shape = verticesObject->Shape(), gridDescription.geometry.fieldLocation = NODE, gridDescription.geometry.fieldType = VECTOR,
-                gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape[1];
+                gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape.back();
 
                 // check for and get the topology
                 if (topologyObject) {
@@ -186,7 +186,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
                 // store the geometry
                 gridDescription.geometry.name = geometryObjectLocal->Name(), gridDescription.geometry.location.path = geometryObjectLocal->Path(), gridDescription.geometry.location.file = hdf5File,
                 gridDescription.geometry.shape = geometryObjectLocal->Shape(), gridDescription.geometry.fieldLocation = NODE, gridDescription.geometry.fieldType = VECTOR,
-                gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape[1];
+                gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape.back();
             } else {
                 // grad the geometry from the particle_fields
                 auto gridField = std::find_if(gridDescription.fields.begin(), gridDescription.fields.end(), [](const auto& f) { return f.name == "DMSwarmPIC_coor"; });
@@ -253,7 +253,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
                 auto verticesObject = geometryObject->Get("vertices");
                 gridDescription.geometry.name = verticesObject->Name(), gridDescription.geometry.location.path = verticesObject->Path(), gridDescription.geometry.location.file = hdf5File,
                 gridDescription.geometry.shape = verticesObject->Shape(), gridDescription.geometry.fieldLocation = NODE, gridDescription.geometry.fieldType = VECTOR,
-                gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape[1];
+                gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape.back();
 
                 // check for and get the topology
                 if (topologyObject) {
@@ -319,7 +319,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
                     gridDescription.geometry.name = geometryObjectLocal->Name(), gridDescription.geometry.location.path = geometryObjectLocal->Path(),
                     gridDescription.geometry.location.file = hdf5File, gridDescription.geometry.shape = geometryObjectLocal->Shape(), gridDescription.geometry.fieldLocation = NODE,
                     gridDescription.geometry.fieldType = VECTOR,
-                    gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape[1];
+                    gridDescription.geometry.componentDimension = gridDescription.geometry.shape.size() > 2 ? gridDescription.geometry.shape[2] : gridDescription.geometry.shape.back();
                 } else {
                     // grad the geometry from the particle_fields
                     auto gridField = std::find_if(gridDescription.fields.begin(), gridDescription.fields.end(), [](const auto& f) { return f.name == "DMSwarmPIC_coor"; });
