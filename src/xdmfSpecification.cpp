@@ -217,7 +217,7 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
     return list;
 }
 
-std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::function<std::shared_ptr<xdmfGenerator::HdfObject>()> consumer) {
+std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(const std::function<std::shared_ptr<xdmfGenerator::HdfObject>()>& consumer) {
     auto specifications = std::map<std::string, std::shared_ptr<XdmfSpecification>>();
 
     // march over each object
@@ -304,9 +304,9 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
             // get the time
             auto time = hdf5Object->Contains("time") ? hdf5Object->Get("time")->RawData<double>() : std::vector<double>{-1};
 
-            for (std::size_t timeIndex = 0; timeIndex < time.size(); timeIndex++) {
+            for (double timeIndex : time) {
                 GridDescription gridDescription;
-                gridDescription.time = time[timeIndex];
+                gridDescription.time = timeIndex;
 
                 // add in any other fields. NOTE: time offset for multi file is always zero
                 if (hdf5Object->Contains("particle_fields")) {

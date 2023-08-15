@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <map>
 #include <string>
+#include <utility>
 
 static const auto DataItem = "DataItem";
 static const auto Grid = "Grid";
@@ -24,10 +25,7 @@ static std::map<FieldType, std::string> typeMap = {{SCALAR, "Scalar"}, {VECTOR, 
 
 static std::map<FieldLocation, std::string> locationMap = {{NODE, "Node"}, {CELL, "Cell"}};
 
-static std::map<unsigned long long, std::map<FieldType, std::vector<std::string>>> typeExt = {{2, {{VECTOR, {"x", "y"}}, {TENSOR, {"xx", "yy", "xy"}}}},
-                                                                                              {3, {{VECTOR, {"x", "y", "z"}}, {TENSOR, {"xx", "yy", "zz", "xy", "yz", "xz"}}}}};
-
-XdmfBuilder::XdmfBuilder(std::shared_ptr<XdmfSpecification> specification) : specification(specification) {}
+XdmfBuilder::XdmfBuilder(std::shared_ptr<XdmfSpecification> specification) : specification(std::move(specification)) {}
 
 std::unique_ptr<xdmfGenerator::XmlElement> xdmfGenerator::XdmfBuilder::Build() {
     // build the preamble
@@ -49,6 +47,7 @@ std::unique_ptr<xdmfGenerator::XmlElement> xdmfGenerator::XdmfBuilder::Build() {
 
         // build a time vector
         std::vector<double> timeVector;
+        timeVector.reserve(xdmfGridCollection.grids.size());
         for (const auto& grid : xdmfGridCollection.grids) {
             timeVector.push_back(grid.time);
         }

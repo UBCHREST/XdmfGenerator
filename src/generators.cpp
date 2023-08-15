@@ -4,7 +4,7 @@
 
 namespace xdmfGenerator {
 
-void Generate(std::filesystem::path inputFilePath, std::ostream& stream) {
+void Generate(const std::filesystem::path& inputFilePath, std::ostream& stream) {
     // prepare the builder
     auto hdfObject = std::make_shared<xdmfGenerator::HdfObject>(inputFilePath);
     auto specifications = xdmfGenerator::XdmfSpecification::FromPetscHdf(hdfObject);
@@ -18,7 +18,7 @@ void Generate(std::filesystem::path inputFilePath, std::ostream& stream) {
     }
 }
 
-std::vector<std::filesystem::path> Generate(std::filesystem::path inputFilePath, std::filesystem::path outputFilePath) {
+std::vector<std::filesystem::path> Generate(const std::filesystem::path& inputFilePath, std::filesystem::path outputFilePath) {
     // build the path to the output file
     if (outputFilePath.empty()) {
         outputFilePath = inputFilePath.parent_path();
@@ -49,9 +49,10 @@ std::vector<std::filesystem::path> Generate(std::filesystem::path inputFilePath,
     return outputPaths;
 }
 
-void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& stream) {
+void Generate(const std::vector<std::filesystem::path>& inputFilePaths, std::ostream& stream) {
     // prepare the builder
     std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> hdfObjects;
+    hdfObjects.reserve(inputFilePaths.size());
     for (const auto& inputFile : inputFilePaths) {
         hdfObjects.push_back(std::make_shared<xdmfGenerator::HdfObject>(inputFile));
     }
@@ -66,8 +67,8 @@ void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& s
     }
 }
 
-std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path> inputFilePaths, std::filesystem::path outputFilePath,
-                                            std::function<void(const std::filesystem::path& path, std::size_t i, std::size_t count)> monitor) {
+std::vector<std::filesystem::path> Generate(const std::vector<std::filesystem::path>& inputFilePaths, const std::filesystem::path& outputFilePath,
+                                            const std::function<void(const std::filesystem::path& path, std::size_t i, std::size_t count)>& monitor) {
     // prevent all hdfObjects from being open at once
     auto inputFileStart = inputFilePaths.begin();
     auto inputFileEnd = inputFilePaths.end();

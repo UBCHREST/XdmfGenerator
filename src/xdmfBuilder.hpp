@@ -15,14 +15,14 @@ class XdmfBuilder {
     const std::shared_ptr<XdmfSpecification> specification;
 
     // internal helper  write functions
-    void WriteCells(xdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription);
-    void WriteVertices(XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription);
-    XmlElement& WriteData(xdmfGenerator::XmlElement& element, const xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
-    void WriteField(xdmfGenerator::XmlElement& element, xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
+    static void WriteCells(xdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription);
+    static void WriteVertices(XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription);
+    static XmlElement& WriteData(xdmfGenerator::XmlElement& element, const xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
+    static void WriteField(xdmfGenerator::XmlElement& element, xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
     static XmlElement& GenerateHybridSpaceGrid(XmlElement& element, const std::string& domainName);
-    XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, const XdmfSpecification::FieldDescription& geometryDescription,
-                                  const std::string& domainName);
+    static XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, const XdmfSpecification::FieldDescription& geometryDescription,
+                                         const std::string& domainName);
 
     template <typename T>
     inline static std::string toString(T value) {
@@ -49,7 +49,7 @@ class XdmfBuilder {
         return joinedString;
     }
 
-    std::string Hdf5PathToName(std::string hdf5Path);
+    static std::string Hdf5PathToName(std::string hdf5Path);
 
    public:
     explicit XdmfBuilder(std::shared_ptr<XdmfSpecification> specification);
