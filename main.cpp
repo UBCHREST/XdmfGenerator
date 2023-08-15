@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <optional>
@@ -89,20 +90,26 @@ int main(int argc, char** args) {
             inputFilePaths = inputFilePathsExtract;
         }
 
-        auto paths = xdmfGenerator::Generate(
-            inputFilePaths, outputFile, [](const std::filesystem::path& monitorPath, std::size_t i, std::size_t count) { std::cout << i << "/" << count << ": " << monitorPath.stem() << std::endl; });
-        for (const auto& path : paths) {
-            std::cout << "XDMF file written to " << path << std::endl;
-        }
+        // write to the file
+        std::ofstream xmlFile;
+        xmlFile.open(outputFile);
+        xdmfGenerator::Generate(
+            inputFilePaths, xmlFile, [](const std::filesystem::path& monitorPath, std::size_t i, std::size_t count) { std::cout << i << "/" << count << ": " << monitorPath.stem() << std::endl; });
+        std::cout << "XDMF file written to " << outputFile << std::endl;
+
+        xmlFile.close();
+
     } else {
         // build the path to the output file
         std::filesystem::path outputFile = filePath.parent_path();
         outputFile /= (filePath.stem().string() + ".xmf");
 
         // write to the file
-        auto paths = xdmfGenerator::Generate(filePath, outputFile);
-        for (const auto& path : paths) {
-            std::cout << "XDMF file written to " << path << std::endl;
-        }
+        std::ofstream xmlFile;
+        xmlFile.open(outputFile);
+        xdmfGenerator::Generate(filePath, xmlFile);
+        xmlFile.close();
+
+        std::cout << "XDMF file written to " << outputFile << std::endl;
     }
 }

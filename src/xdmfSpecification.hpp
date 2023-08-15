@@ -4,6 +4,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 #include "hdfObject.hpp"
 
@@ -41,8 +42,8 @@ class XdmfSpecification {
        public:
         bool HasTimeDimension() const { return shape.size() > 2; }
 
-        unsigned long long GetDof() const { return shape.size() > 2 ? shape[1] : shape[0]; }
-        unsigned long long GetDimension() const { return componentDimension; }
+        [[nodiscard]] unsigned long long GetDof() const { return shape.size() > 2 ? shape[1] : shape[0]; }
+        [[nodiscard]] unsigned long long GetDimension() const { return componentDimension; }
     };
 
     /**
@@ -91,16 +92,15 @@ class XdmfSpecification {
     friend class XdmfBuilder;
 
    public:
-    XdmfSpecification(const std::string& identifier = "") : identifier(identifier) {}
+    explicit XdmfSpecification(std::string identifier = "") : identifier(std::move(identifier)) {}
 
     // provide generator functions
-    static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(std::shared_ptr<xdmfGenerator::HdfObject>);
+    static std::shared_ptr<XdmfSpecification> FromPetscHdf(std::shared_ptr<xdmfGenerator::HdfObject>);
 
     //! multiple file xdmfs
-    static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(const std::function<std::shared_ptr<xdmfGenerator::HdfObject>()>&);
-    static std::vector<std::shared_ptr<XdmfSpecification>> FromPetscHdf(std::vector<std::shared_ptr<xdmfGenerator::HdfObject>>);
+    static std::shared_ptr<XdmfSpecification> FromPetscHdf(const std::function<std::shared_ptr<xdmfGenerator::HdfObject>()>&);
 
-    const std::string& GetIdentifier() const { return identifier; }
+    [[nodiscard]] const std::string& GetIdentifier() const { return identifier; }
 };
 
 }  // namespace xdmfGenerator
