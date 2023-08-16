@@ -70,7 +70,7 @@ class XdmfSpecification {
         std::string name = "domain";
 
         // grids in time order
-        std::vector<GridDescription> grids;
+        std::map<std::size_t, std::vector<GridDescription>> grids;
     };
 
     // store the list of grids

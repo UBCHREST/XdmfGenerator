@@ -42,14 +42,21 @@ std::unique_ptr<xdmfGenerator::XmlElement> xdmfGenerator::XdmfBuilder::Build() {
 
     // add in each grid
     for (auto& xdmfGridCollection : specification->gridsCollections) {
+        // create a vector of time indexes in order
+        std::vector<std::size_t> timeIndexes;
+        for (const auto& [timeIndex, value] : xdmfGridCollection.grids) {
+            timeIndexes.push_back(timeIndex);
+        }
+        std::sort(timeIndexes.begin(), timeIndexes.end());
+
         // If there is a time and it is positive
-        auto useTime = !(xdmfGridCollection.grids.empty() || xdmfGridCollection.grids.front().time < 0);
+        auto useTime = !(xdmfGridCollection.grids.empty() || timeIndexes.empty() || xdmfGridCollection.grids[timeIndexes[0]].front().time < 0);
 
         // build a time vector
         std::vector<double> timeVector;
-        timeVector.reserve(xdmfGridCollection.grids.size());
-        for (const auto& grid : xdmfGridCollection.grids) {
-            timeVector.push_back(grid.time);
+        timeVector.reserve(timeIndexes.size());
+        for (const auto& timeIndex : timeIndexes) {
+            timeVector.push_back(xdmfGridCollection.grids[timeIndex].front().time);
         }
 
         // specify if we add each grid to the domain or a timeGridBase
@@ -57,20 +64,25 @@ std::unique_ptr<xdmfGenerator::XmlElement> xdmfGenerator::XdmfBuilder::Build() {
 
         // march over and add each grid for each time
         for (std::size_t timeIndex = 0; timeIndex < timeVector.size(); timeIndex++) {
-            auto& grid = xdmfGridCollection.grids[timeIndex];
+            auto& grids = xdmfGridCollection.grids[timeIndex];
+
+            // add in a shared spatial collection
+            auto& sharedBaseGrid = grids.size() > 1 ? GenerateSpatialGrid(gridBase, xdmfGridCollection.name, "Spatial") : gridBase;
 
             // add in the hybrid header
-            auto& timeIndexBase = grid.hybridTopology.number > 0 ? GenerateHybridSpaceGrid(gridBase, xdmfGridCollection.name) : gridBase;
-            if (grid.hybridTopology.number > 0) {
-                GenerateSpaceGrid(timeIndexBase, grid.hybridTopology, grid.geometry, xdmfGridCollection.name);
-            }
+            for (const auto& grid : grids) {
+                auto& timeIndexBase = grid.hybridTopology.number > 0 ? GenerateSpatialGrid(sharedBaseGrid, xdmfGridCollection.name) : sharedBaseGrid;
+                if (grid.hybridTopology.number > 0) {
+                    GenerateSpaceGrid(timeIndexBase, grid.hybridTopology, grid.geometry, xdmfGridCollection.name);
+                }
 
-            // write the space header
-            auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, grid.topology, grid.geometry, xdmfGridCollection.name);
+                // write the space header
+                auto& spaceGrid = GenerateSpaceGrid(timeIndexBase, grid.topology, grid.geometry, xdmfGridCollection.name);
 
-            // add in each field
-            for (auto& field : grid.fields) {
-                WriteField(spaceGrid, field);
+                // add in each field
+                for (auto& field : grid.fields) {
+                    WriteField(spaceGrid, field);
+                }
             }
         }
     }
@@ -113,10 +125,13 @@ xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateTimeGrid(xdmfGene
     return gridItem;
 }
 
-xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateHybridSpaceGrid(xdmfGenerator::XmlElement& element, const std::string& domainName) {
+xdmfGenerator::XmlElement& xdmfGenerator::XdmfBuilder::GenerateSpatialGrid(xdmfGenerator::XmlElement& element, const std::string& domainName, const std::string& collectionType) {
     auto& hybridGridItem = element[Grid];
     hybridGridItem("Name") = domainName;
     hybridGridItem("GridType") = "Collection";
+    if (!collectionType.empty()) {
+        hybridGridItem("CollectionType") = collectionType;
+    }
     return hybridGridItem;
 }
 
@@ -190,7 +205,7 @@ XmlElement& xdmfGenerator::XdmfBuilder::WriteData(xdmfGenerator::XmlElement& ele
     }
 }
 
-void xdmfGenerator::XdmfBuilder::WriteField(xdmfGenerator::XmlElement& element, xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription) {
+void xdmfGenerator::XdmfBuilder::WriteField(xdmfGenerator::XmlElement& element, const xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription) {
     auto& attribute = element["Attribute"];
     attribute("Name") = fieldDescription.name;
     attribute("Type") = typeMap[fieldDescription.fieldType];

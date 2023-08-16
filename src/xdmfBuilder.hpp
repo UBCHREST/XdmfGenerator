@@ -18,9 +18,9 @@ class XdmfBuilder {
     static void WriteCells(xdmfGenerator::XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription);
     static void WriteVertices(XmlElement& element, const XdmfSpecification::FieldDescription& geometryDescription);
     static XmlElement& WriteData(xdmfGenerator::XmlElement& element, const xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
-    static void WriteField(xdmfGenerator::XmlElement& element, xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
+    static void WriteField(xdmfGenerator::XmlElement& element, const xdmfGenerator::XdmfSpecification::FieldDescription& fieldDescription);
     static XmlElement& GenerateTimeGrid(XmlElement& element, const std::vector<double>& time);
-    static XmlElement& GenerateHybridSpaceGrid(XmlElement& element, const std::string& domainName);
+    static XmlElement& GenerateSpatialGrid(xdmfGenerator::XmlElement& element, const std::string& domainName, const std::string& collectionType = "");
     static XmlElement& GenerateSpaceGrid(XmlElement& element, const XdmfSpecification::TopologyDescription& topologyDescription, const XdmfSpecification::FieldDescription& geometryDescription,
                                          const std::string& domainName);
 

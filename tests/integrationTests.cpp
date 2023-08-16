@@ -35,7 +35,8 @@ TEST_P(SingleHdf5FileTextFixture, ShouldGenerateExpectedXml) {
 
 INSTANTIATE_TEST_SUITE_P(Tests, SingleHdf5FileTextFixture,
                          ::testing::Values("flowField.0", "steadyState.0", "swarmStaticMesh.0", "flowWithParticles.0", "particlesOnly.0", "particlesDynamic3D", "flowWithMultipleComponents",
-                                           "particleWithExtraFields", "flowWithComponentNames", "meshWithExtrudedCells", "particlesWithComponentsNames.0", "singleFile.2DLine.0"));
+                                           "particleWithExtraFields", "flowWithComponentNames", "meshWithExtrudedCells", "particlesWithComponentsNames.0", "singleFile.2DLine.0",
+                                           "steadyStateMixedCells", "transientMixedCells"));
 
 class MultiHdf5FileTextFixture : public ::testing::TestWithParam<std::string> {
    protected:
