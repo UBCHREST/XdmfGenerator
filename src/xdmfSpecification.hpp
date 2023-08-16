@@ -38,9 +38,10 @@ class XdmfSpecification {
         unsigned long long componentDimension;
         FieldLocation fieldLocation;
         FieldType fieldType;
+        bool hasTimeDimension = false;
 
        public:
-        bool HasTimeDimension() const { return shape.size() > 2; }
+        [[nodiscard]] bool HasTimeDimension() const { return hasTimeDimension; }
 
         [[nodiscard]] unsigned long long GetDof() const { return shape.size() > 2 ? shape[1] : shape[0]; }
         [[nodiscard]] unsigned long long GetDimension() const { return componentDimension; }

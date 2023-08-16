@@ -18,7 +18,8 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
                                      .componentStride = 1,
                                      .componentDimension = 0,
                                      .fieldLocation = location,
-                                     .fieldType = FieldType::NONE};
+                                     .fieldType = FieldType::NONE,
+                                     .hasTimeDimension = hdfField->HasAttribute("timestepping") && hdfField->Attribute<int>("timestepping") > 0};
 
         bool separateIntoComponents = false;
 
@@ -85,7 +86,8 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
                                                                                                  .componentStride = description.GetDimension(),
                                                                                                  .componentDimension = 1,
                                                                                                  .fieldLocation = description.fieldLocation,
-                                                                                                 .fieldType = SCALAR};
+                                                                                                 .fieldType = SCALAR,
+                                                                                                 .hasTimeDimension = description.hasTimeDimension};
 
                     fields.push_back(componentFieldDescription);
                 }
