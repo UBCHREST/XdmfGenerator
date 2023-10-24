@@ -1,9 +1,11 @@
 #include "xmlElement.hpp"
 
-xdmfGenerator::XmlElement::XmlElement(std::string name, std::string preamble, std::string currentPath) : preamble(preamble), name(name), path(currentPath + "/" + name) {}
+#include <utility>
+
+xdmfGenerator::XmlElement::XmlElement(const std::string& name, std::string preamble, const std::string& currentPath) : preamble(std::move(preamble)), name(name), path(currentPath + "/" + name) {}
 
 namespace xdmfGenerator {
-std::ostream& operator<<(std::ostream& os, const xdmfGenerator::XmlElement& object) {
+std::ostream& operator<<(std::ostream& os, const xdmfGenerator::XmlElement& object) {  // NOLINT(*-no-recursion)
     os << object.preamble;
     os << "<" << object.name;
     for (const auto& attribute : object.attributes) {
@@ -31,11 +33,11 @@ std::string& xdmfGenerator::XmlElement::operator()(const std::string&& childName
 
 std::string& xdmfGenerator::XmlElement::operator()() { return value; }
 
-void xdmfGenerator::XmlElement::PrettyPrint(std::ostream& stream, size_t depth) {
+void xdmfGenerator::XmlElement::PrettyPrint(std::ostream& stream, size_t depth) {  // NOLINT(*-no-recursion)
     const auto t = std::string(2, ' ');
     const auto d = std::string(depth * 2, ' ');
 
-    if (preamble.size() > 0) {
+    if (!preamble.empty()) {
         stream << d << preamble;
     }
     stream << std::endl << d << "<" << name;

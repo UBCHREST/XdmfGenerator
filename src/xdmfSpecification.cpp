@@ -18,7 +18,8 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
                                      .componentStride = 1,
                                      .componentDimension = 0,
                                      .fieldLocation = location,
-                                     .fieldType = FieldType::NONE};
+                                     .fieldType = FieldType::NONE,
+                                     .hasTimeDimension = hdfField->HasAttribute("timestepping") && hdfField->Attribute<int>("timestepping") > 0};
 
         bool separateIntoComponents = false;
 
@@ -28,7 +29,8 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
                 description.fieldType = petscTypeLookUpFromFieldType.at(vector_field_type);
 
                 // put a check for 1D scalars in cells.  This is a result in mesh dimensionality reduction
-                if (description.fieldType == VECTOR && description.shape.size() < 3 && location == CELL) {
+                if ((description.fieldType == VECTOR && description.shape.size() < 3 && location == CELL && description.HasTimeDimension()) ||
+                    (description.fieldType == VECTOR && description.shape.size() < 2 && location == CELL && !description.HasTimeDimension())) {
                     description.fieldType = SCALAR;
                 }
 
@@ -85,7 +87,8 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
                                                                                                  .componentStride = description.GetDimension(),
                                                                                                  .componentDimension = 1,
                                                                                                  .fieldLocation = description.fieldLocation,
-                                                                                                 .fieldType = SCALAR};
+                                                                                                 .fieldType = SCALAR,
+                                                                                                 .hasTimeDimension = description.hasTimeDimension};
 
                     fields.push_back(componentFieldDescription);
                 }
@@ -96,22 +99,21 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
     }
 }
 
-std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::shared_ptr<xdmfGenerator::HdfObject> rootObject) {
-    auto specifications = std::map<std::string, std::shared_ptr<XdmfSpecification>>();
-
+std::shared_ptr<XdmfSpecification> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::shared_ptr<xdmfGenerator::HdfObject> rootObject) {
     // store the file name
     auto hdf5File = rootObject->Name();
+
+    // make a new specification
+    auto specification = std::make_shared<XdmfSpecification>();
 
     // petsc hdf5 files may have a root domain (this is often a real mesh (FE/FV))
     std::shared_ptr<xdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(rootObject, "geometry");
     if (geometryObject) {
+        GridCollectionDescription mainGrid;
+
         // march over each possible topology
         int topologyIndex = 0;
         while (auto topologyObject = FindPetscHdfChild(rootObject, "topology" + GetTopologyPostfix(topologyIndex))) {
-            GridCollectionDescription mainGrid;
-
-            auto [specification, in] = specifications.try_emplace(GetTopologyPostfix(topologyIndex), std::make_shared<XdmfSpecification>(GetTopologyPostfix(topologyIndex)));
-
             // get the time
             auto time = rootObject->Contains("time") ? rootObject->Get("time")->RawData<double>() : std::vector<double>{-1};
 
@@ -146,28 +148,26 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
                 }
 
                 // get the vertex fields and map into a vertex map
-                if (rootObject->Contains("vertex_fields")) {
-                    GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("vertex_fields")->Items(), NODE, hdf5File, timeIndex);
+                if (rootObject->Contains("vertex_fields" + GetTopologyPostfix(topologyIndex))) {
+                    GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("vertex_fields" + GetTopologyPostfix(topologyIndex))->Items(), NODE, hdf5File, timeIndex);
                 }
-                if (rootObject->Contains("cell_fields")) {
-                    GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("cell_fields")->Items(), CELL, hdf5File, timeIndex);
+                if (rootObject->Contains("cell_fields" + GetTopologyPostfix(topologyIndex))) {
+                    GenerateFieldsFromPetsc(gridDescription.fields, rootObject->Get("cell_fields" + GetTopologyPostfix(topologyIndex))->Items(), CELL, hdf5File, timeIndex);
                 }
 
-                mainGrid.grids.push_back(gridDescription);
+                mainGrid.grids[timeIndex].push_back(gridDescription);
             }
-
-            // add to the list of grids
-            specification->second->gridsCollections.push_back(mainGrid);
             ++topologyIndex;
         }
+
+        // add to the list of grids
+        specification->gridsCollections.push_back(mainGrid);
     }
 
     // check for particles
     if (rootObject->Contains("particles") || rootObject->Contains("particle_fields")) {
         GridCollectionDescription particleGrid;
         particleGrid.name = "particle_domain";
-
-        auto [specification, in] = specifications.try_emplace("", std::make_shared<XdmfSpecification>());
 
         // get the time
         auto time = rootObject->Contains("time") ? rootObject->Get("time")->RawData<double>() : std::vector<double>{-1};
@@ -205,40 +205,38 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
             gridDescription.topology.numberCorners = 0;
             gridDescription.topology.dimension = gridDescription.geometry.GetDimension();
 
-            particleGrid.grids.push_back(gridDescription);
+            particleGrid.grids[timeIndex].push_back(gridDescription);
         }
 
         // add to the list of grids
-        specification->second->gridsCollections.push_back(particleGrid);
+        specification->gridsCollections.push_back(particleGrid);
     }
 
-    std::vector<std::shared_ptr<XdmfSpecification>> list;
-    std::transform(specifications.begin(), specifications.end(), std::back_inserter(list), [](const auto& pair) { return pair.second; });
-    return list;
+    return specification;
 }
 
-std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::function<std::shared_ptr<xdmfGenerator::HdfObject>()> consumer) {
-    auto specifications = std::map<std::string, std::shared_ptr<XdmfSpecification>>();
+std::shared_ptr<XdmfSpecification> xdmfGenerator::XdmfSpecification::FromPetscHdf(const std::function<std::shared_ptr<xdmfGenerator::HdfObject>()>& consumer) {
+    // make a new specification
+    auto specification = std::make_shared<XdmfSpecification>();
+
+    // keep track of the time index
+    std::size_t timeIndexCount = 0;
 
     // march over each object
     while (auto hdf5Object = consumer()) {
         // petsc hdf5 files may have a root domain (this is often a real mesh (FE/FV))
         std::shared_ptr<xdmfGenerator::HdfObject> geometryObject = FindPetscHdfChild(hdf5Object, "geometry");
         if (geometryObject) {
+            // set up the grid collection for this specification
+            auto& gridsCollections = specification->gridsCollections;
+            if (gridsCollections.empty()) {
+                gridsCollections.emplace_back();
+            }
+            auto& gridsCollection = gridsCollections.back();
+
             // march over each possible topology
             int topologyIndex = 0;
             while (auto topologyObject = FindPetscHdfChild(hdf5Object, "topology" + GetTopologyPostfix(topologyIndex))) {
-                GridCollectionDescription mainGrid;
-
-                auto [specification, in] = specifications.try_emplace(GetTopologyPostfix(topologyIndex), std::make_shared<XdmfSpecification>(GetTopologyPostfix(topologyIndex)));
-
-                // set up the grid collection for this specification
-                auto& gridsCollections = specification->second->gridsCollections;
-                if (gridsCollections.empty()) {
-                    gridsCollections.emplace_back();
-                }
-                auto& gridsCollection = gridsCollections.back();
-
                 // store the file name
                 auto hdf5File = hdf5Object->Name();
 
@@ -282,16 +280,14 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
                     GenerateFieldsFromPetsc(gridDescription.fields, hdf5Object->Get("cell_fields")->Items(), CELL, hdf5File, 0);
                 }
 
-                gridsCollection.grids.push_back(gridDescription);
+                gridsCollection.grids[timeIndexCount].push_back(gridDescription);
                 ++topologyIndex;
             }
         }
         // check for particles
         if (hdf5Object->Contains("particles") || hdf5Object->Contains("particle_fields")) {
-            auto [specification, in] = specifications.try_emplace("", std::make_shared<XdmfSpecification>());
-
             // set up the grid collection for this specification
-            auto& gridsCollections = specification->second->gridsCollections;
+            auto& gridsCollections = specification->gridsCollections;
             if (gridsCollections.empty()) {
                 gridsCollections.emplace_back();
             }
@@ -304,9 +300,9 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
             // get the time
             auto time = hdf5Object->Contains("time") ? hdf5Object->Get("time")->RawData<double>() : std::vector<double>{-1};
 
-            for (std::size_t timeIndex = 0; timeIndex < time.size(); timeIndex++) {
+            for (double timeIndex : time) {
                 GridDescription gridDescription;
-                gridDescription.time = time[timeIndex];
+                gridDescription.time = timeIndex;
 
                 // add in any other fields. NOTE: time offset for multi file is always zero
                 if (hdf5Object->Contains("particle_fields")) {
@@ -338,21 +334,13 @@ std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification
                 gridDescription.topology.numberCorners = 0;
                 gridDescription.topology.dimension = gridDescription.geometry.GetDimension();
 
-                gridsCollection.grids.push_back(gridDescription);
+                gridsCollection.grids[timeIndexCount].push_back(gridDescription);
             }
         }
+        ++timeIndexCount;
     }
 
-    std::vector<std::shared_ptr<XdmfSpecification>> list;
-    std::transform(specifications.begin(), specifications.end(), std::back_inserter(list), [](const auto& pair) { return pair.second; });
-    return list;
-}
-
-std::vector<std::shared_ptr<XdmfSpecification>> xdmfGenerator::XdmfSpecification::FromPetscHdf(std::vector<std::shared_ptr<xdmfGenerator::HdfObject>> objects) {
-    auto start = objects.begin();
-    auto end = objects.end();
-
-    return FromPetscHdf([&start, &end]() { return start == end ? nullptr : *(start++); });
+    return specification;
 }
 
 std::shared_ptr<xdmfGenerator::HdfObject> XdmfSpecification::FindPetscHdfChild(std::shared_ptr<xdmfGenerator::HdfObject>& root, const std::string& name) {

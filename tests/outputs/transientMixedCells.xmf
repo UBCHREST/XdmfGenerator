@@ -1,0 +1,873 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf>
+  <Domain Name="domain">
+    <Grid CollectionType="Temporal" GridType="Collection" Name="TimeSeries">
+      <Time TimeType="List">
+        <DataItem Dimensions="10" Format="XML" NumberType="Float">
+          0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9
+        </DataItem>
+      </Time>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                0 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                1 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                1 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                1 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                1 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                1 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                1 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                2 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                2 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                2 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                2 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                2 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                2 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                3 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                3 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                3 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                3 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                3 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                3 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                4 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                4 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                4 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                4 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                4 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                4 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                5 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                5 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                5 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                5 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                5 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                5 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                6 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                6 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                6 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                6 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                6 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                6 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                7 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                7 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                7 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                7 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                7 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                7 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                8 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                8 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                8 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                8 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                8 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                8 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+      <Grid CollectionType="Spatial" GridType="Collection" Name="domain">
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="64" TopologyType="Triangle">
+            <DataItem Dimensions="64 3" Format="HDF" ItemType="Uniform" Name="_viz_topology_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 64 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                9 0 0 1 1 1 1 64 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                9 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 64 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                9 0 0 1 1 1 1 64 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 64 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+        <Grid GridType="Uniform" Name="domain">
+          <Topology NumberOfElements="32" TopologyType="Quadrilateral">
+            <DataItem Dimensions="32 4" Format="HDF" ItemType="Uniform" Name="_viz_topology_1_cells" NumberType="Float" Precision="8">
+              transientMixedCells.hdf5:/viz/topology_1/cells
+            </DataItem>
+          </Topology>
+          <Geometry GeometryType="XY">
+            <DataItem DataType="Float" Dimensions="81 2" Format="HDF" Name="_geometry_vertices" Precision="8">
+              transientMixedCells.hdf5:/geometry/vertices
+            </DataItem>
+          </Geometry>
+          <Attribute Center="Cell" Name="test_vector_position" Type="Vector">
+            <DataItem Dimensions="1 32 2" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                9 0 0 1 1 1 1 32 2
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 2" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_position
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_x" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                9 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_x
+              </DataItem>
+            </DataItem>
+          </Attribute>
+          <Attribute Center="Cell" Name="test_vector_y" Type="Scalar">
+            <DataItem Dimensions="1 32 1" ItemType="HyperSlab" Type="HyperSlab">
+              <DataItem Dimensions="3 3" Format="XML">
+                9 0 0 1 1 1 1 32 1
+              </DataItem>
+              <DataItem DataType="Float" Dimensions="10 32 1" Format="HDF" Precision="8">
+                transientMixedCells.hdf5:/cell_fields_1/test_vector_y
+              </DataItem>
+            </DataItem>
+          </Attribute>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>

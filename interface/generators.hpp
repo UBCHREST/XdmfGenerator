@@ -1,15 +1,12 @@
 #ifndef XDMFGENERATOR_GENERATORS_HPP
 #define XDMFGENERATOR_GENERATORS_HPP
 #include <filesystem>
-#include <vector>
 #include <functional>
-
+#include <vector>
 
 namespace xdmfGenerator {
-std::vector<std::filesystem::path> Generate(std::filesystem::path, std::filesystem::path = {});
-void Generate(std::filesystem::path inputFilePath, std::ostream& stream);
-std::vector<std::filesystem::path> Generate(std::vector<std::filesystem::path>, std::filesystem::path, std::function<void(const std::filesystem::path& path, std::size_t i, std::size_t count)> monitor = {});
-void Generate(std::vector<std::filesystem::path> inputFilePaths, std::ostream& stream);
+void Generate(const std::filesystem::path& inputFilePath, std::ostream& stream);
+void Generate(const std::vector<std::filesystem::path>&, std::ostream& stream, const std::function<void(const std::filesystem::path& path, std::size_t i, std::size_t count)>& monitor = {});
 }  // namespace xdmfGenerator
 
-#endif  // XDMFGENERATOR_CONVERTERS_HPP
+#endif  // XDMFGENERATOR_GENERATORS_HPP

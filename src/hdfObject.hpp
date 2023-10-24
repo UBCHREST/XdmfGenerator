@@ -15,9 +15,9 @@ namespace xdmfGenerator {
 class HdfObject : public std::enable_shared_from_this<HdfObject> {
    private:
     const std::shared_ptr<HdfObject> parent = nullptr;
-    const std::string name = "";
+    const std::string name;
     hid_t locId;
-    H5O_info_t information;
+    H5O_info_t information{};
 
     inline static std::map<std::type_index, hid_t> nativeHdfTypes = {{typeid(char), H5T_NATIVE_CHAR},
                                                                      {typeid(signed char), H5T_NATIVE_SCHAR},
@@ -47,10 +47,10 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
     static herr_t addChildToList(hid_t locId, const char *name, const H5L_info_t *info, void *operator_data);
 
    protected:
-    HdfObject(std::shared_ptr<HdfObject> parent, H5O_info_t information, std::string name);
+    HdfObject(const std::shared_ptr<HdfObject> &parent, H5O_info_t information, std::string name);
 
    public:
-    HdfObject(std::filesystem::path filePath);
+    explicit HdfObject(const std::filesystem::path &filePath);
     ~HdfObject();
 
     inline H5O_type_t Type() const { return information.type; }
@@ -59,10 +59,10 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
 
     /**
      * Simple function to get child node
-     * @param name
+     * @param key
      * @return
      */
-    std::shared_ptr<HdfObject> Get(std::string name);
+    std::shared_ptr<HdfObject> Get(const std::string &key);
 
     /**
      * Get all of the child items
@@ -73,10 +73,10 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
 
     /**
      * Simple function to get child node
-     * @param name
+     * @param key
      * @return
      */
-    bool Contains(std::string name) const;
+    bool Contains(const std::string &key) const;
 
     /**
      * The name of the node
@@ -98,10 +98,10 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
 
     /**
      * Checks to see if this object hold an attirbute
-     * @param name
+     * @param key
      * @return
      */
-    bool HasAttribute(std::string name) const;
+    bool HasAttribute(const std::string &key) const;
 
     /**
      * Get an attribute as a certain type
@@ -110,7 +110,7 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
      * @return
      */
     template <typename T>
-    T Attribute(std::string attributeName) const {
+    T Attribute(const std::string &attributeName) const {
         // get the attribute
         auto attLocation = H5Aopen_name(locId, attributeName.c_str());
         if (attLocation < 0) {
@@ -136,7 +136,7 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
      * @param attributeName
      * @return
      */
-    std::string AttributeString(std::string attributeName) const {
+    std::string AttributeString(const std::string &attributeName) const {
         // get the attribute
         auto attLocation = H5Aopen_name(locId, attributeName.c_str());
         if (attLocation < 0) {
@@ -155,7 +155,7 @@ class HdfObject : public std::enable_shared_from_this<HdfObject> {
          */
         auto space = H5Aget_space(attLocation);
         hsize_t dims[1] = {1};
-        H5Sget_simple_extent_dims(space, dims, NULL);
+        H5Sget_simple_extent_dims(space, dims, nullptr);
 
         // define and allocate the read buffer
         // Allocate array of pointers to rows.

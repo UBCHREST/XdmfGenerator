@@ -22,7 +22,7 @@ class XmlElement {
     XmlElement(const XmlElement&) = delete;
     void operator=(const XmlElement&) = delete;
 
-    explicit XmlElement(std::string name, std::string preamble = "", std::string currentPath = "");
+    explicit XmlElement(const std::string& name, std::string preamble = "", const std::string& currentPath = "");
 
     /**
      * creates a new child element with the name
@@ -56,7 +56,7 @@ class XmlElement {
      * Get the path to this element
      * @return
      */
-    const std::string& Path() const { return path; }
+    [[nodiscard]] const std::string& Path() const { return path; }
 
     /**
      * prints the xml object to the stream
