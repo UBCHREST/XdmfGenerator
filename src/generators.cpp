@@ -1,3 +1,4 @@
+#include "generators.hpp"
 #include <fstream>
 #include <iostream>
 #include "xdmfBuilder.hpp"
@@ -14,6 +15,23 @@ void Generate(const std::filesystem::path& inputFilePath, std::ostream& stream) 
 
     // write to the stream
     xml->PrettyPrint(stream);
+}
+
+void Generate(const std::filesystem::path& inputFilePath, std::filesystem::path outputFilePath) {
+    // build the path to the output file
+    if (outputFilePath.empty()) {
+        outputFilePath = inputFilePath.parent_path();
+        outputFilePath /= (inputFilePath.stem().string() + ".xmf");
+    }
+
+    // write to the file
+    std::ofstream xmlFile;
+    xmlFile.open(outputFilePath);
+
+    // reuse the existing function
+    Generate(inputFilePath, xmlFile);
+
+    xmlFile.close();
 }
 
 void Generate(const std::vector<std::filesystem::path>& inputFilePaths, std::ostream& stream, const std::function<void(const std::filesystem::path& path, std::size_t i, std::size_t count)>& monitor) {
@@ -45,4 +63,17 @@ void Generate(const std::vector<std::filesystem::path>& inputFilePaths, std::ost
     // write to the stream
     xml->PrettyPrint(stream);
 }
+
+void Generate(const std::vector<std::filesystem::path>& inputFilePaths, const std::filesystem::path& outputFilePath,
+              const std::function<void(const std::filesystem::path& path, std::size_t i, std::size_t count)>& monitor) {
+    // write to the file
+    std::ofstream xmlFile;
+    xmlFile.open(outputFilePath);
+
+    // reuse the existing function
+    Generate(inputFilePaths, xmlFile, monitor);
+
+    xmlFile.close();
+}
+
 }  // namespace xdmfGenerator
