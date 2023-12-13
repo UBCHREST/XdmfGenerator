@@ -23,19 +23,19 @@ class XdmfSpecification {
 
     struct TopologyDescription {
         DataLocation location;
-        unsigned long long number = 0;
-        unsigned long long numberCorners = 0;
-        unsigned long long dimension = 0;
+        hsize_t number = 0;
+        hsize_t numberCorners = 0;
+        hsize_t dimension = 0;
     };
 
     struct FieldDescription {
         std::string name;
         DataLocation location;
-        std::vector<unsigned long long> shape;
-        unsigned long long timeOffset = 0;
-        unsigned long long componentOffset = 0;
-        unsigned long long componentStride = 1;
-        unsigned long long componentDimension;
+        std::vector<hsize_t> shape;
+        hsize_t timeOffset = 0;
+        hsize_t componentOffset = 0;
+        hsize_t componentStride = 1;
+        hsize_t componentDimension;
         FieldLocation fieldLocation;
         FieldType fieldType;
         bool hasTimeDimension = false;
@@ -43,8 +43,8 @@ class XdmfSpecification {
        public:
         [[nodiscard]] bool HasTimeDimension() const { return hasTimeDimension; }
 
-        [[nodiscard]] unsigned long long GetDof() const { return shape.size() > 2 ? shape[1] : shape[0]; }
-        [[nodiscard]] unsigned long long GetDimension() const { return componentDimension; }
+        [[nodiscard]] hsize_t GetDof() const { return shape.size() > 2 ? shape[1] : shape[0]; }
+        [[nodiscard]] hsize_t GetDimension() const { return componentDimension; }
     };
 
     /**
@@ -78,7 +78,7 @@ class XdmfSpecification {
 
     // helper functions
     static void GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<xdmfGenerator::HdfObject>>& hdfFields, FieldLocation location,
-                                        const std::string& fileName, unsigned long long timeOffset);
+                                        const std::string& fileName, hsize_t timeOffset);
     static std::shared_ptr<xdmfGenerator::HdfObject> FindPetscHdfChild(std::shared_ptr<xdmfGenerator::HdfObject>& root, const std::string& name);
 
     static std::string GetTopologyPostfix(int index) {

@@ -8,7 +8,7 @@ const static std::map<std::string, FieldType> petscTypeLookUpFromFieldType = {{"
 const static std::map<int, FieldType> petscTypeLookUpFromNC = {{1, SCALAR}, {2, VECTOR}, {3, VECTOR}};
 
 void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<FieldDescription>& fields, const std::vector<std::shared_ptr<xdmfGenerator::HdfObject>>& hdfFields,
-                                                               xdmfGenerator::FieldLocation location, const std::string& fileName, unsigned long long timeOffset) {
+                                                               xdmfGenerator::FieldLocation location, const std::string& fileName, hsize_t timeOffset) {
     for (auto& hdfField : hdfFields) {
         FieldDescription description{.name = hdfField->Name(),
                                      .location = {.path = hdfField->Path(), .file = fileName},
@@ -69,7 +69,7 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
         // If this is a components field, separate into each component
         if (description.fieldType != NONE) {
             if (separateIntoComponents) {
-                for (unsigned long long c = 0; c < description.GetDimension(); c++) {
+                for (hsize_t c = 0; c < description.GetDimension(); c++) {
                     // check to see if the component was named in the hdf5 file
                     std::string componentName = description.name + std::to_string(c);
                     const std::string attributeName = "componentName" + std::to_string(c);
@@ -83,7 +83,7 @@ void xdmfGenerator::XdmfSpecification::GenerateFieldsFromPetsc(std::vector<Field
                                                                                                  .location = description.location,
                                                                                                  .shape = description.shape,
                                                                                                  .timeOffset = description.timeOffset,
-                                                                                                 .componentOffset = static_cast<unsigned long long>(c),
+                                                                                                 .componentOffset = static_cast<hsize_t>(c),
                                                                                                  .componentStride = description.GetDimension(),
                                                                                                  .componentDimension = 1,
                                                                                                  .fieldLocation = description.fieldLocation,
@@ -135,7 +135,7 @@ std::shared_ptr<XdmfSpecification> xdmfGenerator::XdmfSpecification::FromPetscHd
                     gridDescription.topology.location.file = hdf5File;
                     gridDescription.topology.number = cellObject->Shape()[0];
                     gridDescription.topology.numberCorners = cellObject->Shape()[1];
-                    gridDescription.topology.dimension = cellObject->Attribute<unsigned long long>("cell_dim");
+                    gridDescription.topology.dimension = cellObject->Attribute<hsize_t>("cell_dim");
                 }
                 // hybrid topology
                 std::shared_ptr<xdmfGenerator::HdfObject> hybridTopologyObject = FindPetscHdfChild(rootObject, "hybrid_topology");
@@ -260,7 +260,7 @@ std::shared_ptr<XdmfSpecification> xdmfGenerator::XdmfSpecification::FromPetscHd
                     gridDescription.topology.location.file = hdf5File;
                     gridDescription.topology.number = cellObject->Shape()[0];
                     gridDescription.topology.numberCorners = cellObject->Shape()[1];
-                    gridDescription.topology.dimension = cellObject->Attribute<unsigned long long>("cell_dim");
+                    gridDescription.topology.dimension = cellObject->Attribute<hsize_t>("cell_dim");
                 }
                 // hybrid topology
                 std::shared_ptr<xdmfGenerator::HdfObject> hybridTopologyObject = FindPetscHdfChild(hdf5Object, "hybrid_topology");
